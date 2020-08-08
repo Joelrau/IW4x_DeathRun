@@ -1,0 +1,17 @@
+bot/1
+bot/2
+bot/3
+bot/4
+bot/5
+bot/6
+bot/7
+bot/8
+bot/9
+bot/10
+bot/11
+bot/12
+bot/13
+bot/14
+bot/15
+bot/16
+bot/17

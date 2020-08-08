@@ -1,0 +1,9 @@
+{
+	menuDef
+	{
+		name "scorebar_hd"
+		rect 0 -20 640 480 8 2
+		visible 0
+		forecolor 1 1 1 1
+	}
+}

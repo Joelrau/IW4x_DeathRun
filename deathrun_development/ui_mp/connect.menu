@@ -1,0 +1,174 @@
+#include "ui/menudef.h"
+
+#define ORIGIN_MOD_TITLE			-25 0
+#define ORIGIN_MAP_TITLE			-25 25
+
+#define WIDESCREEN_OFFSET			107 0
+
+
+// Displayed when client is initially connecting to the server.
+{
+	menuDef 
+	{
+		name			"connect"
+		style			WINDOW_STYLE_FILLED
+		fullScreen		MENU_FALSE
+		focusColor		COLOR_FOCUSED
+		visible			MENU_FALSE		
+		backcolor		1 1 1 1
+		background		"$levelBriefing"
+		rect			FULLSCREEN_WIDE
+		
+		//background gradient
+		itemDef
+		{
+			rect -350 -236 900 -400 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor .7 .7 .7 .7
+			background "gradient_bottom"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -350 -163 900 200 2 3
+			decoration
+			visible 1
+			style 3
+			forecolor .7 .7 .7 .7
+			background "gradient_bottom"
+			textscale 0.55
+		}
+
+		// mod
+		/*itemDef
+		{
+			rect			-70 -135 140 75 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+			origin			WIDESCREEN_OFFSET
+			style			WINDOW_STYLE_FILLED
+			visible			1		
+			backcolor		1 1 1 1
+			background		"server_logo" //server_logo
+		}*/
+		
+		// load progress bar background
+		itemDef 
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			-128 -40 260 4 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+			origin			WIDESCREEN_OFFSET
+			backcolor		0 0 0 0.8
+			visible			1	decoration	
+		}
+		// load progress bar
+		itemDef 
+		{
+			name			"loadbar"
+			style			WINDOW_STYLE_LOADBAR
+			rect			-127 -39 258 2 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+			origin			WIDESCREEN_OFFSET
+			background		"white"
+			visible			1	decoration
+		}
+		
+		//modinfo
+		itemDef
+		{
+			name			"modname"
+			type			ITEM_TYPE_TEXT
+			rect			0 100 0 0 HORIZONTAL_ALIGN_CENTER
+			origin			WIDESCREEN_OFFSET
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_CENTER
+			textstyle		ITEM_TEXTSTYLE_SHADOWED 
+			textscale		0.5
+			forecolor		1 1 1 1
+			text			"@BRAX_MODNAME"
+			visible			1
+			decoration
+		}
+		
+		//mapinfo
+		itemDef
+		{
+			name			"mapname"
+			type			ITEM_TYPE_TEXT
+			rect			0 130 0 0 HORIZONTAL_ALIGN_CENTER
+			origin			WIDESCREEN_OFFSET
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_CENTER
+			textstyle		ITEM_TEXTSTYLE_SHADOWED 
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp				text( getmapname( ) )
+			visible			1
+			decoration
+		}
+		
+		//connectinfo
+		itemDef
+		{
+			name 			"connectinfo"
+			type			ITEM_TYPE_TEXT
+			rect			-70 -50 140 75 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_BOTTOM
+			origin			WIDESCREEN_OFFSET
+			textfont 		UI_FONT_OBJECTIVE
+			textscale 		0.275
+			textstyle 		3
+			textalign		ITEM_ALIGN_CENTER
+			forecolor 		1 1 1 1
+			exp 			text ( connectioninfo( ) )
+			visible 		1
+			decoration
+		}
+		
+		
+		/*itemDef 
+		{
+			style			WINDOW_STYLE_FILLED
+			rect			ORIGIN_DIY_FRAME_PC 285 140
+			origin			WIDESCREEN_OFFSET
+			backcolor		0 0 0 .5
+			visible			1	decoration	}
+		itemDef
+		{
+			rect			ORIGIN_DIY_PC 270 140
+			type			ITEM_TYPE_BUTTON
+			textfont		UI_FONT_DEFAULT
+			dvar			"didyouknow"
+			textalign 		ITEM_ALIGN_LEFT
+			textscale		TEXTSIZE_SMALL
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0
+			textalignx 		5
+			textaligny 		0  
+			origin			WIDESCREEN_OFFSET
+			visible			1 decoration	autowrapped	}
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			visible			1
+			rect			ORIGIN_DIY_TITLE_PC 0 0
+			origin			WIDESCREEN_OFFSET
+			forecolor		1 0.8 0.4 1
+			text			"@BRAX_MODNAME"
+			textfont		UI_FONT_DEFAULT
+			textscale		TEXTSIZE_DEFAULT decoration	}
+		itemDef
+		{
+			
+			style			WINDOW_STYLE_SHADER
+			rect			ORIGIN_DIY_FRAME_PC 283 138
+			origin			WIDESCREEN_OFFSET
+			background		"white"
+			forecolor		.5 .5 .5 0.15
+			border			1
+			bordersize		1
+			bordercolor		0.5 0.5 0.5 0.7
+			visible			1	decoration
+		}*/
+		//#include "ui/safearea.menu"
+	}
+}
+

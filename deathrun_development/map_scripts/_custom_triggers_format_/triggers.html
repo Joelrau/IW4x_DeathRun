@@ -1,0 +1,258 @@
+<html>
+<head>
+</head>
+<body>
+<p>INPUT:</p>
+<textarea id='inputField' type='text' cols="40" rows="5" maxlength='524288' value='' placeholder='Input'></textarea> // mapEnts<br>
+<input id='inputSend' type='button' value='Execute' onclick='doMapEnts( inputField.value )'></input>
+<h2>_triggers.gsc</h2>
+<div id='output1' style="white-space: pre-line"></div>
+<h2>.mapEnts</h2>
+<div id='output2' style="white-space: pre-line" ></div>
+</body>
+</html>
+
+<script type="text/javascript">
+function doTriggers( input )
+{
+
+document.getElementById("output1").innerHTML = "";
+
+new_text = "";
+temp_text = input.replace(/(\r\n|\n|\r)/gm,""); // removes line breaks
+temp_arr0 = temp_text.split(/[{}]/); // seperates by { }
+temp_arr1 = [];
+for(i = 1; i < temp_arr0.length; i++) // seperates the arrays correctly
+{
+	temp_arr1[temp_arr1.length] = temp_arr0[i];
+	i++;
+}
+
+used_targetnames = [];
+precaches = [];
+for(i = 0; i < temp_arr1.length; i++)
+{
+	temp_arr2 = [];
+	y = 0;
+	temp_text1 = temp_arr1[i].split(/["]/);
+	origin_string = "";
+	classname_string = "";
+	targetname_string = "";
+	hintstring_string = "";
+	cursorhint_string = "";
+	dmg_int = 0;
+	accumulate_int = 0;
+	threshold_int = 0;
+	otherinfo = [];
+	for(x = 0; x < temp_text1.length; x++)
+	{
+		if(temp_text1[x] != "" && temp_text1[x] != " ")
+		{
+			temp_arr2[y] = temp_text1[x];
+			y++;
+		}
+	}
+	for(a = 0; a < temp_arr2.length; a++)
+	{
+		info = temp_arr2[a].toLowerCase();
+			
+		if(info == "origin")
+			origin_string = temp_arr2[a+1];
+		else if(info == "classname")
+			classname_string = temp_arr2[a+1];
+		else if(info == "targetname")
+			targetname_string = temp_arr2[a+1];
+		else if(info == "hintstring")
+			hintstring_string = temp_arr2[a+1];
+		else if(info == "cursorhint")
+		{
+			cursorhint_string = temp_arr2[a+1];
+			kbool = false;
+			for(k = 0; k < precaches.length; k++)
+				if(precaches.length == 0 || precaches[k] == temp_arr2[a+1])
+					kbool = true;
+			if(kbool == false)
+				precaches[precaches.length] = temp_arr2[a+1];
+		}
+		else if(info == "dmg")
+			dmg_int = temp_arr2[a+1];
+		else if(info == "accumulate")
+			accumulate_int = temp_arr2[a+1];
+		else if(info == "threshold")
+			threshold_int = temp_arr2[a+1];
+		else if(info != "model")
+		{
+			if(info == "wait")
+				info = "_" + info;
+			otherinfo[otherinfo.length] = info;
+			otherinfo[otherinfo.length] = temp_arr2[a+1];
+			console.log(info + " = " + temp_arr2[a+1]);
+		}
+		a++;
+	}
+	console.log(i);
+	
+	supported_types = ["trigger_multiple", "trigger_use_touch", "trigger_use", "trigger_hurt", "trigger_once", "trigger_damage"];
+	doreturn = true;
+	for(v = 0; v < supported_types.length; v++)
+	{
+		if(classname_string.includes(supported_types[v]) == true)
+		{
+			if(classname_string != supported_types[v])
+			{
+				error_string = "classname error! classname is '" + classname_string + "' when it should be '" + supported_types[v] + "'";
+				console.error(error_string);
+				alert(error_string);
+				return;
+			}
+			doreturn = false;
+			break;
+		}
+	}
+	if(doreturn == true)
+		continue;
+	
+	if(targetname_string == "")
+	{
+		error_string = "targetname error! check that every trigger mapEnt has a targetname.";
+		console.error(error_string);
+		alert(error_string);
+		return;
+	}
+	
+	doreturn = false;
+	for(v = 0; v < used_targetnames.length; v++)
+	{
+		if(used_targetnames[v] == targetname_string)
+			doreturn = true;
+	}
+	if(doreturn == true)
+		continue;
+	used_targetnames[used_targetnames.length] = targetname_string;
+	
+	new_text = new_text + 'triggers = makeTriggers( "'+ targetname_string +'", "' + classname_string + '", "' + hintstring_string + '", "' + cursorhint_string + '", ' + dmg_int + ', '+ accumulate_int +', '+ threshold_int +' );\n';
+	
+	otherinfo_string = "";
+	if(otherinfo.length > 0)
+	{
+		otherinfo_string += 'for( i = 0; i < triggers.size; i++ ) { ';
+		for(m = 0; m < otherinfo.length; m++)
+		{
+			otherinfo_string = otherinfo_string + "if( !isDefined( triggers[i]." + otherinfo[m] + " ) ) { ";
+			otherinfo_string = otherinfo_string + 'triggers[i].' + otherinfo[m] + ' = "' + otherinfo[m+1] + '";';
+			otherinfo_string = otherinfo_string + " }";
+			m++;
+		}
+		otherinfo_string += ' }\n';
+	}
+	new_text = new_text + otherinfo_string;
+	
+	new_text = new_text + '\n';
+}
+
+precaches_string = "";
+if(precaches.length > 0)
+{
+	for(p = 0; p < precaches.length; p++)
+	{
+		if(typeof(precaches[p]) !== 'undefined')
+			precaches_string = precaches_string + 'precacheShader( "' + precaches[p] + '" );\n';
+	}
+		new_text = precaches_string + "\n" + new_text;
+}
+
+finish( new_text, "output1", false );
+}
+
+function doMapEnts( input )
+{
+
+if(typeof(input) === 'undefined' || input === null || input == "")
+{
+	input = ' { "targetname" "targetname_multiple" "classname" "trigger_multiple" "origin" "192 -784 180" "model" "*20" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "targetname_use_touch" "classname" "trigger_use_touch" "origin" "-408 -108 176" "model" "*6" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "targetname_use" "classname" "trigger_use" "origin" "-458 -218 12" "model" "*7" } { "targetname" "targetname_hurt" "dmg" "999" "classname" "trigger_hurt" "origin" "-184 104 98" "model" "*14" } { "targetname" "targetname_once" "classname" "trigger_once" "origin" "-124 1422 932" "model" "*3" } { "classname" "trigger_damage" "targetname" "targetname_damage" "origin" "124 572 24" "model" "*21" "accumulate" "100" "threshold" "30" "wait" "-1" "example" "3" }';
+}
+
+new_text = "";
+temp_text0 = input.replace(/(\r\n|\n|\r)/gm,""); // removes line breaks
+temp_arr0 = temp_text0.split(/[{}]/); // seperates by { }
+temp_arr1 = [];
+for(i = 1; i < temp_arr0.length; i++) // seperates the arrays correctly
+{
+	temp_arr1[temp_arr1.length] = temp_arr0[i];
+	i++;
+}
+
+emptyTargetNames = 0;
+precaches = [];
+for(i = 0; i < temp_arr1.length; i++)
+{
+	temp_arr2 = [];
+	y = 0;
+	temp_text1 = temp_arr1[i].split(/["]/);
+	temp_info = [];
+	classname_string = "";
+	targetname_string = "";
+	for(x = 0; x < temp_text1.length; x++)
+	{
+		if(temp_text1[x] != "" && temp_text1[x] != " ")
+		{
+			temp_arr2[y] = temp_text1[x];
+			y++;
+		}
+	}
+	for(a = 0; a < temp_arr2.length; a++)
+	{
+		info = temp_arr2[a].toLowerCase();
+		
+		if(info == "classname")
+			classname_string = temp_arr2[a+1];
+		else if(info == "targetname")
+			targetname_string = temp_arr2[a+1];
+		
+		temp_info[temp_info.length] = info;
+		temp_info[temp_info.length] = temp_arr2[a+1];
+		
+		a++;
+	}
+	
+	if(targetname_string == "" && classname_string.includes("trigger_") == true)
+	{
+		temp_info[temp_info.length] = "targetname";
+		temp_info[temp_info.length] = "undefined" + emptyTargetNames;
+		emptyTargetNames++;
+	}
+	
+	new_text = new_text + "{ ";
+	for(o = 0; o < temp_info.length; o++)
+	{
+		new_text = new_text + '\n"' + temp_info[o] + '" "' + temp_info[o+1] + '"';
+		o++;
+	}
+	new_text = new_text + "\n}\n";
+}
+
+finish( new_text, "output2", true );
+
+doTriggers( new_text );
+}
+
+function finish( text, output, replace )
+{
+
+if(replace == true)
+{
+	replace_string = "script_model";
+	text = text.split("trigger_multiple").join(replace_string);
+	text = text.split("trigger_use_touch").join(replace_string);
+	text = text.split("trigger_use").join(replace_string);
+	text = text.split("trigger_hurt").join(replace_string);
+	text = text.split("trigger_once").join(replace_string);
+	
+	replace_string2 = "script_brushmodel";
+	text = text.split("trigger_damage").join(replace_string2);
+}
+
+document.getElementById(output).innerHTML = text;
+console.log(output + " : " + text);
+}
+</script>

@@ -1,0 +1,1 @@
+{"hdr":{"flags":0,"name":"wireframe_solid_skin_dtex","numPasses":1},"pass":[{"PixelShader":"vertcol_untextured.hlsl","VertexDecl":"iw3_vertexdecl_3137250119","VertexShader":"vertcol_untextured_dtex.hlsl","argumentDef":[{"dest":0,"type":3,"value":{"firstRow":0,"index":80,"rowCount":4}}],"customSamplerFlags":0,"perObjArgCount":0,"perPrimArgCount":1,"stableArgCount":0}],"type":2}

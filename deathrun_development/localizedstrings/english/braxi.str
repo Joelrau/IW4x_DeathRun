@@ -1,0 +1,48 @@
+///////////////////////////////////////////////////////
+///|         |///|        |///|       |/\  \/////  ////
+///|  |////  |///|  |//|  |///|  |/|  |//\  \///  /////
+///|  |////  |///|  |//|  |///|  |/|  |///\  \/  //////
+///|          |//|  |//|  |///|       |////\    ///////
+///|  |////|  |//|         |//|  |/|  |/////    \//////
+///|  |////|  |//|  |///|  |//|  |/|  |////  /\  \/////
+///|          |//|__|///|__|//|__|/|__|///  ///\  \////
+/////////////////////////////////////////__/////\__\///
+///////////////////////////////////////////////////////
+//
+//	Xfire : braxpl
+//
+//
+
+REFERENCE           BRAX_MODNAME
+LANG_ENGLISH        "^2Quak's^7 Death Run"
+
+REFERENCE           BRAX_MOTD
+LANG_ENGLISH        "QDeathrun"
+
+REFERENCE           NOTICE
+LANG_ENGLISH        "^3Death Run Notice"
+
+REFERENCE           GAME_EXPERIENCE_CHANGED
+LANG_ENGLISH        "Death Run Mod"
+
+REFERENCE           ABOUT
+LANG_ENGLISH        "About Death Run Mod"
+
+REFERENCE           ABOUT_HEADER
+LANG_ENGLISH        "About Death Run..."
+
+REFERENCE           BRAXI_CALL_FREEROUND
+LANG_ENGLISH        "Press ^3[FIRE] ^7to select ^2FREE RUN ^7round."
+
+REFERENCE           BRAXI_ALIVE_JUMPERS
+LANG_ENGLISH        "Jumpers Left:^3 &&1"
+
+REFERENCE           BRAXI_ROUND_BEGINS_IN
+LANG_ENGLISH        "Round begins in..."
+
+REFERENCE           BRAXI_WAITING_FOR_PLAYERS
+LANG_ENGLISH        "Waiting for more players to start round..."
+
+ENDMARKER
+
+

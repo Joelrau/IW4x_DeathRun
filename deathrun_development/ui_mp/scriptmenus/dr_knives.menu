@@ -1,0 +1,60 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/dr_common.inc"
+
+{
+	menuDef
+	{
+		name			"dr_knives"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execNow "set menuName @DRM_KNIVES"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// separator
+		itemDef 
+		{
+			rect			319 90 2 360
+
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		1 1 1 0.6
+			visible			1
+			decoration
+		}
+
+		#include "ui_mp/dr_characters_common.inc"
+
+		DR_KNIFE( 100, 1 )
+		DR_KNIFE( 140, 2 )
+		DR_KNIFE( 180, 3 )
+		DR_KNIFE( 220, 4 )
+		DR_KNIFE( 260, 5 )
+		DR_KNIFE( 300, 6 )
+		DR_KNIFE( 340, 7 )
+		DR_KNIFE( 380, 8 )
+		
+		DR_BUTTON( "0", 90, 425, 100, 20, "@DRM_BACK_TO_MENU", close self; open "character_stuff";, 1 )
+	}
+}

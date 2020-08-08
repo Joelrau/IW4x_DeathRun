@@ -1,0 +1,131 @@
+<html>
+<head>
+</head>
+<body>
+<textarea id='textField' type='text' cols="40" rows="5" maxlength='524288' value='' placeholder='Text'></textarea>// mapEnts<br>
+<input id='textSend' type='button' value='Execute' onclick='firstStep( textField.value )'></input>
+<p id='output'></p>
+</body>
+</html>
+
+<script type="text/javascript">
+function firstStep( text )
+{
+
+if(typeof text === 'undefined' || text === null || text == "")
+{
+	text = '{ "classname" "trigger_multiple" "targetname" "this is an example" "origin" "0 0 0" } { "dmg" "999999" "classname" "trigger_hurt" "origin" "-736 224 16" "model" "*1" } { "dmg" "999999" "classname" "trigger_hurt" "origin" "36 -304 24" "model" "*3" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "trap2_trig" "classname" "trigger_use_touch" "origin" "-408 -108 176" "model" "*6" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "trap3_trig" "classname" "trigger_use_touch" "origin" "-336 -612 176" "model" "*7" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "trap1_trig" "classname" "trigger_use_touch" "origin" "-408 244 176" "model" "*8" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "trap4_trig" "classname" "trigger_use_touch" "origin" "-336 108 176" "model" "*9" } { "dmg" "999999" "classname" "trigger_hurt" "origin" "-792 224 184" "model" "*10" } { "targetname" "trap4_hurt" "dmg" "1000" "classname" "trigger_hurt" "origin" "-184 104 98" "model" "*14" } { "hintstring" "Press [USE] to activate" "cursorhint" "HINT_ACTIVATE" "targetname" "trap5_trig" "classname" "trigger_use_touch" "origin" "168 -390 176" "model" "*18" } { "targetname" "door_trig" "classname" "trigger_multiple" "origin" "192 -784 180" "model" "*20" } { "dmg" "999999" "classname" "trigger_hurt" "origin" "124 572 24" "model" "*21" }';
+}
+
+new_text = "";
+temp_text = text.replace(/(\r\n|\n|\r)/gm," "); // removes line breaks
+temp_arr0 = temp_text.split(/[{}]/); // seperates by { }
+temp_arr1 = [];
+for(i = 1; i < temp_arr0.length; i++) // seperates the arrays correctly
+{
+	temp_arr1[temp_arr1.length] = temp_arr0[i];
+	i++;
+}
+
+precaches = [];
+for(i = 0; i < temp_arr1.length; i++)
+{
+	temp_arr2 = [];
+	y = 0;
+	temp_text1 = temp_arr1[i].split(/["]/);
+	origin_string = "";
+	classname_string = "";
+	targetname_string = "";
+	hintstring_string = "";
+	cursorhint_string = "";
+	dmg_int = 0;
+	otherinfo = [];
+	for(x = 0; x < temp_text1.length; x++)
+	{
+		if(temp_text1[x] != "" && temp_text1[x] != " ")
+		{
+			temp_arr2[y] = temp_text1[x];
+			y++;
+		}
+	}
+	for(a = 0; a < temp_arr2.length; a++)
+	{
+		info = temp_arr2[a].toLowerCase();
+			
+		if(info == "origin")
+			origin_string = temp_arr2[a+1];
+		else if(info == "classname")
+			classname_string = temp_arr2[a+1];
+		else if(info == "targetname")
+			targetname_string = temp_arr2[a+1];
+		else if(info == "hintstring")
+			hintstring_string = temp_arr2[a+1];
+		else if(info == "cursorhint")
+		{
+			cursorhint_string = temp_arr2[a+1];
+			kbool = false;
+			for(k = 0; k < precaches.length; k++)
+				if(precaches.length == 0 || precaches[k] == temp_arr2[a+1])
+					kbool = true;
+			if(kbool == false)
+				precaches[precaches.length] = temp_arr2[a+1];
+		}
+		else if(info == "dmg")
+			dmg_int = temp_arr2[a+1];
+		else if(info != "model")
+		{
+			otherinfo[otherinfo.length] = info;
+			otherinfo[otherinfo.length] = temp_arr2[a+1];
+			console.log(info + " = " + temp_arr2[a+1]);
+		}
+		a++;
+	}
+	console.log(i);
+	
+	if(classname_string.includes("trigger") == false)
+		continue;
+	
+	origin_text_temp1 = origin_string.split(" ");
+	origin_text_temp2 = "";
+	for(c = 0; c < origin_text_temp1.length; c++)
+	{
+		if(c != 0 && c != origin_text_temp1.length+1)
+			origin_text_temp2 = origin_text_temp2 + ", ";
+		origin_text_temp2 = origin_text_temp2 + origin_text_temp1[c];
+	}
+	origin_string = origin_text_temp2;
+	
+	new_text = new_text + 'orig = ( ' + origin_string + ' );<br>scale = ( 32, 32, 32 );<br>volume = []; volume[0] = orig[0]-scale[0]; volume[1] = orig[1]-scale[1]; volume[2] = orig[2]-scale[2]; volume[3] = orig[0]+scale[0]; volume[4] = orig[1]+scale[1]; volume[5] = orig[2]+scale[2];<br>trig = spawnTrigger(volume, orig, "' + classname_string + '", "' + targetname_string + '", "' + hintstring_string + '", ' + dmg_int +');<br>';
+	
+	if(cursorhint_string != "")
+		new_text = new_text + 'trig.cursorhint = "' + cursorhint_string + '";<br>';
+	
+	otherinfo_string = "";
+	if(otherinfo.length > 0)
+	{
+		for(m = 0; m < otherinfo.length; m++)
+		{
+			otherinfo_string = otherinfo_string + 'trig.' + otherinfo[m] + ' = "' + otherinfo[m+1] + '";<br>';
+			m++;
+		}
+	}
+	new_text = new_text + otherinfo_string;
+	
+	new_text = new_text + '<br>';
+}
+
+precaches_string = "";
+if(precaches.length > 0)
+{
+	for(p = 0; p < precaches.length; p++)
+	{
+		if(typeof(precaches[p]) !== 'undefined')
+			precaches_string = precaches_string + 'precacheShader( "' + precaches[p] + '" );<br>';
+	}
+		new_text = precaches_string + "<br>" + new_text;
+}
+
+document.getElementById("output").innerHTML = new_text;
+console.log("output: " + new_text);
+}
+</script>

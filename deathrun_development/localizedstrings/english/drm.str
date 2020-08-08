@@ -1,0 +1,105 @@
+///////////////////////////////////////////////////////
+///|         |///|        |///|       |/\  \/////  ////
+///|  |////  |///|  |//|  |///|  |/|  |//\  \///  /////
+///|  |////  |///|  |//|  |///|  |/|  |///\  \/  //////
+///|          |//|  |//|  |///|       |////\    ///////
+///|  |////|  |//|         |//|  |/|  |/////    \//////
+///|  |////|  |//|  |///|  |//|  |/|  |////  /\  \/////
+///|          |//|__|///|__|//|__|/|__|///  ///\  \////
+/////////////////////////////////////////__/////\__\///
+///////////////////////////////////////////////////////
+//
+//	Xfire : maciusiak
+//
+// D.R.M. - Death Run Menus
+//
+
+REFERENCE			DRM_TITLE
+LANG_ENGLISH		"Welcome"
+
+REFERENCE			DRM_DEFAULT_DESC
+LANG_ENGLISH		"Hope you enjoy your stay!"
+
+REFERENCE           DRM_PLAY
+LANG_ENGLISH        "Auto-Assign"
+
+REFERENCE           DRM_PLAY_DESC
+LANG_ENGLISH        "Start the game as a Jumper"
+
+REFERENCE           DRM_SPECTATE
+LANG_ENGLISH        "Spectator"
+
+REFERENCE           DRM_SPECTATE_DESC
+LANG_ENGLISH        "Watch other players"
+
+REFERENCE           DRM_CHARACTER
+LANG_ENGLISH        "Customize character"
+
+REFERENCE           DRM_CHARACTER_DESC
+LANG_ENGLISH        "Select your character, weapon, knife and spray"
+
+REFERENCE			DRM_CHARACTERS
+LANG_ENGLISH		"Characters"
+
+REFERENCE			DRM_WEAPONS
+LANG_ENGLISH		"Weapons"
+
+REFERENCE			DRM_KNIVES
+LANG_ENGLISH		"Knives"
+
+REFERENCE			DRM_SPRAYS
+LANG_ENGLISH		"Sprays"
+
+REFERENCE           DRM_HELP
+LANG_ENGLISH        "Help"
+
+REFERENCE           DRM_HELP_DESC
+LANG_ENGLISH        "Show help, tips and features"
+
+REFERENCE           DRM_HELP_PRETEXT
+LANG_ENGLISH        "Click at one of buttons to see help contents"
+
+REFERENCE			DRM_HELP_WHAT_IS_DR
+LANG_ENGLISH		"What is Death Run?"
+
+REFERENCE			DRM_HELP_COMMANDS
+LANG_ENGLISH		"Commands"
+
+REFERENCE			DRM_HELP_UNLOCKABLES
+LANG_ENGLISH		"Unlockables"
+
+REFERENCE           DRM_OPTIONS
+LANG_ENGLISH        "Settings"
+
+REFERENCE           DRM_OPTIONS_DESC
+LANG_ENGLISH        "Change various game settings"
+
+REFERENCE			DRM_NEXT
+LANG_ENGLISH		"Next"
+
+REFERENCE			DRM_BACK
+LANG_ENGLISH		"Back"
+
+REFERENCE			DRM_DONE
+LANG_ENGLISH		"Done"
+
+REFERENCE			DRM_BACK_TO_MENU
+LANG_ENGLISH		"Back to menu"
+
+REFERENCE           DRM_LEAVE_GAME
+LANG_ENGLISH        "Leave Game"
+
+REFERENCE			DRM_LEAVE_GAME_DESC
+LANG_ENGLISH		"Leave the game, back to the main menu"
+
+
+REFERENCE           DRM_WHAT_IS_DEATHRUN
+LANG_ENGLISH        "Death Run is a classical mod in which a single player fights alone against the other team, his only weapons are his deadly traps. The players in the opposite team have to kill the activator after finishing his course without dying.\n\n^2Mod Version: ^32.1.alpha (03.08.2020)"
+
+REFERENCE           DRM_COMMANDS
+LANG_ENGLISH		"\^3openScriptMenu -1 authorize:MyLogin:MyPassword ^7- Login to administration\n^3\openScriptMenu -1 adminmenu ^7- Open Administration Control Panel\n^3\openScriptMenu quickstuff 3rdperson ^7- Toggle camera\n^3\openScriptMenu quickstuff suicide ^7- Commit suicide"
+
+REFERENCE           DRM_UNLOCKABLES
+LANG_ENGLISH		"You can unlock ^324^7 characters, ^315^7 weapons, ^38^7 knives and ^350^7 sprays by earning levels."
+
+ENDMARKER

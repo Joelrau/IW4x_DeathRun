@@ -1,0 +1,37 @@
+#include map_scripts\_spawnable_triggers;
+
+setDvar("bg_fallDamageMaxHeight", "99999"); // no falldmg
+setDvar("bg_fallDamageMinHeight", "99998"); // no falldmg
+
+addTriggerToList( name )
+{
+    if( !isDefined( level.trapTriggers ) )
+        level.trapTriggers = [];
+    level.trapTriggers[level.trapTriggers.size] = getTrig( name, "targetname" );
+}
+
+fixSpawnAngles() // if spawn angles are messed up, you can use this to fix them
+{
+	newJumperAngles = (0,-90,0);
+	newActiAngles = (0,0,0);
+	
+	fixJumperAngles = true;
+	fixActiAngles = false;
+	
+	if (fixJumperAngles)
+	{
+		jumperspawns = getEntArray("mp_jumper_spawn", "classname");
+		for(i = 0; i < jumperspawns.size; i++)
+		{
+			jumperspawn = jumperspawns[i];
+			jumperspawn.angles = newJumperAngles;
+		}
+	}
+	if (fixActiAngles)
+	{
+		actispawn = getEnt("mp_activator_spawn", "classname");
+		actispawn.angles = newActiAngles;
+	}
+}
+
+getTrig( <name>, <key> ), getTrigArray( <name>, <key> ), getTriggerNumber(), getTrigByNum( <number> ), getAllTriggers(), isTouchingTrigger( <trigger> ) moveTriggerZ,X,Y( <value>, <time> ), moveTriggerTo( <origin> <time> ), linkTriggerTo( <target> ), deleteTrigger(), disableTrigger(), enableTrigger(), setHintStringTrig( <string> ) setCursorHintTrig( <shader> )

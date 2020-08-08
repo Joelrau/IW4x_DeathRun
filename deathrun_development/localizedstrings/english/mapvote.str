@@ -1,0 +1,8 @@
+
+REFERENCE           MAPVOTE_WAIT4VOTES
+LANG_ENGLISH        "Waiting for votes..."
+
+REFERENCE           MAPVOTE_PRESSFIRE
+LANG_ENGLISH        "Press [^1FIRE^7] to start voting"
+
+ENDMARKER

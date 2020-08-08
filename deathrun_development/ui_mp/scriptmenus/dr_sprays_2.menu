@@ -1,0 +1,67 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/dr_common.inc"
+
+{
+	menuDef
+	{
+		name			"dr_sprays_2"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execNow "set menuName @DRM_SPRAYS"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		DR_SPRAY( 0, 0, 26 )
+		DR_SPRAY( 1, 0, 27 )
+		DR_SPRAY( 2, 0, 28 )
+		DR_SPRAY( 3, 0, 29 )
+		DR_SPRAY( 4, 0, 30 )
+
+		DR_SPRAY( 0, 1, 31 )
+		DR_SPRAY( 1, 1, 32 )
+		DR_SPRAY( 2, 1, 33 )
+		DR_SPRAY( 3, 1, 34 )
+		DR_SPRAY( 4, 1, 35 )
+
+		DR_SPRAY( 0, 2, 36 )
+		DR_SPRAY( 1, 2, 37 )
+		DR_SPRAY( 2, 2, 38 )
+		DR_SPRAY( 3, 2, 39 )
+		DR_SPRAY( 4, 2, 40 )
+
+		DR_SPRAY( 0, 3, 41 )
+		DR_SPRAY( 1, 3, 42 )
+		DR_SPRAY( 2, 3, 43 )
+		DR_SPRAY( 3, 3, 44 )
+		DR_SPRAY( 4, 3, 45 )
+		
+		DR_SPRAY( 0, 4, 46 )
+		DR_SPRAY( 1, 4, 47 )
+		DR_SPRAY( 2, 4, 48 )
+		DR_SPRAY( 3, 4, 49 )
+		DR_SPRAY( 4, 4, 50 )
+		
+		DR_BUTTON( "0", 80, 450, 95, 20, "@DRM_BACK", close self; open "dr_sprays";, 1 )
+	}
+}

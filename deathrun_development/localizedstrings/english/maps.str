@@ -1,0 +1,81 @@
+// ██████╗ ██╗   ██╗ █████╗ ██╗  ██╗
+//██╔═══██╗██║   ██║██╔══██╗██║ ██╔╝
+//██║   ██║██║   ██║███████║█████╔╝ 
+//██║▄▄ ██║██║   ██║██╔══██║██╔═██╗ 
+//╚██████╔╝╚██████╔╝██║  ██║██║  ██╗
+// ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+
+REFERENCE			MP_DEATHRUN_GOLD
+LANG_ENGLISH		"mp_deathrun_gold"
+
+REFERENCE			MP_DEATHRUN_SKYPILLAR
+LANG_ENGLISH		"mp_deathrun_skypillar"
+
+REFERENCE			MP_DEATHRUN_SUPERMARIO
+LANG_ENGLISH		"mp_deathrun_supermario"
+
+REFERENCE			MP_DEATHRUN_COOKIE
+LANG_ENGLISH		"mp_deathrun_cookie"
+
+REFERENCE			MP_DEATHRUN_PORTAL_V3
+LANG_ENGLISH		"mp_deathrun_portal_v3"
+
+REFERENCE			MP_DR_POOL
+LANG_ENGLISH		"mp_dr_pool"
+
+REFERENCE			MP_DR_WATERCITY
+LANG_ENGLISH		"mp_dr_watercity"
+
+REFERENCE			MP_DR_INDIPYRAMID
+LANG_ENGLISH		"mp_dr_indipyramid"
+
+REFERENCE			MP_DR_BANANAPHONE
+LANG_ENGLISH		"mp_dr_bananaphone"
+
+REFERENCE			MP_DEATHRUN_GREENLAND
+LANG_ENGLISH		"mp_deathrun_greenland"
+
+REFERENCE			MP_DR_APOCALYPSE
+LANG_ENGLISH		"mp_dr_apocalypse"
+
+REFERENCE			MP_DEATHRUN_EPICFAIL
+LANG_ENGLISH		"mp_deathrun_epicfail"
+
+REFERENCE			MP_DR_PURPLE_WORLD
+LANG_ENGLISH		"mp_dr_purple_world"
+
+REFERENCE			MP_DEATHRUN_HIGHRISE
+LANG_ENGLISH		"mp_deathrun_highrise"
+
+REFERENCE			MP_DEATHRUN_JAILHOUSE
+LANG_ENGLISH		"mp_deathrun_jailhouse"
+
+REFERENCE			MP_DR_UNREAL
+LANG_ENGLISH		"mp_dr_unreal"
+
+REFERENCE			MP_DR_DISCO
+LANG_ENGLISH		"mp_dr_disco"
+
+REFERENCE			MP_DR_PACMAN
+LANG_ENGLISH		"mp_dr_pacman"
+
+REFERENCE			MP_DEATHRUN_LONG
+LANG_ENGLISH		"mp_deathrun_long"
+
+REFERENCE			MP_DR_SKYDEATH
+LANG_ENGLISH		"mp_dr_skydeath"
+
+REFERENCE			MP_DR_SNIP
+LANG_ENGLISH		"mp_dr_snip"
+
+REFERENCE			MP_DEATHRUN_MINECRAFT
+LANG_ENGLISH		"mp_deathrun_minecraft"
+
+REFERENCE			MP_DEATHRUN_MINE
+LANG_ENGLISH		"mp_deathrun_mine"
+
+REFERENCE			MP_DEATHRUN_CITY
+LANG_ENGLISH		"mp_deathrun_city"
+
+REFERENCE			MP_DR_BOUNCE
+LANG_ENGLISH		"mp_dr_bounce"
