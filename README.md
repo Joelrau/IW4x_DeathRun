@@ -14,7 +14,7 @@ Configuration & Installation
 Prenotes: Whereas "IW4x Root" you should be aware it is the root directory of iw4x installation, also please see "Requirements" section. <br>
 Prenotes: You require a custom iw4x.dll for this code to work, see "Requirements" section. <br>
 
-1. Install and replace the original "IW4x Root/iw4x.dll" with the custom iw4x.dll <br>
+1. Replace the original "IW4x Root/iw4x.dll" with the custom iw4x.dll <br>
 2. Extract "deathrun_developer" folder to "IW4x Root/mods" <br>
 3. Install RektInator's zonetool <br>
 3.1 Copy "zonetool" folder in "IW4x Root/mods/deathrun_developer" to "IW4x Root" <br>
