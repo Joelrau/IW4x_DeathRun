@@ -74,8 +74,8 @@ https://youtu.be/m-9EFl7lX1Y <br>
 
 Credits
 =======
-*	quaK <br>
-*	BraXi & Others who worked on Braxi's Deat Run for CoD4 <br>
+* quaK <br>
+* BraXi & Others who worked on Braxi's Deat Run for CoD4 <br>
 * Authors of original Deathrun mod for CS 1.6 for idea <br>
 * And others, special thanks to mappers... <br>
 
