@@ -332,7 +332,7 @@ xmodel,plr_hitman
 xmodel,plr_big_smoke
 xmodel,plr_carl_johnson
 xmodel,plr_john_cena
-xmodel,plr_john_marston
+xmodel,plr_tommy_vercetti
 xmodel,plr_terry_laracroft
 xmodel,plr_terry_purpleheart
 xmodel,plr_terry_blackpanther
@@ -357,7 +357,7 @@ material,icon_hitman
 material,icon_bigsmoke
 material,icon_carljohnson
 material,icon_johncena
-material,icon_johnmarston
+material,icon_tommyvercetti
 material,icon_laracroft
 material,icon_purpleheart
 material,icon_blackpanther
