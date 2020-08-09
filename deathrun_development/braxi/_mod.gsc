@@ -262,7 +262,7 @@ shittyRendererBrush()
 	while(1)
 	{
 		self waittill("movedone");
-		self rotateRoll(0, 0.05);
+		self moveY(0, 0.05);
 		wait 5;
 	}
 }
