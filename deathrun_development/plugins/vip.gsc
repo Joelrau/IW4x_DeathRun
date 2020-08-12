@@ -25,15 +25,21 @@ init( modVersion )
 
 verifyVIP()
 {
+	if(isDefined(level.vips) == false)
+		return;
+	
 	for( i = 0; i < level.vips.size; i++ )
 	{
-		if( self getGuid() == level.vips[i]["guid"] )
+		if( isDefined(level.vips[i]["guid"]) && level.vips[i]["guid"] != "" )
 		{
-			self.pers["vip"] = true;
-			self.pers["vipOnce"] = false;
-			self.pers["vipThrice"] = 0;
-			vipAlert( self );
-			return;
+			if( self getGuid() == level.vips[i]["guid"] )
+			{
+				self.pers["vip"] = true;
+				self.pers["vipOnce"] = false;
+				self.pers["vipThrice"] = 0;
+				vipAlert( self );
+				return;
+			}
 		}
 	}
 }
