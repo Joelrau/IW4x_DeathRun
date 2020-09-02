@@ -39,12 +39,12 @@ Note: Remember to always run makeMod.bat and makeIWD.bat when adding new stuff. 
 * Characters <br>
 -I used RektInator's zonetool to dump a cod4 fastfile that had the character in it. After adding the files from the dump into "zonetool/mod_characters" I added the xmodel,xmodel_name to "mod_characters.csv", then I built the mod_characters.ff with RektInator's zonetool. <br>
 -Remember to add the xmodel,xmodel_name into the "mod.csv" <br>
--You also have to add the character in "mp/characterTable.csv" and ui_mp/scriptmenus/dr_characters.menu for it to appear in the characters menu. <br>
+-You also have to add the character in "mp/characterTable.csv" and "ui_mp/scriptmenus/dr_characters.menu" for it to appear in the characters menu. <br>
 
 * Weapons <br>
 -I followed this tutorial to port weapons from CoD4 to IW4x: https://youtu.be/7nVqZL2fCHw <br>
 -Remember to add the xmodel,xmodel_name into the "mod.csv" <br>
--You also have to add the weapon in "mp/itemTable.csv" and ui_mp/scriptmenus/dr_weapons.menu for it to appear in the weapons menu. <br>
+-You also have to add the weapon in "mp/itemTable.csv" and "ui_mp/scriptmenus/dr_weapons.menu" for it to appear in the weapons menu. <br>
 
 * Images <br>
 -I use imgXiwi most of the time when adding images, if you want to add a new image you have to remember to make a new material for it and add the material into the "mod.csv" <br>
