@@ -5,16 +5,16 @@ The players on the opposite team have to kill the trapmaster (aka. activator) af
 
 <hr>
 
-The code has been altered heavily to work with iw4x, you may do as you please with the code. <br>
+The code has been altered heavily to work with [IW4x](https://github.com/IW4x/iw4x-client), you may do as you please with the code. <br>
 
 <hr>
 
 Configuration & Installation
 ===========================
 Prenotes: Whereas "IW4x Root" you should be aware it is the root directory of iw4x installation, also please see "Requirements" section. <br>
-Prenotes: You require a custom iw4x.dll for this code to work, see "Requirements" section. <br>
+Prenotes: ~~You require a custom iw4x.dll for this code to work, see "Requirements" section.~~ You used to need this but as long as you have the latest compiled IW4x dll you should be good to go. <br>
 
-1. Replace the original "IW4x Root/iw4x.dll" with the custom iw4x.dll <br>
+1. [Compile and use the latest iw4x.dll](https://github.com/IW4x/iw4x-client) or replace the original "IW4x Root/iw4x.dll" with the custom iw4x.dll <br>
 2. Extract "deathrun_developer" folder to "IW4x Root/mods" <br>
 3. Install RektInator's zonetool <br>
 3.1 Copy "zonetool" folder in "IW4x Root/mods/deathrun_developer" to "IW4x Root" <br>
