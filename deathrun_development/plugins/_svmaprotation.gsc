@@ -45,11 +45,11 @@ setSvMapRotation()
 	
 	if(sv_mapRotation == getDvar("sv_mapRotation"))
 	{
-		if(x + 1 <= game["sv_mapRotations"].size)
+		if(x + 1 <= game["sv_mapRotations"].size-1)
 		{
 			sv_mapRotation = game["sv_mapRotations"][x + 1];
 		}
-		else if(x - 1 >= game["sv_mapRotations"].size)
+		else if(x - 1 >= 0)
 		{
 			sv_mapRotation = game["sv_mapRotations"][x - 1];
 		}
