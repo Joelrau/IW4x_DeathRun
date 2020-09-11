@@ -23,11 +23,13 @@
 	
 */
 
+#include braxi\_common;
+
 main()
 {
 	level.creditTime = 6;
 
-	braxi\_common::cleanScreen();
+	cleanScreen();
 
 	thread showCredit( "Mod Created By:", 2.4 );
 	wait 0.5;

@@ -143,13 +143,14 @@ _watchTrigger()
 					else
 						tname = self.targetname;
 					player iPrintLn("^1Targetname:^7 " + tname);
-					wait 1;
+					wait ( 1 );
 					continue;
 				}
 				
                 if(self.type == "hurt")
 				{
-					player maps\mp\gametypes\_callbacksetup::CodeCallback_PlayerDamage(self, undefined, self.dmg, 0, "MOD_TRIGGER_HURT", "none", player.origin, (0,0,0), "none", 0);
+					if(self.dmg > 0)
+						player maps\mp\gametypes\_callbacksetup::CodeCallback_PlayerDamage(self, undefined, self.dmg, 0, "MOD_TRIGGER_HURT", "none", player.origin, (0,0,0), "none", 0);
 				}
                 else if(self.type == "use_touch")
 				{
@@ -164,10 +165,10 @@ _watchTrigger()
                 self notify("trigger", player);
 
                 if(self.delay > 0)
-                    wait(self.delay);
+                    wait( self.delay );
             }
         }
-        wait(0.05);
+        wait( 0.05 );
     }
 }
 
@@ -244,7 +245,7 @@ _autoUpdateVolume()
 		old_origin = self.origin;
 		
 		while(self.origin == old_origin)
-			wait 0.05;
+			wait ( 0.05 );
 
 		self.volume[0] = int(self.origin[0]) - self.scale[0];
 		self.volume[3] = int(self.origin[0]) + self.scale[0];
@@ -302,7 +303,7 @@ _showTillNotified(notify1, notify2, notify3, notify4)
 	while(!self.deleted)
 	{
 		_debugTrigger(self.volume);
-		wait 0.05;
+		wait ( 0.05 );
 	}
 }
 
@@ -310,39 +311,36 @@ _hintString( trigger, text )
 {
 	if (self.sessionstate != "playing")
 	{
-		if (isDefined(self.hinthud))
-			self.hinthud destroy();
+		if (isDefined(self.hintstringhud))
+			self.hintstringhud destroy();
 				
 		return;
 	}
 	
-	if (isDefined(self.hinthud))
+	if (isDefined(self.hintstringhud))
 	{
-		if (self.hinthud.text == text)
-			return;
-		else
-			self.hinthud destroy();
+		return;
 	}
 	
-	self.hinthud = maps\mp\gametypes\_hud_util::createFontString( "default", 1.4 );
-	self.hinthud.alignX = "center";
-	self.hinthud.alignY = "middle";
-	self.hinthud.horzAlign = "center";
-	self.hinthud.vertAlign = "middle";
-	self.hinthud.x = 0;
-	self.hinthud.y = 65;
-	self.hinthud.alpha = 1;
-	self.hinthud.text = text;
-	self.hinthud setText(text);
+	self.hintstringhud = maps\mp\gametypes\_hud_util::createFontString( "default", 1.4 );
+	self.hintstringhud.alignX = "center";
+	self.hintstringhud.alignY = "middle";
+	self.hintstringhud.horzAlign = "center";
+	self.hintstringhud.vertAlign = "middle";
+	self.hintstringhud.x = 0;
+	self.hintstringhud.y = 65;
+	self.hintstringhud.alpha = 1;
+	self.hintstringhud.text = text;
+	self.hintstringhud setText(text);
 	
-	while (self isTouchingTrigger(trigger) && isAlive(self) && self.hinthud.text == trigger.text && trigger.enabled && !trigger.deleted)
-		wait .1;
+	while(isDefined(self.hintstringhud) && isDefined(trigger) && self isTouchingTrigger(trigger) && isAlive(self) && self.hintstringhud.text == trigger.hintstring && trigger.enabled && !trigger.deleted)
+		wait ( 0.1 );
 		
-	self.hinthud fadeOverTime( 0.2 );
-	self.hinthud.alpha = 0;
-	wait ( 0.2 );
-	if (isDefined(self.hinthud))
-		self.hinthud destroy();
+	self.hintstringhud fadeOverTime( 0.1 );
+	self.hintstringhud.alpha = 0;
+	wait ( 0.1 );
+	if (isDefined(self.hintstringhud))
+		self.hintstringhud destroy();
 }
 
 setHintStringTrig( string )
@@ -351,39 +349,37 @@ setHintStringTrig( string )
 }
 
 _cursorHint( trigger, shader )
-{
+{	
 	if (self.sessionstate != "playing")
 	{
-		if (isDefined(self.iconhud))
-			self.iconhud destroy();
+		if (isDefined(self.cursorhinthud))
+			self.cursorhinthud destroy();
 				
 		return;
 	}
 	
-	if (isDefined(self.iconhud))
+	if (isDefined(self.cursorhinthud))
 	{
-		if (self.iconhud.shader == shader)
-			return;
-		else
-			self.iconhud destroy();
+		return;
 	}
 	
-	self.iconhud = maps\mp\gametypes\_hud_util::createIcon( shader, 32, 32 );
-	self.iconhud.alignX = "center";
-	self.iconhud.alignY = "middle";
-	self.iconhud.horzAlign = "center";
-	self.iconhud.vertAlign = "middle";
-	self.iconhud.x = 0;
-	self.iconhud.y = 95;
+	self.cursorhinthud = maps\mp\gametypes\_hud_util::createIcon( shader, 32, 32 );
+	self.cursorhinthud.alignX = "center";
+	self.cursorhinthud.alignY = "middle";
+	self.cursorhinthud.horzAlign = "center";
+	self.cursorhinthud.vertAlign = "middle";
+	self.cursorhinthud.x = 0;
+	self.cursorhinthud.y = 95;
+	self.cursorhinthud.shader = shader;
 	
-	while (self isTouchingTrigger(trigger) && isAlive(self) && self.iconhud.shader == trigger.cursorhint && trigger.enabled && !trigger.deleted)
-		wait .1;
+	while(isDefined(self.cursorhinthud) && isDefined(trigger) && self isTouchingTrigger(trigger) && isAlive(self) && self.cursorhinthud.shader == trigger.cursorhint && trigger.enabled && !trigger.deleted)
+		wait ( 0.1 );
 		
-	self.iconhud fadeOverTime( 0.2 );
-	self.iconhud.alpha = 0;
-	wait ( 0.2 );
-	if (isDefined(self.iconhud))
-		self.iconhud destroy();
+	self.cursorhinthud fadeOverTime( 0.1 );
+	self.cursorhinthud.alpha = 0;
+	wait ( 0.1 );
+	if (isDefined(self.cursorhinthud))
+		self.cursorhinthud destroy();
 }
 
 setCursorHintTrig( shader )
@@ -426,7 +422,7 @@ _linkTriggerTo(target)
 	{
 		if(self.origin != target.origin)
 			self.origin = target.origin;
-		wait 0.05;
+		wait ( 0.05 );
 	}
 }
 
@@ -482,7 +478,7 @@ moveTrigger(amount, time, axis)
 				self.origin = (self.origin[0], self.origin[1], self.origin[2] + tempAmount);
 				break;
 		}
-		wait wSpeed;
+		wait ( wSpeed );
 	}
 	self notify("movedone");
 }
@@ -637,7 +633,7 @@ _damage_think() // this is working but not ideally ( checks if script_model is h
 		
 		self notify("trigger", attacker);
 		
-		wait .05;
+		wait ( 0.05 );
 	}
 }
 
@@ -647,14 +643,14 @@ _damage_link_to( target )
 	{
 		if(self.origin != target.origin)
 			self moveTo( target.origin, 0.05 );
-		wait 0.1;
+		wait ( 0.1 );
 	}
 }
 
 _damage_model_del( target )
 {
 	while(!target.deleted)
-		wait 0.05;
+		wait ( 0.05 );
 	self delete();
 }
 
@@ -699,6 +695,6 @@ _canTrigger( trigger ) // fix for noclip triggers
 _use_trigger_wait( waittime )
 {
 	self.use_trigger_delay = waittime;
-	wait self.use_trigger_delay;
+	wait ( self.use_trigger_delay );
 	self.use_trigger_delay = 0;
 }

@@ -28,11 +28,12 @@
 
 makeTrigger( name, classname, hintstring, cursorhint, dmg, accumulate, threshold )
 {
+	trigger = undefined;
 	if( !isDefined( self ) )
 		trigger = getEnt( name, "targetname" );
 	else
 		trigger = self;
-		
+
 	trigger.targetname = name;
 	trigger._classname = classname; // classname cannot be changed so it is saved as _classname
 	trigger hide();
@@ -57,7 +58,7 @@ makeTrigger( name, classname, hintstring, cursorhint, dmg, accumulate, threshold
 		trigger.cursorhint = cursorhint;
 		if(braxi\_common::stringContains(trigger.hintstring, "&&1"))
 		{
-			braxi\_common::stringReplace(trigger.hintstring, "&&1", "[{+activate}]");
+			trigger.hintstring = braxi\_common::stringReplace(trigger.hintstring, "&&1", "[{+activate}]");
 		}
 	}
 	if(classname == "trigger_damage")
@@ -66,14 +67,19 @@ makeTrigger( name, classname, hintstring, cursorhint, dmg, accumulate, threshold
 		trigger.accumulate = accumulate;
 		trigger.threshold = threshold;
 		
-		level.PISTOL_NO = 1; // turns off response to pistol damage
-		level.RIFLE_NO = 2; // turns off response to rifle damage
-		level.PROJ_NO = 4; // turns off response to projectile damage from grenades and rockets. Note that turning off projectile damage will also turn off splash damage, whether or not the splash is on.
-		level.EXPLOSION_NO = 8; // turns off response to explosion damage
-		level.SPLASH_NO = 16; // turns off response to splash damage from grenades and rockets.
-		level.MELEE_NO = 32; // turns off response to melee damage
-		level.FIRE_NO = 64; // turns off response to flame/fire damage
-		level.MISC_NO = 128; // turns off response to all other misc types of damage
+		if(!isDefined(level.SPAWNFLAGS_DEFINED))
+		{
+			level.PISTOL_NO = 1; // turns off response to pistol damage
+			level.RIFLE_NO = 2; // turns off response to rifle damage
+			level.PROJ_NO = 4; // turns off response to projectile damage from grenades and rockets. Note that turning off projectile damage will also turn off splash damage, whether or not the splash is on.
+			level.EXPLOSION_NO = 8; // turns off response to explosion damage
+			level.SPLASH_NO = 16; // turns off response to splash damage from grenades and rockets.
+			level.MELEE_NO = 32; // turns off response to melee damage
+			level.FIRE_NO = 64; // turns off response to flame/fire damage
+			level.MISC_NO = 128; // turns off response to all other misc types of damage
+			
+			level.SPAWNFLAGS_DEFINED = true;
+		}
 		
 		if(trigger.classname == "script_brushmodel")
 			trigger thread private_damage_think();
@@ -82,8 +88,8 @@ makeTrigger( name, classname, hintstring, cursorhint, dmg, accumulate, threshold
 	}
 	if(trigger.type != "damage")
 		trigger thread private_watchTrigger();
-	
 	private_addTriggerIntoList( trigger );
+	trigger.customTrigger = true;
 }
 
 makeTriggers( name, classname, hintstring, cursorhint, dmg, accumulate, threshold )
@@ -137,7 +143,8 @@ private_watchTrigger()
 				}
 				else if( self.type == "hurt" )
 				{
-					player maps\mp\gametypes\_callbacksetup::CodeCallback_PlayerDamage( self, undefined, self.dmg, 0, "MOD_TRIGGER_HURT", "none", player.origin, (0,0,0), "none", 0 );
+					if( self.dmg > 0 )
+						player maps\mp\gametypes\_callbacksetup::CodeCallback_PlayerDamage( self, undefined, self.dmg, 0, "MOD_TRIGGER_HURT", "none", player.origin, (0,0,0), "none", 0 );
 				}
 				
 				if(isDefined(self._wait) && self._wait == -1)
@@ -257,7 +264,7 @@ private_canTrigger( trigger ) // fix for noclip triggers
 private_use_trigger_wait( waittime )
 {
 	self.use_trigger_delay = waittime;
-	wait self.use_trigger_delay;
+	wait ( self.use_trigger_delay );
 	self.use_trigger_delay = 0;
 }
 
@@ -277,7 +284,62 @@ private_damage_think()
 		
 		if(isDefined(self.spawnflags) && self.spawnflags > 0)
 		{
-			//printLn("^1custom_triggers: ^7spawnflags not implemented yet.");
+			if(self.spawnflags & level.PISTOL_NO)
+			{
+				if(type == "MOD_PISTOL_BULLET")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.RIFLE_NO)
+			{
+				if(type == "MOD_RIFLE_BULLET")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.PROJ_NO)
+			{
+				if(type == "MOD_PROJECTILE" || type == "MOD_PROJECTILE_SPLASH")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.EXPLOSION_NO)
+			{
+				if(type == "MOD_EXPLOSIVE")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.SPLASH_NO)
+			{
+				if(type == "MOD_PROJECTILE_SPLASH" || type == "MOD_GRENADE_SPLASH")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.MELEE_NO)
+			{
+				if(type == "MOD_MELEE" || type == "MOD_BAYONET")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.FIRE_NO)
+			{
+				if(type == "MOD_BURNED")
+				{
+					continue;
+				}
+			}
+			if(self.spawnflags & level.MISC_NO)
+			{
+				if(type == "MOD_UNKNOWN")
+				{
+					continue;
+				}
+			}
 		}
 		
 		if(isDefined(self.threshold) && amount < self.threshold)
@@ -295,7 +357,7 @@ private_damage_think_old()
 {
 	self thread private_showDebugTillNotified();
 	
-	precacheModel( "com_plasticcase_friendly" );
+	braxi\_common::_precacheModel( "com_plasticcase_friendly" );
 	self.damage_obj = spawn( "script_model", self.origin );
 	self.damage_obj setModel( "com_plasticcase_friendly" );
 	self.damage_obj hide();

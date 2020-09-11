@@ -10,6 +10,9 @@ init( modVersion )
 {
 	thread onPlayerConnect();
 	thread onPlayerSpawn();
+	
+	//thread showBrushmodelStuff();
+	//thread showOriginStuff();
 }
 
 onPlayerConnect()
@@ -27,9 +30,53 @@ onPlayerSpawn()
 	while(1)
 	{
 		level waittill("jumper", player);
-		//player thread testCollision();
-		//player thread testInvulnerability();
 	}
+}
+
+showBrushmodelStuff()
+{
+	brushes = getEntArray("script_brushmodel", "classname");
+	for(i = 0; i < brushes.size; i++)
+	{
+		brush = brushes[i];
+		brush thread brushmodelDebugInfo1();
+	}
+}
+
+brushmodelDebugInfo1()
+{
+	while(isDefined(self))
+	{
+		self debugInfo((1, 1, 1));
+		wait ( 0.05 );
+	}
+}
+
+showOriginStuff()
+{
+	origins = getEntArray("script_origin", "classname");
+	for(i = 0; i < origins.size; i++)
+	{
+		origin = origins[i];
+		origin thread originStuff();
+	}
+}
+
+originStuff()
+{
+	while(isDefined(self))
+	{
+		self debugInfo((0, 1, 1));
+		wait ( 0.05 );
+	}
+}
+
+debugInfo(color)
+{
+	if( isDefined( self.classname ) )
+		print3d( self.origin+(0,0,2), "classname: " +self.classname, color, 1, 0.2 );
+	if( isDefined( self.targetname ) )
+		print3d( self.origin+(0,0,0), "targetname: " +self.targetname, color, 1, 0.2 );
 }
 
 testHealth()
@@ -40,27 +87,6 @@ testHealth()
 		self iPrintLn("self maxhealth: " + self.maxhealth);
 		wait 1;
 	}
-}
-
-testCollision()
-{
-
-		//self notSolid();
-		self setContents( 288 );
-		self iPrintLnBold("NOTSOLID");
-}
-
-testInvulnerability()
-{
-	self.originalhealth = self.health;
-	self.originalmaxhealth = self.maxhealth;
-	self.maxhealth = 9999999999;
-	self.health = self.maxhealth;
-	self iPrintLnBold("GOD");
-	wait 10;
-	self.maxhealth = self.originalmaxhealth;
-	self.health = self.originalhealth;
-	self iPrintLnBold("NOTGOD");
 }
 
 test1()

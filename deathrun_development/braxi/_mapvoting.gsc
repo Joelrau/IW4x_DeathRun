@@ -42,8 +42,8 @@ init()
 	level.mapvote = 0;
 
 	//BraX
-	precacheString( &"MAPVOTE_PRESSFIRE" );
-	precacheString( &"MAPVOTE_WAIT4VOTES" );
+	_precacheString( &"MAPVOTE_PRESSFIRE" );
+	_precacheString( &"MAPVOTE_WAIT4VOTES" );
 	//<--
 }
 

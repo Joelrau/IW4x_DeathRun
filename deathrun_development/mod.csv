@@ -37,7 +37,7 @@ rawfile,maps/mp/gametypes/war.gsc
 rawfile,maps/mp/gametypes/deathrun.gsc
 rawfile,maps/mp/gametypes/deathrun.txt
 rawfile,cleanup.cfg
-rawfile,DeathRun_ReadMe.txt
+rawfile,deathrun_readme.txt
 
 #VISIONS
 

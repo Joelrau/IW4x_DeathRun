@@ -23,6 +23,12 @@ mapRotate()
 			{
 				mapRotation = getDvar( "sv_mapRotation" );
 				mapRotation_raw = strTok( mapRotation, " " );
+				
+				if(!mapRotation_raw.size || mapRotation_raw.size < 1)
+				{
+					return;
+				}
+				
 				maps = [];
 				for(i = 0; i < mapRotation_raw.size; i++)
 				{
@@ -35,8 +41,8 @@ mapRotate()
 				{
 					return;
 				}
-				smap = maps[randomIntRange(0, maps.size)];
-				map( smap );
+				rmap = maps[randomIntRange(0, maps.size)];
+				map( rmap );
 			}
 			i += waitDur;
 		}

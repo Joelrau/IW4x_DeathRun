@@ -23,9 +23,11 @@
 	
 */
 
+#include braxi\_common;
+
 init()
 {
-	precacheShader( "black" );
+	_precacheShader( "black" );
 	while( 1 )
 	{
 		level waittill( "player_killed", victim, eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon );

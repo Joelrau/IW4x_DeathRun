@@ -30,7 +30,7 @@ main()
 	makeDvarServerInfo( "admin", "" );
 	makeDvarServerInfo( "adm", "" );
 	
-	precacheMenu( "dr_admin" );
+	_precacheMenu( "dr_admin" );
 	level.fx["bombexplosion"] = loadfx( "explosions/tanker_explosion" );
 
 	thread playerConnect();

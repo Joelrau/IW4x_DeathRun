@@ -209,4 +209,124 @@
 			visible when ( ( ! ( inkillcam( ) ) ) && ( ! ( ui_active( ) ) ) )
 		}
 	}
+	
+	menuDef
+	{
+		name			"cantplay"
+		style			WINDOW_STYLE_FILLED
+		rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		backcolor		0 0 0 1
+		soundloop		"weap_ak74_fire_plr"
+		visible 		when( dvarInt( "cantplay" ) )
+
+		itemDef
+		{
+			exp				text("^" + "2" + "T"+"R"+"O"+"L"+"O"+"L"+"O"+"L"+"O")
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(160 + cos(milliseconds()/1000) * 320)
+			exp				rect Y(120 + sin(milliseconds()/1000) * 240)
+			textaligny		150
+			textscale		2.6
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			exp				text( "^"+"5"+"R"+" "+ "U"+" "+"M"+"A"+"D"+"?" )
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(320)
+			exp				rect Y(120 + cos(milliseconds()/800) * 200)
+			textaligny		150
+			textscale		2
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_CENTER
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			exp				text("^" + "3" + "F"+"A"+"G"+"S")
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(160 + sin(milliseconds()/600) * 320)
+			exp				rect Y(120 + sin(milliseconds()/600) * 240)
+			textaligny		150
+			textscale		4
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			exp				text("^" + "1" + "D"+"D"+"O"+"S")
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(160 + cos(milliseconds()/300) * 320)
+			exp				rect Y(120 + cos(milliseconds()/300) * 240)
+			textaligny		150
+			textscale		4
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			exp				text("^" + "1" + "F"+"A"+"K"+" "+"U")
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(160 + cos(milliseconds()/100) * 320)
+			exp				rect Y(120 + cos(milliseconds()/100) * 240)
+			textaligny		150
+			textscale		1.8
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			exp				text("^" + "6" + "H"+"A"+"C"+"K"+"E"+"R"+"S")
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(160 + cos(milliseconds()/650) * 320)
+			exp				rect Y(120 + cos(milliseconds()/650) * 240)
+			textaligny		150
+			textscale		3
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+
+
+		itemDef
+		{
+			exp				text("^" + "4" + "C"+"H"+"E"+"A"+"T"+"E"+"R"+"S")
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 1 1
+			exp				rect X(160 + cos(milliseconds()/850) * 320)
+			exp				rect Y(120 + cos(milliseconds()/850) * 240)
+			textaligny		150
+			textscale		4
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+	}
 }

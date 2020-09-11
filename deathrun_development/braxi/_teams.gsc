@@ -23,6 +23,8 @@
 	
 */
 
+#include braxi\_common;
+
 setPlayerModel( team )
 {	
 	if(!isDefined(team))

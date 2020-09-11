@@ -42,7 +42,7 @@ init()
 	setdvar("g_teamColor_MyTeam", ".6 .8 .6" );
 	setdvar("g_teamColor_EnemyTeam", "1 .45 .5" );	
 
-	//precacheString(
+	//_precacheString(
 }
 
 showBestStats()

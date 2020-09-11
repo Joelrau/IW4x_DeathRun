@@ -93,8 +93,10 @@ main()
 	setDvar( "aim_automelee_enabled", 1 ); // automelee ( like aim assist for knifing )
 	setDvar( "aim_automelee_range", 64 ); // automelee range
 	setDvar( "player_meleeRange", 64 ); // default knife range
-	setDvar( "bg_fallDamageMaxHeight", "300" ); // setup default falldmg heights
-	setDvar( "bg_fallDamageMinHeight", "128" ); // setup default falldmg heights
+	setDvar( "bg_fallDamageMaxHeight", "300" ); // default falldmg max height
+	setDvar( "bg_fallDamageMinHeight", "128" ); // default falldmg min height
+	setDvar( "g_garvity", "800" ); // default gravity
+	setDvar( "jump_height", "39" ); // default jump height
 	setDvar( "sv_enableBounces", "1" ); // IW4x bounce enable 
 	setDvar( "mod_author", "BraXi, quaK" );
 	makeDvarServerInfo( "mod_author", "BraXi, quaK" );
@@ -177,7 +179,7 @@ sayCommand( commandSymbol )
 	}
 }
 
-/*
+
 test()
 {
 	while(1)
@@ -185,13 +187,13 @@ test()
 		level waittill("sayCommand", command, player);
 		if(toLower(command) == "test")
 		{
-			
+			//iPrintLnBold("test");
 		}
 	}
  
 }
 
-endmap_trig_test()
+/*endmap_trig_test()
 {
 	level waittill("player_spawn");
 	
@@ -223,9 +225,9 @@ endmap_trig_test()
 		player iPrintLnBold("triggered");
 		wait 0.05;
 	}
-}
+}*/
 
-shittyRendererOLD() // DO NOT USE ( TEST )
+/*shittyRendererOLD() // DO NOT USE
 {
 	while(1)
 	{
@@ -243,10 +245,9 @@ shittyRendererOLD() // DO NOT USE ( TEST )
 		}
 		wait 0.005;
 	}
-}
-*/
+}*/
 
-shittyRenderer()
+shittyRenderer() // Sometimes IW4x doesn't render moving brushmodels properly. This fixes that.
 {
 	level waittill("connected");
 	brushes = getEntArray("script_brushmodel", "classname");
@@ -259,11 +260,15 @@ shittyRenderer()
 
 shittyRendererBrush()
 {
-	while(1)
+	while(isDefined(self))
 	{
+		origin = self getOrigin();
+		while(origin == self getOrigin())
+			wait 0.05;
+		
 		self waittill("movedone");
-		self moveY(0, 0.05);
-		wait 5;
+		self moveTo(self getOrigin(), 0.05);
+		wait 15;
 	}
 }
 
@@ -272,33 +277,33 @@ precache()
 	level.text = [];
 	level.fx = [];
 
-	precacheModel( "tag_origin" );
+	_precacheModel( "tag_origin" );
 	
-	precacheItem( "defaultweapon_mp" );		// Default Weapon
-	precacheItem( "claymore_mp" );			// Insertion item
-	precacheItem( "tomahawk_mp" );			// Activator knife
+	_precacheItem( "defaultweapon_mp" );		// Default Weapon
+	_precacheItem( "claymore_mp" );			// Insertion item
+	_precacheItem( "tomahawk_mp" );			// Activator knife
 	
-	precacheModel( "mp_body_opforce_arab_assault_a" );	// Activator model
-	precacheModel( "head_opforce_arab_a" );				// Activator model
-	precacheModel( "viewhands_militia" );				// Activator model
+	_precacheModel( "mp_body_opforce_arab_assault_a" );	// Activator model
+	_precacheModel( "head_opforce_arab_a" );				// Activator model
+	_precacheModel( "viewhands_militia" );				// Activator model
 
-	precacheMenu( "clientcmd" );
+	_precacheMenu( "clientcmd" );
 	
-	precacheShader( "black" );
-	precacheShader( "white" );
-	precacheShader( "killiconsuicide" );
-	precacheShader( "killiconmelee" );
-	precacheShader( "killiconheadshot" );
-	precacheShader( "killiconfalling" );
-	precacheShader( "stance_stand" );
-	precacheShader( "hudstopwatch" );
-	precacheShader( "ui_host" );
-	precacheShader( "HINT_FRIENDLY" );
+	_precacheShader( "black" );
+	_precacheShader( "white" );
+	_precacheShader( "killiconsuicide" );
+	_precacheShader( "killiconmelee" );
+	_precacheShader( "killiconheadshot" );
+	_precacheShader( "killiconfalling" );
+	_precacheShader( "stance_stand" );
+	_precacheShader( "hudstopwatch" );
+	_precacheShader( "ui_host" );
+	_precacheShader( "HINT_FRIENDLY" );
 	
-	precacheShader( "splatter_alt" );
+	_precacheShader( "splatter_alt" );
 
-	precacheStatusIcon( "hud_status_connecting" );
-	precacheStatusIcon( "hud_status_dead" );
+	_precacheStatusIcon( "hud_status_connecting" );
+	_precacheStatusIcon( "hud_status_dead" );
 	
 	level.text["round_begins_in"] = &"BRAXI_ROUND_BEGINS_IN";
 	level.text["waiting_for_players"] = &"BRAXI_WAITING_FOR_PLAYERS";
@@ -306,12 +311,12 @@ precache()
 	level.text["jumpers_count"] = &"BRAXI_ALIVE_JUMPERS";
 	level.text["call_freeround"] = &"BRAXI_CALL_FREEROUND";
 
-	precacheString( level.text["round_begins_in"] );
-	precacheString( level.text["waiting_for_players"] );
-	//precacheString( level.text["spectators_count"] );
-	precacheString( level.text["jumpers_count"] );
-	precacheString( level.text["call_freeround"] );
-	precacheString( &"Your Time: ^2&&1" );
+	_precacheString( level.text["round_begins_in"] );
+	_precacheString( level.text["waiting_for_players"] );
+	//_precacheString( level.text["spectators_count"] );
+	_precacheString( level.text["jumpers_count"] );
+	_precacheString( level.text["call_freeround"] );
+	_precacheString( &"Your Time: ^2&&1" );
 	
 	level.fx["falling_teddys"] = loadFX( "deathrun/falling_teddys" );
 	level.fx["gib_splat"] = loadFX( "deathrun/gib_splat" );
@@ -354,14 +359,13 @@ buildCharacterInfo()
 		level.characterInfo[id]["desc"] = tableLookup( tableName, 0, idx, 7 );
 		level.characterInfo[id]["headModel"] = tableLookup ( tableName, 0, idx, 8);
 		
-		precacheShader( level.characterInfo[id]["shader"] );
-		precacheModel( level.characterInfo[id]["model"] );
-		precacheModel( level.characterInfo[id]["handsModel"] );
-		precacheModel( level.characterInfo[id]["headModel"] );
+		_precacheShader( level.characterInfo[id]["shader"] );
+		_precacheModel( level.characterInfo[id]["model"] );
+		_precacheModel( level.characterInfo[id]["handsModel"] );
+		_precacheModel( level.characterInfo[id]["headModel"] );
 		level.numCharacters++;
 	}
 }
-
 
 buildItemInfo()
 {
@@ -379,8 +383,8 @@ buildItemInfo()
 		level.itemInfo[id]["name"] = tableLookup( tableName, 0, idx, 5 );
 		level.itemInfo[id]["desc"] = tableLookup( tableName, 0, idx, 6 );
 		
-		precacheShader( level.itemInfo[id]["shader"] );
-		precacheItem( level.itemInfo[id]["item"] );
+		_precacheShader( level.itemInfo[id]["shader"] );
+		_precacheItem( level.itemInfo[id]["item"] );
 		level.numItems++;
 	}
 }
@@ -401,8 +405,8 @@ buildKnifeInfo()
 		level.knifeInfo[id]["name"] = tableLookup( tableName, 0, idx, 5 );
 		level.knifeInfo[id]["desc"] = tableLookup( tableName, 0, idx, 6 );
 		
-		precacheShader( level.knifeInfo[id]["shader"] );
-		precacheItem( level.knifeInfo[id]["item"] );
+		_precacheShader( level.knifeInfo[id]["shader"] );
+		_precacheItem( level.knifeInfo[id]["item"] );
 		level.numKnifes++;
 	}
 }
@@ -421,7 +425,7 @@ buildSprayInfo()
 		level.sprayInfo[id]["shader"] = tableLookup( tableName, 0, idx, 3 );
 		level.sprayInfo[id]["effect"] = loadFX( tableLookup( tableName, 0, idx, 4 ) );
 		
-		precacheShader( level.sprayInfo[id]["shader"] );
+		_precacheShader( level.sprayInfo[id]["shader"] );
 		level.numSprays++;
 	}
 }
@@ -536,7 +540,7 @@ forceRagdoll()
 	for(;;)
 	{
 		self setClientDvar("ragdoll_enable", 1);
-		wait .5;
+		wait 0.5;
 	}
 }
 
@@ -551,7 +555,7 @@ forceDeath()
 			if(player.health <= 0 && player isActuallyAlive())
 				player suicide();
 		}
-		wait .1;
+		wait 0.05;
 	}
 }
 
@@ -675,6 +679,9 @@ PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 
 	if( isPlayer( eAttacker ) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing( eAttacker, self ) )
+		return;
+	
+	if( sMeansOfDeath == "MOD_FALLING" && self getNoFallDamage() == true )
 		return;
 	
 	if( isGhost( eAttacker ) )
@@ -1100,7 +1107,7 @@ endRound( reasonText, team )
 		if( level.dvar["roundSound"] )
 		{
 			song = randomIntRange(0,level.sounds["music"]["endround"].size);
-			level thread playSoundOnAllPlayers( level.sounds["music"]["endround"][song] );	
+			level thread playLocalSoundToAllPlayers( level.sounds["music"]["endround"][song] );	
 		}
 	}
 
@@ -1373,7 +1380,7 @@ endMap( winningteam )
 	wait 3;
 	level.hud_round destroy();
 
-	level thread playSoundOnAllPlayers( level.sounds["music"]["endmap"] );
+	level thread playLocalSoundToAllPlayers( level.sounds["music"]["endmap"] );
 
 	players = getAllPlayers();
 	for( i = 0; i < players.size; i++ )
@@ -2023,11 +2030,12 @@ endTimer()
 	time = (getTime() - self.timerStartTime) / 1000;
 
 	self.hud_time destroy();
-	self.hud_time = addTextHud( self, 9, -14, 1, "left", "bottom", 3 );
+	self.hud_time = addTextHud( self, 0, -15, 1, "left", "bottom", 1.5 );
 	self.hud_time.horzAlign = "left";
     self.hud_time.vertAlign = "bottom";
 	self.hud_time.glowAlpha = 1;
-	self.hud_time.glowColor = (0.4,0.5,0);
+	self.hud_time.glowColor = (0.7,0.9,0);
+	self.hud_time.hideWhenInMenu = true;
 
 	//self.hud_time reset();
 	self.hud_time setText( "Your Time: ^2" + time );
@@ -2048,18 +2056,18 @@ playerTimer()
 	if( !level.mapHasTimeTrigger || isDefined( self.finishedMap ) || self.pers["team"] == "axis" || level.freeRun || self.died )
 		return;
 
-	while( game["state"] != "playing"  )
-		wait 0.05;
+	level waittill( "game started" );
 	
-	self.hud_time = addTextHud( self, 9, -14, 1, "left", "bottom", 2.5 );
+	self.timerStartTime = getTime();
+	
+	self.hud_time = addTextHud( self, 0, -15, 1, "left", "bottom", 1.4 );
 	self.hud_time.horzAlign = "left";
     self.hud_time.vertAlign = "bottom";
 	self.hud_time.glowAlpha = 1;
-	self.hud_time.glowColor = (0.4,0.5,0);
+	self.hud_time.glowColor = (0.7,0.9,0);
+	self.hud_time.hideWhenInMenu = true;
 	self.hud_time.label = &"Your Time: ^2&&1";
-	self.hud_time setTenthsTimerUp( 1 );
-
-	self.timerStartTime = getTime();
+	self.hud_time setTenthsTimerUp( 0 );
 }
 
 
@@ -2187,7 +2195,7 @@ firstBlood()
 	if ( who == level.activ || getAllPlayers().size <= 2 )
 		return;
 	
-	level thread playSoundOnAllPlayers( level.sounds["sfx"]["firstblood"] );
+	level thread playLocalSoundToAllPlayers( level.sounds["sfx"]["firstblood"] );
 
 	hud = addTextHud( level, 320, 220, 0, "center", "middle", 2.4 );
 	hud setText( "First victim of this round is " + who.name );
@@ -2214,7 +2222,7 @@ lastJumper()
 		return;
 
 	level.lastJumper = true;
-	level thread playSoundOnAllPlayers( level.sounds["sfx"]["lastalive"] );
+	level thread playLocalSoundToAllPlayers( level.sounds["sfx"]["lastalive"] );
 
 	hud = addTextHud( level, 320, 240, 0, "center", "middle", 2.4 );
 	hud setText( self.name + " is the last Jumper alive" );

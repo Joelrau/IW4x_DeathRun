@@ -27,6 +27,8 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 
+#include braxi\_common;
+
 init()
 {
 	level.scoreInfo = [];
@@ -34,15 +36,15 @@ init()
 
 	level.rankTable = [];
 
-	precacheShader("white");
+	_precacheShader("white");
 
-	precacheString( &"RANK_PLAYER_WAS_PROMOTED_N" );
-	precacheString( &"RANK_PLAYER_WAS_PROMOTED" );
-	precacheString( &"RANK_PROMOTED" );
-	precacheString( &"MP_PLUS" );
-	precacheString( &"RANK_ROMANI" );
-	precacheString( &"RANK_ROMANII" );
-	precacheString( &"RANK_ROMANIII" );
+	_precacheString( &"RANK_PLAYER_WAS_PROMOTED_N" );
+	_precacheString( &"RANK_PLAYER_WAS_PROMOTED" );
+	_precacheString( &"RANK_PROMOTED" );
+	_precacheString( &"MP_PLUS" );
+	_precacheString( &"RANK_ROMANI" );
+	_precacheString( &"RANK_ROMANII" );
+	_precacheString( &"RANK_ROMANIII" );
 
 	multiplier = 2;
 	registerScoreInfo( "kill", 500 * multiplier );
@@ -64,7 +66,7 @@ init()
 	for ( pId = 0; pId <= level.maxPrestige; pId++ )
 	{
 		for ( rId = 0; rId <= level.maxRank; rId++ )
-			precacheShader( tableLookup( "mp/rankIconTable.csv", 0, rId, pId+1 ) );
+			_precacheShader( tableLookup( "mp/rankIconTable.csv", 0, rId, pId+1 ) );
 	}
 
 	rankId = 0;
@@ -78,7 +80,7 @@ init()
 		level.rankTable[rankId][3] = tableLookup( "mp/ranktable.csv", 0, rankId, 3 );
 		level.rankTable[rankId][7] = tableLookup( "mp/ranktable.csv", 0, rankId, 7 );
 
-		precacheString( tableLookupIString( "mp/ranktable.csv", 0, rankId, 16 ) );
+		_precacheString( tableLookupIString( "mp/ranktable.csv", 0, rankId, 16 ) );
 
 		rankId++;
 		rankName = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );		

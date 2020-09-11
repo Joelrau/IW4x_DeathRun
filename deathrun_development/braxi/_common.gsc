@@ -44,8 +44,24 @@ cleanScreen()
 {
 	for( i = 0; i < 6; i++ )
 	{
-		iPrintlnBold( " " );
-		iPrintln( " " );
+		iPrintLnBold( " " );
+		iPrintLn( " " );
+	}
+}
+
+cleanScreenLn()
+{
+	for( i = 0; i < 6; i++ )
+	{
+		iPrintLn( " " );
+	}
+}
+
+cleanScreenLnBold()
+{
+	for( i = 0; i < 6; i++ )
+	{
+		iPrintLnBold( " " );
 	}
 }
 
@@ -185,10 +201,10 @@ loadWeapon( name, attachments, image )
 	}
 
 	for( i = 0; i < array.size; i++ )
-		precacheItem( array[i] + "_mp" );
+		_precacheItem( array[i] + "_mp" );
 
 	if( isDefined( image ) )
-		precacheShader( image );
+		_precacheShader( image );
 }
 
 takeWeaponsExcept( saveWeapons )
@@ -270,12 +286,34 @@ getBestPlayerFromScore( type )
 	return guy;
 }
 
-playSoundOnAllPlayers( soundAlias )
+playLocalSoundToAllPlayers( soundAlias )
 {
 	players = getAllPlayers();
 	for( i = 0; i < players.size; i++ )
 	{
 		players[i] playLocalSound( soundAlias );
+	}
+}
+
+playSoundToAllPlayers( soundAlias )
+{
+	players = getAllPlayers();
+	for( i = 0; i < players.size; i++ )
+	{
+		players[i] playSoundToPlayer( soundAlias );
+	}
+}
+
+playSoundOnAllPlayers( soundAlias )
+{
+	players = getAllPlayers();
+	for( i = 0; i < players.size; i++ )
+	{
+		player = players[i];
+		audioPlayer = spawn( "script_origin", player.origin );
+		audioPlayer playSound( soundAlias );
+		audioPlayer thread follow( player );
+		audioPlayer thread deleteAfterTime( 60 );
 	}
 }
 
@@ -501,6 +539,39 @@ partymode()
 		SetExpFog(256, 900, RandomFloat(1), RandomFloat(1), RandomFloat(1), 0.1); 
 }
 
+setNoFallDamage( boolean )
+{
+	self notify("new_setNoFallDamage");
+	
+	if(!isDefined(self) || !isPlayer(self) || !isAlive(self))
+		return;
+	
+	self.noFallDamage = boolean;
+	
+	if(boolean == true)
+		self thread _setNoFallDamage_death();
+}
+
+_setNoFallDamage_death()
+{
+	self endon("new_setNoFallDamage");
+	
+	while(isDefined(self) && isAlive(self))
+		wait 0.05;
+	
+	self.noFallDamage = false;
+}
+
+getNoFallDamage()
+{
+	return isDefined(self.noFallDamage) && self.noFallDamage == true;
+}
+
+resetVelocity()
+{
+	self setVelocity((0,0,0));
+}
+
 positiveOrNegative( num )
 {
 	if (num > 0)
@@ -629,48 +700,90 @@ stringReplace( str, what, to )
 
 // =============================================================================
 //  Returns true if string contains something, if not then false
-//    <string1> The string from wich we want to check.
+//    <string1> The string from we want to check.
 //	  <string2> The string that we want to check.
 //	Example: if ("FiN||quaK", "quaK") <-- this checks if "FiN||quaK" contains "quaK"
 //	Script written by quaK
 // =============================================================================
 stringContains(string1, string2)
 {
-	boolean = false;
-	
-	for (i=0; i<string1.size; i++)
-	{
-		if (string1[i] == string2[0])
-		{
-			if (string1.size - i >= string2.size)
-			{
-				for(o=0; o<string2.size; o++)
-				{
-					if (string1[i+o] == string2[o])
-					{
-						boolean = true;
-					}
-					else
-					{
-						boolean = false;
-					}
-				}
-			}
-		}
-	}
-	return boolean;
+	return isSubStr( string1, string2 );
 }
 
 /* VECTOR SCALE */
-
 vector_scale(vec, scale)
 {
 	vec = (vec[0] * scale, vec[1] * scale, vec[2] * scale);
 	return vec;
 }
 
-/* linkTo */
+/* DECIMAL_TO_BINARY */
+decimalToBinary( decimal )
+{
+	decimal = int(decimal);
+	
+    binaryNum = "";
+	i = 0; 
+    while (decimal > 0)
+	{
+		remainder = decimal - ((decimal / 2) + int(decimal / 2));
+		if(remainder > 0)
+			binaryNum += 1;
+		else
+			binaryNum += 0;
+		
+        decimal = int(decimal / 2);
+		i++;
+    }
+	
+	binary = "";
+	for (j = i - 1; j >= 0; j--) 
+        binary += binaryNum[j];
+	return binary;
+}
 
+/* BINARY_TO_DECIMAL */
+binaryToDecimal( binary )
+{
+	binary = "" + binary;
+	
+	value = 0;
+	values = [];
+	for(i = 0; i < binary.size; i++)
+	{
+		if(binary[i] == "0" && binary[i] == "1")
+			return 0;
+		
+		power = 1;
+		for(j = binary.size - i - 1; j > 0; j--)
+			power = power * 2;
+		values[values.size] = int(binary[i]) * power;
+	}
+	for(i = 0; i < values.size; i++)
+	{
+		value += values[i];
+	}
+    return value;
+}
+
+/* triggerOn */
+triggerOn()
+{
+	if (isDefined (self.realOrigin) )
+		self.origin = self.realOrigin;
+}
+
+/* triggerOff */
+triggerOff()
+{
+	if (!isDefined(self.realOrigin))
+		self.realOrigin = self.origin;
+
+	if (self.origin == self.realorigin)
+		self.origin += (0, 0, -10000);
+}
+
+/* linkTo */
 _linkto(what)
 {
 	self thread __linkto(what);
@@ -690,14 +803,12 @@ __linkto(what)
 }
 
 /* unlink */
-
 _unlink(what)
 {
 	self._linked = false;
 }
 
 /* freezeControls */
-
 _freezeControls( boolean )
 {
 	if( !isDefined( boolean ) )
@@ -723,27 +834,7 @@ _freezeControlsWrapper( boolean )
 	self._frozen = false;
 }
 
-/* triggerOn */
-
-triggerOn()
-{
-	if (isDefined (self.realOrigin) )
-		self.origin = self.realOrigin;
-}
-
-/* triggerOff */
-
-triggerOff()
-{
-	if (!isdefined (self.realOrigin))
-		self.realOrigin = self.origin;
-
-	if (self.origin == self.realorigin)
-		self.origin += (0, 0, -10000);
-}
-
-/* precache */
-
+/* precacheShader */
 _precacheShader( shader )
 {
 	if( !isDefined( level.precachedShader ) )
@@ -753,9 +844,54 @@ _precacheShader( shader )
 	{
 		precacheShader( shader );
 		level.precachedShader[shader] = true;
+		//printLn("^:" + "_precacheShader: " + shader);
 	}
 }
 
+/* precacheMenu */
+_precacheMenu( menu )
+{
+	if( !isDefined( level.precachedMenu ) )
+		level.precachedMenu = [];
+	
+	if( !level.precachedMenu[menu] )
+	{
+		precacheMenu( menu );
+		level.precachedMenu[menu] = true;
+		//printLn("^:" + "_precacheMenu: " + menu);
+	}
+}
+
+/* precacheString */
+_precacheString( string )
+{
+	if( !isDefined( level.precachedString ) )
+		level.precachedString = [];
+	
+	if( !level.precachedString[string] )
+	{
+		precacheString( string );
+		level.precachedString[string] = true;
+		//printLn("^:" + "_precacheString: " + string);
+	}
+}
+
+/* precacheStatusIcon */
+_precacheStatusIcon( statusIcon )
+{
+	if( !isDefined( level.precachedStatusIcon ) )
+		level.precachedStatusIcon = [];
+	
+	if( !level.precachedStatusIcon[statusIcon] )
+	{
+		precacheStatusIcon( statusIcon );
+		level.precachedStatusIcon[statusIcon] = true;
+		//printLn("^:" + "_precacheStatusIcon: " + statusIcon);
+	}
+}
+
+
+/* precacheItem */
 _precacheItem( item )
 {
 	if( !isDefined( level.precachedItem ) )
@@ -765,9 +901,11 @@ _precacheItem( item )
 	{
 		precacheItem( item );
 		level.precachedItem[item] = true;
+		//printLn("^:" + "_precacheItem: " + item);
 	}
 }
 
+/* precacheModel */
 _precacheModel( model )
 {
 	if( !isDefined( level.precachedModel ) )
@@ -777,5 +915,6 @@ _precacheModel( model )
 	{
 		precacheModel( model );
 		level.precachedModel[model] = true;
+		//printLn("^:" + "_precacheModel: " + model);
 	}
 }

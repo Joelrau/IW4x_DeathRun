@@ -31,22 +31,22 @@ init()
 	game["menu_characters"] = "character_stuff";
 	game["menu_quickstuff"] = "quickstuff";
 
-	precacheMenu( "scoreboard" );
-	precacheMenu( game["menu_team"] );
-	precacheMenu( game["menu_characters"] );
-	precacheMenu( game["menu_quickstuff"] );
+	_precacheMenu( "scoreboard" );
+	_precacheMenu( game["menu_team"] );
+	_precacheMenu( game["menu_characters"] );
+	_precacheMenu( game["menu_quickstuff"] );
 
-	precacheMenu( "dr_help" );
-	precacheMenu( "dr_characters" );
-	precacheMenu( "dr_characters_2" );
-	precacheMenu( "dr_weapons" );
-	precacheMenu( "dr_weapons_2" );
-	precacheMenu( "dr_knives" );
-	precacheMenu( "dr_sprays" );
-	precacheMenu( "dr_sprays_2" );
+	_precacheMenu( "dr_help" );
+	_precacheMenu( "dr_characters" );
+	_precacheMenu( "dr_characters_2" );
+	_precacheMenu( "dr_weapons" );
+	_precacheMenu( "dr_weapons_2" );
+	_precacheMenu( "dr_knives" );
+	_precacheMenu( "dr_sprays" );
+	_precacheMenu( "dr_sprays_2" );
 
-	precacheString( &"MP_HOST_ENDED_GAME" );
-	precacheString( &"MP_HOST_ENDGAME_RESPONSE" );
+	_precacheString( &"MP_HOST_ENDED_GAME" );
+	_precacheString( &"MP_HOST_ENDGAME_RESPONSE" );
 	
 	level thread onPlayerConnect();
 }
@@ -117,7 +117,7 @@ onMenuResponse()
 				self.pers["failedLogins"]++;
 
 				if( self.pers["failedLogins"] >= 3 )
-					braxi\_common::dropPlayer( self, "kick", "Too many failed login attempts.", "Your actions will be investigated by server administration." );
+					dropPlayer( self, "kick", "Too many failed login attempts.", "Your actions will be investigated by server administration." );
 			}
 
 		}

@@ -49,6 +49,8 @@ main()
 	LoadPlugin( plugins\_efr::init, "Unlimit Free Run Rounds", "Rycoon" ); // dont remove for best experience
 	LoadPlugin( plugins\_killcam::init, "Killcam", "Amnesia" ); // dont remove for best experience
 	LoadPlugin( plugins\_fpsboost::init, "Fpsboost", "Dizzy" ); // dont remove for best experience
+	LoadPlugin( plugins\_rpg::init, "RPG fix", "quaK" ); // dont remove for best experience
+	LoadPlugin( plugins\_svmaprotation::init, "sv_mapRotation", "quaK" ); // dont remove for best experience
 	
 	LoadPlugin( plugins\admins::init, "Admins", "quaK" );
 	LoadPlugin( plugins\vip::init, "VIP", "quaK" );
@@ -61,7 +63,6 @@ main()
 	LoadPlugin( plugins\dynamichostname::init, "Dynamic Host Name", "quaK" );
 	LoadPlugin( plugins\dynamicmaprotate::init, "Dynamic Map Rotate", "quaK" );
 	LoadPlugin( plugins\ghostrun::init, "Ghost Run", "quaK" );
-	LoadPlugin( plugins\rpg::init, "RPG fix", "quaK" );
 	LoadPlugin( plugins\doublexp::init, "Double XP", "quaK" );
 	
 	LoadPlugin( plugins\saycommands::init, "Say Commands", "quaK" );

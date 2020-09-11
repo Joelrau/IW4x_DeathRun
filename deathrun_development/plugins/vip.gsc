@@ -102,9 +102,9 @@ VIPSpawnAll()
 		return;
 	
 	wait 5;
-	if ( !isDefined( self.vipalreadytold ) )
-		self iPrintLnBold( "^7Say ^3#sa ^7or ^3#spawnall ^7to ^3spawn everyone" );
-	self.vipalreadytold = true;
+	//if ( !isDefined( self.vipalreadytold ) )
+		//self iPrintLnBold( "^7Say ^3#sa ^7or ^3#spawnall ^7to ^3spawn everyone" );
+	//self.vipalreadytold = true;
 	
 	while( self.pers["vipThrice"] < 3 )
 	{

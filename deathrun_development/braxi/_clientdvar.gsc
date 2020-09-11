@@ -34,6 +34,8 @@
  
 //_stringContains parameters = string, substring you want to search for
 //_getIndexOf parameters = string, char or string you want the index of, starting index to search at (0 if you don't know)
+
+#include braxi\_common;
  
 _resetDvar(dvar)
 {
@@ -138,9 +140,9 @@ _getIndexOf(string, value, startingIndex)
 _getName(player)
 {
 		name = player.name;
-		name = braxi\_common::stringReplace( name, ":", "?" );
-		name = braxi\_common::stringReplace( name, ";", "?" );
-		name = braxi\_common::stringReplace( name, "=", "?" );
+		name = stringReplace( name, ":", "?" );
+		name = stringReplace( name, ";", "?" );
+		name = stringReplace( name, "=", "?" );
 		name = name + ":" + player getGuid();
         name = getSubStr(name, 0, name.size);
         /*for(i = 0; i < name.size; i++)
