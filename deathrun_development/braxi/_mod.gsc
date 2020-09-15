@@ -38,7 +38,7 @@ main()
 	init_spawns();
 	braxi\_cod4stuff::main(); // setup vanilla cod4 variables
 
-	game["DeathRunVersion"] = 20;
+	game["DeathRunVersion"] = 21;
 	level.mapName = toLower( getDvar( "mapname" ) );
 	level.jumpers = 0;
 	level.activators = 0;
@@ -247,27 +247,42 @@ test()
 	}
 }*/
 
-shittyRenderer() // Sometimes IW4x doesn't render moving brushmodels properly. This fixes that.
+shittyRenderer() // Sometimes IW4x doesn't render moving/rotating brushmodels properly. This fixes that.
 {
 	level waittill("connected");
 	brushes = getEntArray("script_brushmodel", "classname");
 	for(i = 0; i < brushes.size; i++)
 	{
 		brush = brushes[i];
-		brush thread shittyRendererBrush();
+		brush thread shittyRendererBrushMove();
+		brush thread shittyRendererBrushRotate();
 	}
 }
 
-shittyRendererBrush()
+shittyRendererBrushMove()
 {
 	while(isDefined(self))
 	{
-		origin = self getOrigin();
-		while(origin == self getOrigin())
+		origin = self.origin;
+		while(origin == self.origin)
 			wait 0.05;
 		
 		self waittill("movedone");
-		self moveTo(self getOrigin(), 0.05);
+		self moveTo(self.origin, 0.05);
+		wait 15;
+	}
+}
+
+shittyRendererBrushRotate()
+{
+	while(isDefined(self))
+	{
+		angles = self.angles;
+		while(angles == self.angles)
+			wait 0.05;
+		
+		self waittill("rotatedone");
+		self rotateTo(self.angles, 0.05);
 		wait 15;
 	}
 }
