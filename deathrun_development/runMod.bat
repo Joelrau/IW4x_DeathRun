@@ -1,6 +1,6 @@
 @echo off
 
-set "map=mp_dr_vistic_castle"
+set "map=mp_dr_mirrors_edge"
 set /p "map=Enter map name or press [ENTER] for default [%map%]: "
 
 cd ..\..\

@@ -94,7 +94,7 @@ LANG_ENGLISH		"Leave the game, back to the main menu"
 
 
 REFERENCE           DRM_WHAT_IS_DEATHRUN
-LANG_ENGLISH        "Death Run is a classical mod in which a single player fights alone against the other team, his only weapons are his deadly traps. The players in the opposite team have to kill the activator after finishing his course without dying.\n\n^2Mod Version: ^32.1 (11.09.2020)"
+LANG_ENGLISH        "Death Run is a classical mod in which a single player fights alone against the other team, his only weapons are his deadly traps. The players in the opposite team have to kill the activator after finishing his course without dying.\n\n^2Mod Version: ^32.2 (20.10.2020)"
 
 REFERENCE           DRM_COMMANDS
 LANG_ENGLISH		"\^3openScriptMenu -1 authorize:MyLogin:MyPassword ^7- Login to administration\n^3\openScriptMenu -1 adminmenu ^7- Open Administration Control Panel\n^3\openScriptMenu quickstuff 3rdperson ^7- Toggle camera\n^3\openScriptMenu quickstuff suicide ^7- Commit suicide"

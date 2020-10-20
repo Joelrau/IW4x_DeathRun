@@ -1,0 +1,44 @@
+{
+    "animationX": 0,
+    "animationY": 0,
+    "cameraRegion": 2,
+    "constantTable": [
+        {
+            "literal": [
+                15,
+                15,
+                0.0,
+                0.0
+            ],
+            "name": "distortionSc",
+            "nameHash": 4084951315
+        }
+    ],
+    "gameFlags": 0,
+    "maps": [
+        {
+            "firstCharacter": 99,
+            "image": "distortion_ring",
+            "lastCharacter": 112,
+            "sampleState": 2,
+            "semantic": 2,
+            "typeHash": 2695565377
+        }
+    ],
+    "name": "gfx_distortion_ring_light",
+    "sortKey": 0,
+    "stateFlags": 16,
+    "stateMap": [
+        [
+            422089061,
+            12
+        ],
+        [
+            2282915858,
+            3835578668
+        ]
+    ],
+    "surfaceTypeBits": 0,
+    "techniqueSet->name": "distortion_scale_zfeather",
+    "unknown": 0
+}

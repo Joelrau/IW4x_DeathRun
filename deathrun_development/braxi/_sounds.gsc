@@ -27,20 +27,24 @@ init()
 {
 	level.sounds = [];
 	
-	level.sounds["music"]["endround"][0] = "mp_suspense_01";	
-	level.sounds["music"]["endround"][1] = "mp_suspense_02";	
-	level.sounds["music"]["endround"][2] = "mp_suspense_03";	
-	level.sounds["music"]["endround"][3] = "mp_suspense_04";	
-	level.sounds["music"]["endround"][4] = "mp_suspense_05";	
-	level.sounds["music"]["endround"][5] = "mp_suspense_06";	
+	level.sounds["music"]["endround"][0] = "endround1";
+	level.sounds["music"]["endround"][1] = "endround2";
+	level.sounds["music"]["endround"][2] = "endround3";
+	level.sounds["music"]["endround"][3] = "endround4";
+	level.sounds["music"]["endround"][4] = "endround5";
+	level.sounds["music"]["endround"][5] = "endround6";
+	level.sounds["music"]["endround"][6] = "endround7";
+	level.sounds["music"]["endround"][7] = "endround8";
+	level.sounds["music"]["endround"][8] = "endround9";
+	level.sounds["music"]["endround"][9] = "endround10";
 	
-	level.sounds["music"]["endmap"] = "us_victory_music";
+	level.sounds["music"]["endmap"] = "endmap";
 	
-	level.sounds["sfx"]["lastalive"] = "mp_last_stand";
-	level.sounds["sfx"]["firstblood"] = "mp_obj_captured";
+	level.sounds["sfx"]["lastalive"] = "lastalive";
+	level.sounds["sfx"]["firstblood"] = "firstblood";
 	
-	level.sounds["sfx"]["wtf"] = "AB_mp_cmd_attackleftflank";
-	level.sounds["sfx"]["gib_splat"] = "AB_mp_cmd_attackrightflank";
-	level.sounds["sfx"]["sprayer"] = "AB_mp_cmd_fallback";
+	level.sounds["sfx"]["wtf"] = "wtf";
+	level.sounds["sfx"]["gib_splat"] = "gib_splat";
+	level.sounds["sfx"]["sprayer"] = "sprayer";
 	
 }

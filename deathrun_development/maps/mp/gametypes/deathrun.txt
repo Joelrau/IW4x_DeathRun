@@ -1,1 +1,1 @@
-^2Q^7Deathrun
+"@BRAX_MODNAME"

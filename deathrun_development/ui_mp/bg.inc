@@ -64,7 +64,7 @@ BACKGROUND_IMAGE("mw2_main_mp_image")
 #endif
 
 #ifdef BACKGROUND_IW4
-BACKGROUND_IMAGE("animbg_blur_front")
+//BACKGROUND_IMAGE("animbg_blur_front")
 #endif
 #endif
 
@@ -108,7 +108,7 @@ BACKGROUND_IMAGE("mw2_main_mp_image")
 #endif
 
 #ifdef BACKGROUND_IW4
-BACKGROUND_IMAGE("animbg_blur_front")
+//BACKGROUND_IMAGE("animbg_blur_front")
 #endif
 #endif
 

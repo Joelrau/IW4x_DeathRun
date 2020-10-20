@@ -48,10 +48,10 @@ setPlayerModel( team )
 	}
 	else if( team == "axis" )
 	{
-		self setModel("mp_body_opforce_arab_assault_a");
-		self attach("head_opforce_arab_a", "", true);
-		self.headModel = "head_opforce_arab_a";
-		self setViewModel("viewhands_militia");
+		self setModel("mp_body_desert_tf141_assault_a");
+		self attach("head_hero_price_desert", "", true);
+		self.headModel = "head_hero_price_desert";
+		self setViewModel("viewmodel_hands_zombie");
 		//self.voice = "taskforce";
 	}
 }

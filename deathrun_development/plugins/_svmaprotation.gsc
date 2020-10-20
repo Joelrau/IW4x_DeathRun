@@ -28,7 +28,7 @@ mapRotations()
 	i++;
 	game["sv_mapRotations"][i] = "map mp_dr_blackandwhite map mp_deathrun_takecare map mp_deathrun_watchit_v3 map mp_deathrun_grassy map mp_deathrun_semtex map mp_deathrun_diehard map mp_deathrun_waterworld map mp_deathrun_cherry map mp_deathrun_coyote_v2 map mp_deathrun_framey_v2 map mp_deathrun_crystal maps mp_deathrun_dragonball"; // 12 maps
 	i++;
-	game["sv_mapRotations"][i] = "map mp_deathrun_spaceball map mp_deathrun_scoria map mp_dr_bounce map mp_dr_windwaker map mp_dr_anubis map mp_dr_harrypotter map mp_dr_gooby map mp_dr_heaven map mp_dr_imaginary map mp_dr_skypower map mp_dr_undertale map mp_dr_h2o map mp_dr_sm_world map mp_dr_vistic_castle"; // 14 maps
+	game["sv_mapRotations"][i] = "map mp_deathrun_spaceball map mp_deathrun_scoria map mp_dr_bounce map mp_dr_windwaker map mp_dr_anubis map mp_dr_harrypotter map mp_dr_gooby map mp_dr_heaven map mp_dr_imaginary map mp_dr_skypower map mp_dr_undertale map mp_dr_h2o map mp_dr_sm_world map mp_dr_vistic_castle map mp_dr_catherine map mp_dr_mirrors_edge"; // 16 maps
 	i++;
 }
 

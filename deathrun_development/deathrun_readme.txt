@@ -37,6 +37,12 @@ PLUGINS 	: example can be found in plugins\example.gsc
 
  Change log:
 
+2.2 [xx.xx.xxxx]
+[INFO] Mod now uses RektInator's zonetool for compiling
+[+] Minor fixes
+
+================================
+
 2.1 [xx.xx.xxxx]
 [+] Improvements to the mod
 [+] Custom stats

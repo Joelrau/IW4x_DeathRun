@@ -1,10 +1,6 @@
 #REQUIRES
 
-require,iw4_credits
-require,iw4x_patch_mp
-require,iw4x_team_us_army
-require,iw4x_team_opforce_composite
-require,mod_characters
+#require,iw4_credits
 
 #RAWFILES
 
@@ -36,8 +32,6 @@ rawfile,maps/mp/gametypes/_gametypes.txt
 rawfile,maps/mp/gametypes/war.gsc
 rawfile,maps/mp/gametypes/deathrun.gsc
 rawfile,maps/mp/gametypes/deathrun.txt
-rawfile,cleanup.cfg
-rawfile,deathrun_readme.txt
 
 #VISIONS
 
@@ -155,25 +149,19 @@ xanim,viewmodel_cheytac_sprint_in
 xanim,viewmodel_cheytac_sprint_loop
 xanim,viewmodel_cheytac_sprint_out
 
-xanim,iw6_honey_badger_ads_down
-xanim,iw6_honey_badger_ads_down_acog
-xanim,iw6_honey_badger_ads_down_eotech
-xanim,iw6_honey_badger_ads_down_reflex
-xanim,iw6_honey_badger_ads_up
-xanim,iw6_honey_badger_ads_up_acog
-xanim,iw6_honey_badger_ads_up_eotech
-xanim,iw6_honey_badger_ads_up_reflex
-xanim,iw6_honey_badger_fire
-xanim,iw6_honey_badger_fire_ads
-xanim,iw6_honey_badger_first_raise
-xanim,iw6_honey_badger_idle
-xanim,iw6_honey_badger_pullout
-xanim,iw6_honey_badger_putaway
-xanim,iw6_honey_badger_reload
-xanim,iw6_honey_badger_reload_empty
-xanim,iw6_honey_badger_sprint_in
-xanim,iw6_honey_badger_sprint_loop
-xanim,iw6_honey_badger_sprint_out
+xanim,viewmodel_honeybadger_ads_down
+xanim,viewmodel_honeybadger_ads_fire
+xanim,viewmodel_honeybadger_ads_up
+xanim,viewmodel_honeybadger_fire
+xanim,viewmodel_honeybadger_idle
+xanim,viewmodel_honeybadger_pullout
+xanim,viewmodel_honeybadger_pullout_first
+xanim,viewmodel_honeybadger_putaway
+xanim,viewmodel_honeybadger_reload
+xanim,viewmodel_honeybadger_reload_empty
+xanim,viewmodel_honeybadger_sprint_in
+xanim,viewmodel_honeybadger_sprint_loop
+xanim,viewmodel_honeybadger_sprint_out
 
 xanim,vm_pxg_axe_ads_down
 xanim,vm_pxg_axe_idle
@@ -287,7 +275,7 @@ xmodel,weapon_bo_tomahawk
 xmodel,viewmodel_pxg_axe
 xmodel,knife_statgear
 xmodel,viewmodel_magicdagger
-xmodel,viewmodel_knife_bayonet
+xmodel,viewmodel_bayonet_knife
 xmodel,viewmodel_bo2_knife
 
 xmodel,weapon_remington700
@@ -305,29 +293,17 @@ xmodel,iw_zapper_view
 xmodel,iw_zapper_world
 xmodel,wea_cheytac_cheytac_blk_vmgun
 xmodel,wea_cheytac_cheytac_blk
-xmodel,ghosts_honey_badger_view
-xmodel,ghosts_honey_badger_world
+xmodel,ghosts_honeybadger
+xmodel,worldmodel_honeybadger
 
-xmodel,viewhands_engineer
-xmodel,viewhands_mw2_airport
-xmodel,viewhands_farmgirl
-xmodel,viewmodel_hands_zombie
+xmodel,mp_body_desert_tf141_assault_a
+xmodel,head_hero_price_desert
 
-xmodel,mp_body_opforce_arab_assault_a
-xmodel,viewhands_militia
-xmodel,head_opforce_arab_a
-
-xmodel,mp_body_us_army_assault_a
-xmodel,viewhands_us_army
-xmodel,head_us_army_a
-
-xmodel,mp_body_ally_sniper_ghillie_arctic
-xmodel,viewhands_ghillie_arctic
-xmodel,head_allies_sniper_ghillie_arctic
-
-xmodel,playermodel_vcfox_spiderman
+xmodel,body_mp_sas_urban_sniper
 xmodel,ratchet
 xmodel,deadpool
+xmodel,playermodel_vcfox_spiderman
+xmodel,plr_mrheyley_venom
 xmodel,plr_john_cena
 xmodel,plr_terry_ironman
 xmodel,plr_terry_hulk
@@ -348,11 +324,19 @@ xmodel,plr_terry_helldemon
 xmodel,plr_terry_scififemale
 xmodel,plr_terry_dragonwarrior
 
+xmodel,viewhands_engineer
+xmodel,viewhands_mw2_airport
+xmodel,viewhands_farmgirl
+xmodel,viewmodel_hands_zombie
+xmodel,viewhands_black_kit
+
 #MATERIALS
 
-material,icon_spiderman
+material,icon_marine
 material,icon_ratchet
 material,icon_deadpool
+material,icon_spiderman
+material,icon_venom
 material,icon_johncena
 material,icon_ironman
 material,icon_hulk
@@ -436,13 +420,50 @@ material,hud_icon_honey_badger
 
 material,hud_icon_rtd
 
-material,splatter_alt
+#WEAPONS
+
+weapon,mp/remington700_mp
+weapon,mp/magnum_ghosts_mp
+weapon,mp/deserteagle_mw3_mp
+weapon,mp/rk5_mp
+weapon,mp/re45_mp
+weapon,mp/zapper_mp
+weapon,mp/cheytac_codol_mp
+weapon,mp/honey_badger_mp
+
+weapon,mp/knife_mp
+weapon,mp/knife_blackhawk_mp
+weapon,mp/knife_bayonet_mp
+weapon,mp/knife_tomahawk_mp
+weapon,mp/knife_statgear_mp
+weapon,mp/knife_bo2_mp
+weapon,mp/knife_slashnburn_mp
+weapon,mp/knife_magicdagger_mp
 
 #SOUND
 
+loaded_sound,null.wav
+
+sound,party
+sound,endmap
+sound,endround1
+sound,endround2
+sound,endround3
+sound,endround4
+sound,endround5
+sound,endround6
+sound,endround7
+sound,endround8
+sound,endround9
+sound,endround10
+sound,firstblood
+sound,lastalive
+sound,gib_splat
+sound,sprayer
+sound,wtf
+
 sound,ui_pulse_text_delete
 sound,ui_pulse_text_type
-
 sound,breathing_heartbeat
 sound,breathing_hurt
 sound,breathing_better

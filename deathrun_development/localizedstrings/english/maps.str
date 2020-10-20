@@ -157,3 +157,11 @@ LANG_ENGLISH		"mp_dr_sm_world"
 
 REFERENCE			MP_DR_VISTIC_CASTLE
 LANG_ENGLISH		"mp_dr_vistic_castle"
+
+REFERENCE			MP_DR_CATHERINE
+LANG_ENGLISH		"mp_dr_catherine"
+
+REFERENCE			MP_DR_MIRRORS_EDGE
+LANG_ENGLISH		"mp_dr_mirrors_edge"
+
+ENDMARKER

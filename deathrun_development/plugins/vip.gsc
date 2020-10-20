@@ -127,7 +127,7 @@ VIPSpawnAll()
 		players = getEntArray("player", "classname");
 		for (i = 0; i < players.size; i++)
 		{
-			if (players[i].pers["team"] == "allies" && !isAlive(players[i]))
+			if (players[i].pers["team"] == "allies" && (!isAlive(players[i]) || braxi\_common::isGhost(players[i])))
 			{
 				players[i] braxi\_mod::spawnPlayer();
 				//players[i] iPrintLnBold("You were respawned by the ^3VIP^7!");

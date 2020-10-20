@@ -5,7 +5,7 @@
 
 init( modVersion )
 {
-	original_host_name = "^2Quak's^7 Deathrun ^22.1 ^2INDEV";
+	original_host_name = "^2Quak's^7 Deathrun ^22.2 ^2INDEV";
 	
 	updateHostName( original_host_name + "^7 | ^3Round^7:^1 " + level.dvar["playedrounds"] + "/" + level.dvar["round_limit"] + "^7"  );
 	

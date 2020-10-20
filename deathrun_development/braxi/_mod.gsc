@@ -38,7 +38,7 @@ main()
 	init_spawns();
 	braxi\_cod4stuff::main(); // setup vanilla cod4 variables
 
-	game["DeathRunVersion"] = 21;
+	game["DeathRunVersion"] = 22;
 	level.mapName = toLower( getDvar( "mapname" ) );
 	level.jumpers = 0;
 	level.activators = 0;
@@ -269,7 +269,7 @@ shittyRendererBrushMove()
 		
 		self waittill("movedone");
 		self moveTo(self.origin, 0.05);
-		wait 15;
+		wait 5;
 	}
 }
 
@@ -283,7 +283,7 @@ shittyRendererBrushRotate()
 		
 		self waittill("rotatedone");
 		self rotateTo(self.angles, 0.05);
-		wait 15;
+		wait 5;
 	}
 }
 
@@ -295,12 +295,12 @@ precache()
 	_precacheModel( "tag_origin" );
 	
 	_precacheItem( "defaultweapon_mp" );		// Default Weapon
-	_precacheItem( "claymore_mp" );			// Insertion item
-	_precacheItem( "tomahawk_mp" );			// Activator knife
+	_precacheItem( "claymore_mp" );				// Insertion item
+	_precacheItem( "tomahawk_mp" );				// Activator knife
 	
-	_precacheModel( "mp_body_opforce_arab_assault_a" );	// Activator model
-	_precacheModel( "head_opforce_arab_a" );				// Activator model
-	_precacheModel( "viewhands_militia" );				// Activator model
+	_precacheModel( "mp_body_desert_tf141_assault_a" );		// Activator model
+	_precacheModel( "head_hero_price_desert" );				// Activator model
+	_precacheModel( "viewmodel_hands_zombie" );				// Activator model
 
 	_precacheMenu( "clientcmd" );
 	
@@ -656,7 +656,7 @@ playerConnect() // Called when player is connecting to server
 		logPrint("J;" + self.guid + ";" + self.number + ";" + self.name + "\n");
 	}
 
-	self setClientDvars( "cg_drawSpectatorMessages", 1, "ui_hud_hardcore", 1, "player_sprintTime", 4, "ui_uav_client", 0, "g_scriptMainMenu", game["menu_team"] );
+	self setClientDvars( "r_lodScaleRigid", 1, "r_lodScaleSkinned", 1, "r_lodBiasRigid", -1000, "r_lodBiasSkinned", -1000 ); // Better lods
 }
 
 playerDisconnect() // Called when player disconnect from server
@@ -963,7 +963,6 @@ bunnyHoop()
         // Begin
         if( !self.doingBH && useButton && !onGround && fraction == 1 )
         {
-            self setClientDvars( "bg_viewKickMax", 0, "bg_viewKickMin", 0, "bg_viewKickRandom", 0, "bg_viewKickScale", 0 );
             self.doingBH = true;
         }
 
@@ -980,7 +979,6 @@ bunnyHoop()
         // Finish
         if( self.doingBH && !useButton || self.doingBH && stance != "crouch" && stance != "stand" || self.doingBH && fraction < 1 )
         {
-            self setClientDvars( "bg_viewKickMax", 90, "bg_viewKickMin", 5, "bg_viewKickRandom", 0.4, "bg_viewKickScale", 0.2 );
             self.doingBH = false;
             self.bh = 0;
             continue;
@@ -1163,7 +1161,7 @@ cleanUp()
 {
 	self clearLowerMessage();
 	self notify( "kill afk monitor" );
-	self setClientDvars( "cg_thirdperson", 0, "bg_viewKickMax", 90, "bg_viewKickMin", 5, "bg_viewKickRandom", 0.4, "bg_viewKickScale", 0.2 );
+	self setClientDvar( "cg_thirdperson", 0 );
 	self unlink();
 
 	self.bh = 0; 

@@ -60,15 +60,14 @@ main()
 	//LoadPlugin( plugins\unlimitedammo::init, "Unlimited Ammo", "quaK" );
 	LoadPlugin( plugins\healthbar::init, "Healthbar", "unknown" );
 	LoadPlugin( plugins\autospawnbots::init, "Auto Spawn Bots", "quaK" );
-	LoadPlugin( plugins\dynamichostname::init, "Dynamic Host Name", "quaK" );
+	//LoadPlugin( plugins\dynamichostname::init, "Dynamic Host Name", "quaK" );
 	LoadPlugin( plugins\dynamicmaprotate::init, "Dynamic Map Rotate", "quaK" );
 	LoadPlugin( plugins\ghostrun::init, "Ghost Run", "quaK" );
 	LoadPlugin( plugins\doublexp::init, "Double XP", "quaK" );
 	
 	LoadPlugin( plugins\saycommands::init, "Say Commands", "quaK" );
 	
-	LoadPlugin( plugins\dev::init, "dev test", "quaK" );
-	//LoadPlugin( plugins\spawnabletriggerspawner::init, "trigger spawner", "quaK" );
+	LoadPlugin( plugins\dev::init, "Developer(^1debug^7)", "quaK" );
 	/* ==== END ==== */
 }
 

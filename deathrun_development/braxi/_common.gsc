@@ -532,7 +532,9 @@ dropPlayer( player, method, msg1, msg2 )
 
 partymode() 
 {
-	level endon("stopparty");	
+	level endon("stopparty");
+	iPrintLnBold("^:PARTY MODE!");
+	ambientPlay("party");
 	players = getAllPlayers();
 	for(k=0;k<players.size;k++) players[k] setClientDvar("r_fog", 1);
 	for(;;wait .5)
@@ -784,26 +786,27 @@ triggerOff()
 }
 
 /* linkTo */
-_linkto(what)
+_linkTo(what)
 {
-	self thread __linkto(what);
+	self thread __linkTo(what);
 }
-__linkto(what)
+__linkTo(what)
 {
 	self endon("death");
 	self._linked = true;
 	force = 10;
-	while(self._linked == true)
+	while(isDefined(what) && self._linked == true)
 	{
 		at = ((what.origin[0] - self.origin[0]) * force, (what.origin[1] - self.origin[1]) * force, (what.origin[2] - self.origin[2]) * force);
 		self setVelocity(at);
 		wait 0.05;
 		//self setVelocity((0,0,0));
 	}
+	self _unlink();
 }
 
 /* unlink */
-_unlink(what)
+_unlink()
 {
 	self._linked = false;
 }

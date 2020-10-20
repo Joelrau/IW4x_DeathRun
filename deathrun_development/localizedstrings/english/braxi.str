@@ -17,7 +17,7 @@ REFERENCE           BRAX_MODNAME
 LANG_ENGLISH        "^2Quak's^7 Death Run"
 
 REFERENCE           BRAX_MOTD
-LANG_ENGLISH        "QDeathrun"
+LANG_ENGLISH        "Quak's Deathrun"
 
 REFERENCE           NOTICE
 LANG_ENGLISH        "^3Death Run Notice"
