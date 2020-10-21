@@ -15,8 +15,8 @@ Prenotes: Whereas "IW4x Root" you should be aware it is the root directory of iw
 
 1. [Compile and use the latest iw4x.dll](https://github.com/XLabsProject/iw4x-client) <br>
 2. Clone deathrun_developer to "IW4x Root/mods" <br>
-3 Copy "zonetool/ZoneTool-x86-release.dll" to "IW4x Root" and rename it to "zonetool.dll" <br>
-3.1 Open "zonetool/zonetool-binaries-master.zip/zonetool-binaries-master" and copy "zonetool_iw4.exe" to "IW4x Root" and rename it to "zonetool.exe" <br>
+3. Copy "zonetool/ZoneTool-x86-release.dll" to "IW4x Root" and rename it to "zonetool.dll" <br>
+4. Open "zonetool/zonetool-binaries-master.zip/zonetool-binaries-master" and copy "zonetool_iw4.exe" to "IW4x Root" and rename it to "zonetool.exe" <br>
 5. Run makeMod.bat to build mod.ff <br>
 6. Run makeIWD.bat to build .iwd files <br>
 7. [optional] Run runMod.bat to launch your newly compiled mod, you can change launch options (ex. map) by directly editing .bat file <br>
@@ -26,7 +26,7 @@ Prenotes: Whereas "IW4x Root" you should be aware it is the root directory of iw
 Adding new stuff
 ================
 
-You need to know how to use [RektInator's zonetool](https://github.com/ZoneTool/zonetool)
+You need to know how to use [RektInator's zonetool](https://github.com/ZoneTool/zonetool) <br>
 Note: Remember to always run makeMod.bat and makeIWD.bat when adding new stuff. <br>
 
 <hr>
