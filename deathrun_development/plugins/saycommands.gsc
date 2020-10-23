@@ -12,6 +12,9 @@ sayCommands()
 	// admin
 	level thread saycmd_map();
 	level thread saycmd_party();
+	
+	// special
+	level thread saycmd_finishMap();
 }
 
 // common
@@ -81,14 +84,14 @@ saycmd_map()
 {
 	while(1)
 	{
-		level waittill("sayCommand", command, player, param_1);
+		level waittill("sayCommand", command, player, params);
 		if(toLower(command) == "map")
 		{
 			if(player.pers["admin"] == true)
 			{
-				if(isDefined(param_1))
+				if(isDefined(params[0]))
 				{
-					map(param_1);
+					map(params[0]);
 				}
 				else
 				{
@@ -114,6 +117,46 @@ saycmd_party()
 			}
 			else
 				player iPrintLnBold("You need to be admin to use this command.");
+		}
+	}
+}
+
+// special
+saycmd_finishMap()
+{
+	wait 5;
+	if(game["roundsplayed"] < 2)
+	{
+		return;
+	}
+	
+	thread _saycmd_finishMap();
+	
+	while(1)
+	{
+		level waittill("sayCommand", command, player);
+		if(toLower(command) == "finishmap")
+		{
+			players = getEntArray( "player", "classname" );
+			if(players.size >= 2)
+			{
+				player iPrintLnBold("^1This command can only be used when there are less than 2 players!^7");
+				return;
+			}
+			braxi\_mod::endMap();
+		}
+	}
+}
+
+_saycmd_finishMap()
+{
+	while(1)
+	{
+		level waittill("jumper", player);
+		if(isDefined(player.saycmd_finishmap_notified) == false)
+		{
+			player iPrintLnBold("^4Since you are alone, you can say ^3" + level.sayCommandSymbol + "finishMap^4 to end the map.^7");
+			player.saycmd_finishmap_notified = true;
 		}
 	}
 }

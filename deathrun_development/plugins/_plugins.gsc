@@ -59,7 +59,7 @@ main()
 	//LoadPlugin( plugins\nohardscope::init, "No Hard Scope", "Legend" );
 	//LoadPlugin( plugins\unlimitedammo::init, "Unlimited Ammo", "quaK" );
 	LoadPlugin( plugins\healthbar::init, "Healthbar", "unknown" );
-	LoadPlugin( plugins\autospawnbots::init, "Auto Spawn Bots", "quaK" );
+	//LoadPlugin( plugins\autospawnbots::init, "Auto Spawn Bots", "quaK" );
 	//LoadPlugin( plugins\dynamichostname::init, "Dynamic Host Name", "quaK" );
 	LoadPlugin( plugins\dynamicmaprotate::init, "Dynamic Map Rotate", "quaK" );
 	LoadPlugin( plugins\ghostrun::init, "Ghost Run", "quaK" );

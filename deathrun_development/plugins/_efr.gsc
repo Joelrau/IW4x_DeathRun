@@ -31,12 +31,16 @@ init( modVers )
 	addDvar( "pi_efr_vision", "plugin_efr_vision", 1, 0, 1, "int" );
 	addDvar( "pi_efr_rt", "plugin_efr_restarttime", 3, 3, 15, "int" );
 	
-	wait 1;
-	if( getPlayingPlayers().size >= 2 || level.freeRun || !level.dvar["pi_efr"] )
+	level endon("intermission");
+	
+	if( level.freeRun || !level.dvar["pi_efr"] )
+		return;
+		
+	result = waitTillCanContinue();
+	if(!result)
 		return;
 
 	level.freeRun = true;		//Do not count deaths
-	game["state"] = "playing";
 	level notify( "kill logic" );
 	
 	if( isDefined( level.hud_jumpers ) )
@@ -48,7 +52,17 @@ init( modVers )
 	if( isDefined( level.matchStartText ) )
 		level.matchStartText destroy();
 	
+	if(isDefined(level.matchStartTimer))
+		level.matchStartTimer destroy();
+	
+	level notify("round_starting");
 	braxi\_mod::RoundStartTimer();
+	
+	level notify( "round_started", game["roundsplayed"] );
+	level notify( "game started" );
+	game["state"] = "playing";
+	game["roundStarted"] = true;
+	
 	players = getAllPlayers();
 	for( i = 0; i < players.size; i++ )
 	{
@@ -79,4 +93,17 @@ init( modVers )
 	wait level.dvar["pi_efr_rt"];
 	level.freeRun = false;
 	map_restart( true );
+}
+
+waitTillCanContinue()
+{
+	while(game["state"] != "playing")
+	{
+		wait 1;
+		if(getPlayingPlayers().size < 2)
+		{
+			return true;
+		}
+	}
+	return false;
 }

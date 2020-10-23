@@ -144,7 +144,7 @@ main()
 	level thread forceDeath();
 	level thread shittyRenderer();
 	
-	level thread sayCommand( "#" );
+	level thread sayCommand( "#" ); // has to be the size of 1 char!
 	
 	//level thread test();
 
@@ -160,20 +160,28 @@ main()
 
 sayCommand( commandSymbol )
 {
+	if(commandSymbol.size != 1)
+	{
+		printLn("^1Error: braxi/_mod -> sayCommand()^7");
+		return;
+	}
 	level.sayCommandSymbol = commandSymbol;
 	while(1)
 	{
 		level waittill("say", string, player);
 		if(string[0] == level.sayCommandSymbol)
 		{
-			raw_command = strTok(string, " ")[0];
+			raw = strTok(string, " ");
+			raw_command = raw[0];
 			command = "";
-			for(i = 1; i < raw_command.size; i++)
-				command += raw_command[i];
-			param_1 = strTok(string, " ")[1];
-			param_2 = strTok(string, " ")[2];
-			level notify("sayCommand", command, player, param_1, param_2);
-			player notify("saidCommand", command, param_1, param_2);
+			for(i = level.sayCommandSymbol.size; i < raw_command.size; i++)
+				command += raw_command[i]; // remove sayCommandSymbol
+			params = [];
+			for(i = 1; i < raw.size; i++)
+				params[i - 1] = raw[i]; // remove command
+			
+			level notify("sayCommand", command, player, params);
+			player notify("saidCommand", command, params);
 			//iPrintLnBold(command);
 		}
 	}
@@ -1557,9 +1565,11 @@ kickAfterTime( time )
 
 roundStartTimer()
 {	
-	
 	if( isDefined( level.matchStartText ) )
 		level.matchStartText destroyElem();
+	
+	if( isDefined( level.matchStartTimer ) )
+		level.matchStartTimer destroyElem();
 
 	level.matchStartText = createServerFontString( "objective", 1.5 );
 	level.matchStartText setPoint( "CENTER", "CENTER", 0, -20 );
