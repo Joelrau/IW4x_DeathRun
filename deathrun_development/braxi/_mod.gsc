@@ -180,7 +180,7 @@ sayCommand( commandSymbol )
 			for(i = 1; i < raw.size; i++)
 				params[i - 1] = raw[i]; // remove command
 			
-			level notify("sayCommand", command, player, params);
+			level notify("sayCommand", command, params, player);
 			player notify("saidCommand", command, params);
 			//iPrintLnBold(command);
 		}
@@ -198,7 +198,6 @@ test()
 			//iPrintLnBold("test");
 		}
 	}
- 
 }
 
 /*endmap_trig_test()

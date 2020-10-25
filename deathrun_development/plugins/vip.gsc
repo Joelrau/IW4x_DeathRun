@@ -113,7 +113,7 @@ VIPSpawnAll()
 		
 		for(;;)
 		{
-			level waittill("sayCommand", command, player);
+			level waittill("sayCommand", command, params, player);
 			if(player == self)
 			{
 				if(toLower(command) == "sa" || toLower(command) == "spawnall")

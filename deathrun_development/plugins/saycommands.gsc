@@ -23,7 +23,7 @@ saycmd_help()
 {
 	while(1)
 	{
-		level waittill("sayCommand", command, player);
+		level waittill("sayCommand", command, params, player);
 		if(toLower(command) == "help")
 		{
 			player thread _saycmd_help();
@@ -70,7 +70,7 @@ saycmd_resetStats()
 {
 	while(1)
 	{
-		level waittill("sayCommand", command, player);
+		level waittill("sayCommand", command, params, player);
 		if(toLower(command) == "resetstats")
 		{
 			player thread braxi\_stats::resetStats();
@@ -84,7 +84,7 @@ saycmd_map()
 {
 	while(1)
 	{
-		level waittill("sayCommand", command, player, params);
+		level waittill("sayCommand", command, params, player);
 		if(toLower(command) == "map")
 		{
 			if(player.pers["admin"] == true)
@@ -108,7 +108,7 @@ saycmd_party()
 {
 	while(1)
 	{
-		level waittill("sayCommand", command, player);
+		level waittill("sayCommand", command, params, player);
 		if(toLower(command) == "party")
 		{
 			if(player.pers["admin"] == true)
@@ -134,7 +134,7 @@ saycmd_finishMap()
 	
 	while(1)
 	{
-		level waittill("sayCommand", command, player);
+		level waittill("sayCommand", command, params, player);
 		if(toLower(command) == "finishmap")
 		{
 			players = getEntArray( "player", "classname" );
