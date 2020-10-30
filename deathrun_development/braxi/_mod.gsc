@@ -254,7 +254,7 @@ test()
 	}
 }*/
 
-shittyRenderer() // Sometimes IW4x doesn't render moving/rotating brushmodels properly. This fixes that.
+shittyRenderer() // Sometimes IW4x doesn't render moving/rotating brushmodels properly. This "fixes" that.
 {
 	level waittill("connected");
 	brushes = getEntArray("script_brushmodel", "classname");
@@ -276,7 +276,7 @@ shittyRendererBrushMove()
 		
 		self waittill("movedone");
 		self moveTo(self.origin, 0.05);
-		wait 5;
+		wait 15;
 	}
 }
 
@@ -290,7 +290,7 @@ shittyRendererBrushRotate()
 		
 		self waittill("rotatedone");
 		self rotateTo(self.angles, 0.05);
-		wait 5;
+		wait 15;
 	}
 }
 
