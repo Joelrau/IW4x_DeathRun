@@ -129,10 +129,10 @@ private_watchTrigger()
 				{
 					player thread private_hintString( self, self.hintstring );
 					player thread private_cursorHint( self, self.cursorhint );
-					if( !player useButtonPressed() || isDefined( player.use_trigger_delay ) && player.use_trigger_delay > 0 )
+					if( !player useButtonPressed() || isDefined( player.use_trigger_holding ) && player.use_trigger_holding == true )
 						continue;
 					
-					player thread private_use_trigger_wait( 0.2 );
+					player thread private_use_trigger_holding();
 				}
 				
                 self notify("trigger", player);
@@ -140,6 +140,7 @@ private_watchTrigger()
 				if( self.type == "once" )
 				{
 					self delete();
+					return;
 				}
 				else if( self.type == "hurt" )
 				{
@@ -261,11 +262,12 @@ private_canTrigger( trigger ) // fix for noclip triggers
 
 // USE
 
-private_use_trigger_wait( waittime )
+private_use_trigger_holding()
 {
-	self.use_trigger_delay = waittime;
-	wait ( self.use_trigger_delay );
-	self.use_trigger_delay = 0;
+	self.use_trigger_holding = true;
+	while(self useButtonPressed())
+		wait ( 0.05 );
+	self.use_trigger_holding = false;
 }
 
 // DAMAGE

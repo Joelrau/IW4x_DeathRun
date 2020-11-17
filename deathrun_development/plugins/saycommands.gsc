@@ -141,7 +141,7 @@ saycmd_finishMap()
 			if(players.size >= 2)
 			{
 				player iPrintLnBold("^1This command can only be used when there are less than 2 players!^7");
-				return;
+				continue;
 			}
 			braxi\_mod::endMap();
 		}
@@ -153,6 +153,12 @@ _saycmd_finishMap()
 	while(1)
 	{
 		level waittill("jumper", player);
+		players = getEntArray( "player", "classname" );
+		if(players.size > 1)
+		{
+			continue;
+		}
+		
 		if(isDefined(player.saycmd_finishmap_notified) == false)
 		{
 			player iPrintLnBold("^4Since you are alone, you can say ^3" + level.sayCommandSymbol + "finishMap^4 to end the map.^7");

@@ -90,7 +90,7 @@ function doTriggers( input )
 			else if(info == "origin")
 				origin_string = temp_arr2[a+1];
 			else if(info == "angles")
-				origin_string = temp_arr2[a+1];
+				angles_string = temp_arr2[a+1];
 			else if(info == "target")
 				target_string = temp_arr2[a+1];
 			else if(info == "spawnflags")
@@ -113,7 +113,7 @@ function doTriggers( input )
 			{
 				if(classname_string != supported_types[a])
 				{
-					error_string = "classname error! classname is '" + classname_string + "' when it should be '" + supported_types[v] + "'";
+					error_string = "classname error! classname is '" + classname_string + "' when it should be '" + supported_types[a] + "'";
 					console.error(error_string);
 					alert(error_string);
 					return;
