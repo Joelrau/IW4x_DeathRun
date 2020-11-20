@@ -53,7 +53,7 @@
 		DR_WEAPON( 260, 13 )
 		DR_WEAPON( 300, 14 )
 		DR_WEAPON( 340, 15 )
-		//DR_WEAPON( 380, 16 )
+		DR_WEAPON( 380, 16 )
 		
 		DR_BUTTON( "2", 90, 425, 50, 20, "@DRM_BACK", close self; open "dr_weapons";, 1 )
 	}

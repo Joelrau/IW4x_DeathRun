@@ -54,7 +54,7 @@
 
 		itemDef 
 		{
-			rect			335 155 64 48
+			rect			335 158 64 32
 			style			WINDOW_STYLE_SHADER
 			exp				material( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 3) )
 			forecolor		1 1 1 1
@@ -129,16 +129,4 @@
 			visible			1
 			decoration
 		}
-		
-			/*visible			1
-			style			WINDOW_STYLE_FILLED 
-			origin			440 130
-			forecolor		1 1 1 1
-			exp				text( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 6) )
-			type			ITEM_TYPE_BUTTON 
-			textstyle		ITEM_TEXTSTYLE_SHADOWED 
-			textalign		ITEM_ALIGN_CENTER
-			textaligny		2
-			textscale		0.4
-			decoration*/
 

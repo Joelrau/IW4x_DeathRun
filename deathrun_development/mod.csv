@@ -203,6 +203,14 @@ xanim,viewmodel_bo2_knife_sprint_in
 xanim,viewmodel_bo2_knife_sprint_loop
 xanim,viewmodel_bo2_knife_sprint_out
 
+xanim,viewmodel_ray_gun_idle
+xanim,viewmodel_ray_gun_fire
+xanim,viewmodel_ray_gun_reload
+xanim,viewmodel_ray_gun_raise
+xanim,viewmodel_ray_gun_drop
+xanim,viewmodel_ray_gun_ADS_up
+xanim,viewmodel_ray_gun_ADS_down
+
 #FX
 
 fx,deathrun/falling_teddys
@@ -261,6 +269,10 @@ fx,deathrun/spray49
 
 fx,zapper/st_zapper_fire
 
+fx,raygun/raygun_trail
+fx,raygun/raygun_muzzle
+fx,raygun/raygun_impact
+
 #XMODELS
 
 xmodel,com_teddy_bear
@@ -295,6 +307,8 @@ xmodel,wea_cheytac_cheytac_blk_vmgun
 xmodel,wea_cheytac_cheytac_blk
 xmodel,ghosts_honeybadger
 xmodel,worldmodel_honeybadger
+xmodel,raygun_viewmodel
+xmodel,weapon_raygun
 
 xmodel,mp_body_desert_tf141_assault_a
 xmodel,head_hero_price_desert
@@ -417,28 +431,9 @@ material,hud_icon_re45
 material,hud_icon_zapper
 material,hud_icon_cheytac_codol
 material,hud_icon_honey_badger
+material,hud_icon_raygun
 
 material,hud_icon_rtd
-
-#WEAPONS
-
-weapon,mp/remington700_mp
-weapon,mp/magnum_ghosts_mp
-weapon,mp/deserteagle_mw3_mp
-weapon,mp/rk5_mp
-weapon,mp/re45_mp
-weapon,mp/zapper_mp
-weapon,mp/cheytac_codol_mp
-weapon,mp/honey_badger_mp
-
-weapon,mp/knife_mp
-weapon,mp/knife_blackhawk_mp
-weapon,mp/knife_bayonet_mp
-weapon,mp/knife_tomahawk_mp
-weapon,mp/knife_statgear_mp
-weapon,mp/knife_bo2_mp
-weapon,mp/knife_slashnburn_mp
-weapon,mp/knife_magicdagger_mp
 
 #SOUND
 
@@ -467,3 +462,12 @@ sound,ui_pulse_text_type
 sound,breathing_heartbeat
 sound,breathing_hurt
 sound,breathing_better
+
+sound,weap_rgun_reload_battery_in
+sound,weap_rgun_reload_battery_out
+sound,weap_rgun_reload_close
+sound,weap_rgun_reload_open
+sound,weap_rgun_exp
+sound,weap_rgun_fire
+sound,weap_rgun_fire_plr
+sound,weap_rgun_loop
