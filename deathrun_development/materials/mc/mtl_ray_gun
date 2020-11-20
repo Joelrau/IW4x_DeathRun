@@ -28,7 +28,7 @@
     "maps": [
         {
             "firstCharacter": 115,
-            "image": "$null",
+            "image": "~weapon_ray_gun_spc_col-r~1136c754",
             "lastCharacter": 112,
             "sampleState": 11,
             "semantic": 8,
