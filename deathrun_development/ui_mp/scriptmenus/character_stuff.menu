@@ -74,7 +74,7 @@
 		DR_BUTTON( "0", 100, 110, 180, 20, "@DRM_CHARACTERS", close self; open "dr_characters";, 1 )
 		DR_BUTTON( "1", 100, 135, 180, 20, "@DRM_WEAPONS", close self; open "dr_weapons";, 1 )
 		DR_BUTTON( "2", 100, 160, 180, 20, "@DRM_KNIVES", close self; open "dr_knives";, 1 )
-		DR_BUTTON( "2", 100, 185, 180, 20, "@DRM_SPRAYS", close self; open "dr_sprays";, 1 )
-		DR_BUTTON( "3", 100, 220, 180, 20, "@DRM_DONE", close self; open "team_select";, 1 )
+		DR_BUTTON( "3", 100, 185, 180, 20, "@DRM_SPRAYS", close self; open "dr_sprays";, 1 )
+		DR_BUTTON( "4", 100, 220, 180, 20, "@DRM_DONE", close self; open "team_select";, 1 )
 	}	
 }
