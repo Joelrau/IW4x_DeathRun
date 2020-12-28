@@ -41,7 +41,7 @@ autoKillBots()
 	{
 		level waittill("activator", acti);
 		
-		if(acti isBot() == false && botsPlaying( "int" ) > 0)
+		if(acti isABot() == false && botsPlaying( "int" ) > 0)
 		{
 			acti pressToKillBots( "+frag", "Grenade" );
 		}
@@ -80,7 +80,7 @@ killBots()
 	for(i = 0; i < players.size; i++)
 	{
 		player = players[i];
-		if (player isBot() == true)
+		if (player isABot() == true)
 		{
 			player suicide();
 			botsKilled++;
@@ -103,7 +103,7 @@ autoKickBots( playersRequired )
 			for(i = 0; i < players.size; i++)
 			{
 				player = players[i];
-				if (player isBot() == true)
+				if (player isABot() == true)
 				{
 					kick( player getEntityNumber() );
 					botsKicked++;
@@ -121,7 +121,7 @@ botTeamFix()
 	for(;;)
 	{
 		level waittill("connected", player);
-		if (player isBot())
+		if (player isABot())
 		{
 			if(player.pers["team"] != "allies")
 				player braxi\_teams::setTeam("allies");
@@ -157,7 +157,7 @@ botTeamFix2()
 //-----------------------------------------------------------//
 
 
-isBot()
+isABot()
 {
 	if (braxi\_common::stringContains(self getGuid(), "bot"))
 		return true;
@@ -183,7 +183,7 @@ botsInServer( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == true)
+			if (player isABot() == true)
 			{
 				bots[bots.size] = player;
 			}
@@ -198,7 +198,7 @@ botsInServer( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == true)
+			if (player isABot() == true)
 			{
 				bots++;
 			}
@@ -219,7 +219,7 @@ botsPlaying( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == true && player.sessionstate == "playing")
+			if (player isABot() == true && player.sessionstate == "playing")
 			{
 				bots[bots.size] = player;
 			}
@@ -234,7 +234,7 @@ botsPlaying( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == true && player.sessionstate == "playing")
+			if (player isABot() == true && player.sessionstate == "playing")
 			{
 				bots++;
 			}
@@ -255,7 +255,7 @@ playersInServer( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == false)
+			if (player isABot() == false)
 			{
 				playersInServer[playersInServer.size] = player;
 			}
@@ -270,7 +270,7 @@ playersInServer( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == false)
+			if (player isABot() == false)
 			{
 				playersInServer++;
 			}
@@ -291,7 +291,7 @@ playersPlaying( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == false && player.sessionstate == "playing")
+			if (player isABot() == false && player.sessionstate == "playing")
 			{
 				playingPlayers[playingPlayers.size] = player;
 			}
@@ -306,7 +306,7 @@ playersPlaying( type )
 		for (i = 0; i < players.size; i++)
 		{
 			player = players[i];
-			if (player isBot() == false && player.sessionstate == "playing")
+			if (player isABot() == false && player.sessionstate == "playing")
 			{
 				playingPlayers++;
 			}
