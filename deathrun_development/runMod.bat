@@ -1,6 +1,6 @@
 @echo off
 
-set "map=mp_dr_mirrors_edge"
+set "map=mp_dr_crosscode"
 set /p "map=Enter map name or press [ENTER] for default [%map%]: "
 
 cd ..\..\
