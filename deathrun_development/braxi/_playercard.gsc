@@ -44,7 +44,7 @@ init()
 			victim SetCardDisplaySlot( attacker, 7 );
 			victim openMenu( "killedby_card_display" );
 			
-			return;
+			continue;
 		}
 		
 		// BRAXI PLAYERCARD
