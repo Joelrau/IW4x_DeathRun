@@ -64,6 +64,8 @@ main()
 	LoadPlugin( plugins\dynamicmaprotate::init, "Dynamic Map Rotate", "quaK" );
 	LoadPlugin( plugins\ghostrun::init, "Ghost Run", "quaK" );
 	LoadPlugin( plugins\doublexp::init, "Double XP", "quaK" );
+	LoadPlugin( plugins\simplevelometer::init, "Velocity meter", "Ohh Rexy<3" );
+	LoadPlugin( plugins\ez_knife::init, "EZ Knife", "Ohh Rexy<3" );
 	
 	LoadPlugin( plugins\saycommands::init, "Say Commands", "quaK" );
 	
