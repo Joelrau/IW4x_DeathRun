@@ -49,7 +49,11 @@ init( modVersion )
 		}
 		else
 		{
-			classname = endmap_trig[0]._classname || endmap_trig[0].classname;
+			classname = endmap_trig[0]._classname;
+			if(!isDefined(classname))
+				classname = endmap_trig[0].classname;
+			if(!isDefined(classname))
+				classname = "<unknown>"
 			iPrintLn("Ghost Run plugin: ^1Error: endmap_trig classname is '" + classname + "' when it should be 'trigger_multiple' or 'trigger_radius'!^7");
 			disabled = true;
 		}
@@ -113,10 +117,9 @@ GhostRun()
 	self takeAllWeapons();
 	self ghostRunWeapon();
 	self thread checkWeapons();
-	//self thread checkCurrentWeapon();
 	
 	self thread KillGhostRunOnEndTrigger();
-	self thread GhostWatcher( "spawned_player", "death" );
+	self thread GhostWatcher( "spawned_player", "death", "joined_spectators", "disconnect", "endround" );
 }
 
 waittillFragButtonPressed()
@@ -130,7 +133,7 @@ waittillFragButtonPressed()
 keepHidingGhost()
 {
 	self endon("killghostrun");
-	while(1)
+	while(isDefined(self))
 	{
 		self detachAll();
 		self setModel(level.ghostRunModel);
@@ -169,7 +172,7 @@ GhostHudWatcher()
 {
 	self endon("killghostrun");
 	self endon("killghostrunhudwatcher");
-	while(1)
+	while(isDefined(self))
 	{
 		if(!isDefined(self.ghostHud))
 		{
@@ -191,20 +194,22 @@ GhostHudWatcher()
 	}
 }
 
-GhostWatcher( endon_1, endon_2, endon_3, endon_4 )
+GhostWatcher( endon_1, endon_2, endon_3, endon_4, endon_5 )
 {
 	self endon("killghostrun");
 	self endon("killghostrunwatcher");
-	GhostRunWaittill( endon_1, endon_2, endon_3, endon_4 );
-	KillGhostRun();
+	self GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5 );
+	self KillGhostRun();
 }
 
-GhostRunWaittill( endon_1, endon_2, endon_3, endon_4 )
+GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5 )
 {
 	self endon( endon_1 );
 	self endon( endon_2 );
 	self endon( endon_3 );
 	self endon( endon_4 );
+	
+	level endon( endon_5 );
 	
 	while(1)
 		wait 420;
@@ -214,19 +219,19 @@ KillGhostRun()
 {
 	self.ghost = false;
 	self GhostHud();
+	if(isAlive(self))
+		self suicide();
 	self notify("killghostrun");
 }
 
 KillGhostRunOnEndTrigger()
 {
 	self endon("killghostrun");
-	while(1)
+	while(isDefined(level.endmap_trig))
 	{
 		level.endmap_trig waittill("trigger", player);
 		if(player == self)
 		{
-			if(isAlive(self))
-				self suicide();
 			player KillGhostRun();
 		}
 	}
@@ -249,59 +254,39 @@ checkWeapons()
 {
 	self endon("killghostrun");
 	
-	while(1)
-	{
-		weaponsList = self getWeaponsListAll();
-		
-		for(i = 0; i < weaponsList.size; i++)
-		{
-			weapon = weaponsList[i];
-			if( weapon != self.ghostRunWeapon )
-			{
-				self takeWeapon( weapon );
-			}
-		}
-		if( self hasWeapon( self.ghostRunWeapon ) == false )
-			self ghostRunWeapon();
-		wait 0.05;
-	}
-}
-
-checkCurrentWeapon()
-{
-	self endon("killghostrun");
-	
 	allowedWeapons = [];
 	allowedWeapons[0] = undefined;
 	allowedWeapons[1] = "none";
 	allowedWeapons[2] = "rpg_mp";
 	
-	wait 1;
-	while(1)
+	while(isDefined(self))
 	{
-		weapon = self getCurrentWeapon();
 		allowedWeapons[0] = self.ghostRunWeapon;
-		allowedWeapons_str = "";
-		for( i = 0; i < allowedWeapons.size; i++)
+		
+		weaponsList = self getWeaponsListAll();
+		
+		for(i = 0; i < weaponsList.size; i++)
 		{
-			allowedWeapons_str += "'" + allowedWeapons[i] + "'";
-			if(i < allowedWeapons.size-1)
-				allowedWeapons_str += ", ";
-		}
-		kill = true;
-		for( i = 0; i < allowedWeapons.size; i++)
-		{
-			if( weapon == allowedWeapons[i] )
+			weapon = weaponsList[i];
+			
+			canKeep = false;
+			for( j = 0; j < allowedWeapons.size; j++)
 			{
-				kill = false;
+				if( weapon == allowedWeapons[j] )
+				{
+					canKeep = true;
+					break;
+				}
+			}
+			
+			if( canKeep == false )
+			{
+				self takeWeapon( weapon );
+				self ghostRunWeapon();
 			}
 		}
-		if( kill == true )
-		{
-			self suicide();
-			self iPrintLnBold( "Ghost Run [^1Killed^7]" );
-			self iPrintLnBold( "You had weapon '" + weapon + "', allowed weapons: " +  allowedWeapons_str );
-		}
+		if( self hasWeapon( self.ghostRunWeapon ) == false )
+			self ghostRunWeapon();
 		wait 0.05;
 	}
 }
