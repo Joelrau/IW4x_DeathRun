@@ -443,6 +443,7 @@ buildSprayInfo()
 	for( idx = 1; isdefined( tableLookup( tableName, 0, idx, 0 ) ) && tableLookup( tableName, 0, idx, 0 ) != ""; idx++ )
 	{
 		id = int( tableLookup( tableName, 0, idx, 1 ) );
+		level.sprayInfo[id]["name"] = "";
 		level.sprayInfo[id]["rank"] = (int(tableLookup( tableName, 0, idx, 2 )) - 1);
 		level.sprayInfo[id]["shader"] = tableLookup( tableName, 0, idx, 3 );
 		level.sprayInfo[id]["effect"] = loadFX( tableLookup( tableName, 0, idx, 4 ) );
@@ -1345,10 +1346,14 @@ pickRandomActivator()
 
 	if( level.dvar["dont_make_peoples_angry"] == 1 && guy getEntityNumber() == getDvarInt( "last_picked_player" ) )
 	{	
-		if( isDefined( players[num-1] ) && isPlayer( players[num-1] ) )
-			guy = players[num-1];
-		else if( isDefined( players[num+1] ) && isPlayer( players[num+1] ) )
-			guy = players[num+1];
+		new_num = num - 1;
+        if(new_num < 0)
+        {
+            new_num = 1;
+        }
+
+        if( isDefined( players[new_num] ) && isPlayer( players[new_num] ) )
+            guy = players[new_num];
 	}
 	
 	if( !isDefined( guy ) && !isPlayer( guy ) || level.dvar["dont_pick_spec"] && guy.sessionstate == "spectator" )
@@ -1491,7 +1496,7 @@ respawn()
 			self.spawnedhud setText (&"PLATFORM_PRESS_TO_SPAWN");
 		}
 		
-		while( self useButtonPressed() == false && !isAlive(self) )
+		while( self useButtonPressed() == false && !isAlive(self) && game["state"] == "playing" )
 			wait .05;
 			
 		if (isDefined(self.spawnedhud))

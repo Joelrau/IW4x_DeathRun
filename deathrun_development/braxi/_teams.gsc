@@ -78,10 +78,6 @@ setWeapon()
 	}
 	if( self.pers["team"] == "axis" )
 	{
-		if (level.trapsDisabled == false)
-		{
-			self.pers["knife"] = "tomahawk_mp";
-		}
 		self giveWeapon( self.pers["knife"] );
 		self setSpawnWeapon( self.pers["knife"] );
 	}
