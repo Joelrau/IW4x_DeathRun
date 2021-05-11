@@ -8,7 +8,7 @@ init( modVersion )
 	level thread doubleXpHud();
 	level thread monitorPlayers();
 	
-	level waittill("intermission");
+	level waittill_any("intermission", "endround");
 	level thread deleteDoubleXpHud();
 }
 
@@ -84,4 +84,13 @@ deleteDoubleXpHud()
 {
 	if(isDefined(level.doublexphud))
 		level.doublexphud destroy();
+}
+
+waittill_any( endon_1, endon_2 )
+{
+	self endon( endon_1 );
+	self endon( endon_2 );
+	
+	while(1)
+		wait 420;
 }
