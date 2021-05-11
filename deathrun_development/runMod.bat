@@ -1,6 +1,6 @@
 @echo off
 
-set "map=mp_dr_crosscode"
+set "map=mp_dr_sm64"
 set /p "map=Enter map name or press [ENTER] for default [%map%]: "
 
 cd ..\..\
