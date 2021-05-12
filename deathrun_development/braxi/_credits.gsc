@@ -49,7 +49,6 @@ main()
 	wait level.creditTime + 2;
 }
 
-
 showCredit( text, scale )
 {
 	end_text = newHudElem();

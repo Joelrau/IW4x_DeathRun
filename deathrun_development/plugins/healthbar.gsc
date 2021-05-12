@@ -1,13 +1,12 @@
 #include braxi\_dvar;
 
-init( modVers )
+init( modVersion )
 {
     addDvar( "pi_hb", "plugin_healthbar_enable", 1, 0, 1, "int" );
     addDvar( "pi_hb_show", "plugin_healthbar_show", 2, 0, 2, "int" );				//0 = Jumpers only | 1 = Activator Only | 2 = Everybody
     addDvar( "pi_hb_counter", "plugin_healthbar_counter", 1, 0, 1, "int" );			//Health: 100
     addDvar( "pi_hb_col", "plugin_healthbar_color", 1, 0, 1, "int" );				//change color: full = green; low = red
 	addDvar( "pi_hb_bg", "plugin_healthbar_background", 0, 0, 1, "int" );			//show background or not
-	
 	
 	if( !level.dvar["pi_hb"] )
 		return;

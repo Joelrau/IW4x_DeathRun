@@ -34,7 +34,6 @@
 All rights reserved © iNext Gaming
 **********************************/
 
-
 #include braxi\_common;
 
 init() 
@@ -190,7 +189,6 @@ addMapItem(mapname, gametype) {
 	map.votes = 0;
 	return map;
 }
-
 
 /* begins actual mapvoting procedure */
 beginVoting(time) {
@@ -380,11 +378,7 @@ playerDelVisuals() {
 		self.voteitem[i].votes destroy();
 		self.voteitem[i] destroy();
 	}
-	
-
-
 }
-
 
 getIndex(i) {
 	if (i>=level.maps.size)
@@ -401,7 +395,6 @@ updateVotes() {
 			self.voteitem[i].votes.value = val;
 			self.voteitem[i].votes setValue(val);
 		}
-	
 	}
 }
 
@@ -556,7 +549,6 @@ getY(i) {
 	return 64 - abs(i-level.voteavg)*56/(level.mapitems);
 }
 
-
 createVisuals() {
 	level.blackbg = newHudElem();
 	level.blackbg.x = 0;
@@ -588,7 +580,6 @@ createVisuals() {
 	level.blackbgtop.foreground = false;
 	level.blackbgtop setShader( "white", level.blackbgtop.width, level.blackbgtop.height );
 	
-	
 	level.blackbar = newHudElem();
 	level.blackbar.x = 0;
 	level.blackbar.y = 0;
@@ -604,7 +595,6 @@ createVisuals() {
 	level.blackbar.foreground = false;
 	level.blackbar setShader( "white", level.blackbar.width, level.blackbar.height );
 	
-	
 	level.blackbartop = newHudElem();
 	level.blackbartop.x = 0;
 	level.blackbartop.y = 64;
@@ -619,7 +609,6 @@ createVisuals() {
 	level.blackbartop.sort = -2;
 	level.blackbartop.foreground = false;
 	level.blackbartop setShader( "white", level.blackbartop.width, level.blackbartop.height );
-	
 	
 	level.winningtxt = newHudElem();
 	level.winningtxt.x = 0;
@@ -638,7 +627,6 @@ createVisuals() {
 	level.winningtxt.glowcolor = (1,0,0);
 	level.winningtxt.glowalpha = .7;
 	level.winningtxt setText("Winning Map:");
-	
 	
 	level.winningmap = newHudElem();
 	level.winningmap.x = 0;
@@ -704,14 +692,12 @@ updateWinningMap() {
 				mostvotes = level.maps[i].votes;
 				lastindex = i;
 			}
-		
 		}
 		
 		if (mostvotes != 0) {
 			level.winningmap.label = &"";
 			level.winningmap setText(level.maps[lastindex].visname);	
 		}
-		
 		
 		wait 0.5;
 	}
@@ -728,4 +714,3 @@ getWinningMap() {
 	}
 	return level.maps[lastindex];
 }
-

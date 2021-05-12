@@ -7,7 +7,7 @@
 #include braxi\_dvar;
 #include maps\mp\gametypes\_hud_util;
 
-init()
+init( modVersion )
 {
 	addDvar( "pi_rtd_enable", "plugin_rtd_enable", 1, 0, 1, "int" ); 				// 1 == enable 0 == disable
 	addDvar( "pi_rtd_hudmsgs", "plugin_rtd_hudmessages", 1, 0, 1, "int" ); 			// 1 == HUD, 0 == iPrintLnBold
@@ -428,13 +428,13 @@ if(isDefined(c)) c destroy();
 
 freeze()
 {
-self endon("death");
-self endon("disconnect");
-self iPrintLnBold("^1You are frozen for 10sec!");
-self freezeControls(true);
-wait(10);
-self iPrintLnBold("^1You can move now!");
-self freezeControls(false); 
+	self endon("death");
+	self endon("disconnect");
+	self iPrintLnBold("^1You are frozen for 10sec!");
+	self freezeControls(true);
+	wait(10);
+	self iPrintLnBold("^1You can move now!");
+	self freezeControls(false); 
 }
 
 ExplosiveBullets( amount )
@@ -519,6 +519,7 @@ Clone()
 		wait .05;
 	}
 }
+
 hideClone()
 {
 	self endon("disconenct");
@@ -557,6 +558,6 @@ hideClone()
 
 Health()
 {
-self.maxhealth = 200;
-self.health = self.maxhealth;
+	self.maxhealth = 200;
+	self.health = self.maxhealth;
 }

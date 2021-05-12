@@ -260,7 +260,7 @@ _autoUpdateVolume()
 
 _debugTrigger(volume)
 {
-	if( level.dvar["debugTriggers"] != 1 )
+	if( getDvarInt("r_drawTriggers") != 1 )
         return;
 
     if(!isdefined(self._color))

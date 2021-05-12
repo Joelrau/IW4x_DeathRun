@@ -106,13 +106,9 @@ setupDvars()
 	
 	addDvar ( "deathsound", "dr_deathsounds", 0, 0, 1, "int" );
 	
-	addDvar ( "debugTriggers", "dr_debugTriggers", 0, 0, 1, "int" );
-	addDvar ( "debugTriggerNames", "dr_debugTriggerNames", 0, 0, 1, "int" );
-	
 	if( getDvar( "last_picked_player" ) == "" )
 		setDvar( "last_picked_player", ("bxownu" + randomInt(100)) );
 }
-
 
 // Originally from Bell's AWE mod for CoD 1
 addDvar( scriptName, varname, vardefault, min, max, type )

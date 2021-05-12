@@ -41,8 +41,6 @@ init()
 	setdvar("g_ScoresColor_Free", ".76 .78 .10");
 	setdvar("g_teamColor_MyTeam", ".6 .8 .6" );
 	setdvar("g_teamColor_EnemyTeam", "1 .45 .5" );	
-
-	//_precacheString(
 }
 
 showBestStats()
@@ -53,7 +51,6 @@ showBestStats()
 
 	hudElems[hudElems.size] = addTextHud( level, 320, 80+addY, 1, "center", "middle", 3 );
 	hudElems[hudElems.size-1] setText( "^3BEST PLAYERS OF THIS MAP" );
-
 
 	info[0]["stat"] = "score";
 	info[0]["hud"] = addIconHud( level, 290, 130+addY, 0, "ui_host", 60, 59 );
@@ -158,8 +155,6 @@ showBestStats()
 	}
 	wait 2.3; // map voting error fix
 }
-
-
 
 destroyHudAfterTime( time )
 {

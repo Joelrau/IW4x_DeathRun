@@ -23,7 +23,6 @@
 	
 */
 //SetClientDvar and GetClientDvar functionality for saving strings and integers for clients even after game has ended.
-//Also includes stringContains (such as string.Contains() method from C#), and getIndexOf (for getting the index of a char in a string)
 //YouViolateMe
  
  
@@ -32,7 +31,6 @@
 //_resetDvar should be pretty easy to understand....
 //make sure you are NOT saving to a host-only (predefined) dvar! must be a custom dvar!
  
-//_stringContains parameters = string, substring you want to search for
 //_getIndexOf parameters = string, char or string you want the index of, starting index to search at (0 if you don't know)
 
 #include braxi\_common;
@@ -54,7 +52,7 @@ _setClientDvar(player, dvar, dvar_value)
    
     foreach(value in valuearray)
     {
-        if (!_stringContains(value, _getName(player)))
+        if (!stringContains(value, _getName(player)))
             dvarstring += value + ";";
     }
    
@@ -77,7 +75,7 @@ _getClientDvar(player, dvar, type)
     {
         name = _getName(player);
        
-        if (_stringContains(value, name))
+        if (stringContains(value, name))
         {
             string_value = getSubStr(value, _getIndexOf(value, "=", 0) + 1, value.size);
            
@@ -101,25 +99,6 @@ _getClientDvar(player, dvar, type)
     return undefined;
 }
  
-_stringContains(string, value)
-{
-    index = 0;
-    while( index <= string.size - value.size - 1)
-    {
-        if (!isDefined(string[index + value.size - 1]))
-            return false;
-       
-        if (getSubStr(string, index, index + value.size) == value)
-        {
-            return true;
-        }
-        else
-            index++;
-    }
-   
-    return false;
-}
- 
 _getIndexOf(string, value, startingIndex)
 {
     index = startingIndex;
@@ -139,19 +118,19 @@ _getIndexOf(string, value, startingIndex)
  
 _getName(player)
 {
-		name = player.name;
-		name = stringReplace( name, ":", "?" );
-		name = stringReplace( name, ";", "?" );
-		name = stringReplace( name, "=", "?" );
-		name = name + ":" + player getGuid();
-        name = getSubStr(name, 0, name.size);
-        /*for(i = 0; i < name.size; i++)
-        {
-                if(name[i]=="]")
-                        break;
-        }
-        if(name.size != i)
-                name = getSubStr(name, i + 1, name.size);
-       */
-        return name;
+	name = player.name;
+	name = stringReplace( name, ":", "?" );
+	name = stringReplace( name, ";", "?" );
+	name = stringReplace( name, "=", "?" );
+	name = name + ":" + player getGuid();
+	name = getSubStr(name, 0, name.size);
+	/*for(i = 0; i < name.size; i++)
+	{
+			if(name[i]=="]")
+					break;
+	}
+	if(name.size != i)
+			name = getSubStr(name, i + 1, name.size);
+   */
+	return name;
 }

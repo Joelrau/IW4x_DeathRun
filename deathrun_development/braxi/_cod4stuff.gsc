@@ -23,7 +23,6 @@
 	
 */
 
-
 main()
 {
 	// setup stuff from vanila cod4

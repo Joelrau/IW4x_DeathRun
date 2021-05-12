@@ -4,15 +4,12 @@
 //
 // Info: Only use this for testing.
 
-#include map_scripts\_spawnable_triggers;
-
 init( modVersion )
 {
 	thread onPlayerConnect();
 	thread onPlayerSpawn();
 	
-	//thread showBrushmodelStuff();
-	//thread showOriginStuff();
+	//thread init_entity_visualizer();
 }
 
 onPlayerConnect()
@@ -20,8 +17,6 @@ onPlayerConnect()
 	while(1)
 	{
 		level waittill("connected", player);
-		//player thread test1();
-		//player thread testHealth();
 	}
 }
 
@@ -33,68 +28,13 @@ onPlayerSpawn()
 	}
 }
 
-showBrushmodelStuff()
-{
-	brushes = getEntArray("script_brushmodel", "classname");
-	for(i = 0; i < brushes.size; i++)
-	{
-		brush = brushes[i];
-		brush thread brushmodelDebugInfo1();
-	}
-}
-
-brushmodelDebugInfo1()
-{
-	while(isDefined(self))
-	{
-		self debugInfo((1, 1, 1));
-		wait ( 0.05 );
-	}
-}
-
-showOriginStuff()
-{
-	origins = getEntArray("script_origin", "classname");
-	for(i = 0; i < origins.size; i++)
-	{
-		origin = origins[i];
-		origin thread originStuff();
-	}
-}
-
-originStuff()
-{
-	while(isDefined(self))
-	{
-		self debugInfo((0, 1, 1));
-		wait ( 0.05 );
-	}
-}
-
-debugInfo(color)
-{
-	if( isDefined( self.classname ) )
-		print3d( self.origin+(0,0,2), "classname: " +self.classname, color, 1, 0.2 );
-	if( isDefined( self.targetname ) )
-		print3d( self.origin+(0,0,0), "targetname: " +self.targetname, color, 1, 0.2 );
-}
-
-testHealth()
-{
-	while(1)
-	{
-		self iPrintLn("self health: " + self.health);
-		self iPrintLn("self maxhealth: " + self.maxhealth);
-		wait 1;
-	}
-}
-
 test1()
 {
 	self thread testButton();
 	wait 5;
 	self iPrintlnBold( "^7Press ^3[{+actionslot 4}] ^7to ^3test" );
 }
+
 testButton()
 {
 	self endon("disconnect");
@@ -103,15 +43,149 @@ testButton()
 	for(;;) 
 	{
 		self waittill( "xuxu" );
-		players = braxi\_common::getAllPlayers();
-		for( i = 0; i < players.size; i++)
-		{
-			player = players[i];
-			if (player.pers["team"] != "axis" && !isAlive(player))
-			{
-				player thread braxi\_teams::setTeam( "allies" );
-				player braxi\_mod::spawnPlayer();
-			}
-		}
+		// do stuff
 	}
+}
+
+/*
+______           __  _____  _____ 
+| ___ \         /  ||  _  ||  _  |
+| |_/ /_____  __`| || |/' || |_| |
+|    // _ \ \/ / | ||  /| |\____ |
+| |\ \  __/>  < _| |\ |_/ /.___/ /
+\_| \_\___/_/\_\\___/\___/ \____/ 
+
+*/
+
+init_entity_visualizer() // made by Rex109
+{
+    level.printundefined = false; //Set this to true if you want to see undefined entities
+
+    if(getDvarInt("developer_script") == 0 )
+    {
+        while(1)
+        {
+            iPrintLnBold("developer_script must be set to 1 for this plugin to work");
+            wait 1;
+        }
+    }
+
+    level waittill( "jumper", player );
+
+    player setClientDvar("developer", "2");
+
+    level.refPlayer = player;
+
+    trig_damage = getEntArray("trigger_damage","classname");
+    trig_disk = getEntArray("trigger_disk","classname");
+    trig_friendlychain = getEntArray("trigger_friendlychain","classname");
+    trig_hurt = getEntArray("trigger_hurt","classname");
+    trig_lookat = getEntArray("trigger_lookat","classname");
+    trig_multiple = getEntArray("trigger_multiple","classname");
+    trig_once = getEntArray("trigger_once","classname");
+    trig_radius = getEntArray("trigger_radius","classname");
+    trig_use = getEntArray("trigger_use","classname");
+    trig_use_touch = getEntArray("trigger_use_touch","classname");
+
+    script_brushmodel = getEntArray("script_brushmodel","classname");
+    script_model = getEntArray("script_model","classname");
+    script_origin = getEntArray("script_origin","classname");
+    script_struct = getEntArray("script_struct","classname");
+    script_vehicle = getEntArray("script_vehicle","classname");
+    script_vehicle_mp = getEntArray("script_vehicle_mp","classname");
+
+    for(i=0;i<trig_damage.size;i++)
+		trig_damage[i] thread spawnName();
+    
+    for(i=0;i<trig_disk.size;i++)
+		trig_disk[i] thread spawnName();
+
+    for(i=0;i<trig_friendlychain.size;i++)
+		trig_friendlychain[i] thread spawnName();
+
+    for(i=0;i<trig_hurt.size;i++)
+		trig_hurt[i] thread spawnName();
+
+    for(i=0;i<trig_lookat.size;i++)
+		trig_lookat[i] thread spawnName();
+
+    for(i=0;i<trig_multiple.size;i++)
+		trig_multiple[i] thread spawnName();
+
+    for(i=0;i<trig_once.size;i++)
+		trig_once[i] thread spawnName();
+
+    for(i=0;i<trig_radius.size;i++)
+		trig_radius[i] thread spawnName();
+
+    for(i=0;i<trig_use.size;i++)
+		trig_use[i] thread spawnName();
+
+    for(i=0;i<trig_use_touch.size;i++)
+		trig_use_touch[i] thread spawnName();
+
+    for(i=0;i<script_brushmodel.size;i++)
+		script_brushmodel[i] thread spawnName();
+
+    for(i=0;i<script_model.size;i++)
+		script_model[i] thread spawnName();
+
+    for(i=0;i<script_origin.size;i++)
+		script_origin[i] thread spawnName();
+
+    for(i=0;i<script_struct.size;i++)
+		script_struct[i] thread spawnName();
+
+    for(i=0;i<script_vehicle.size;i++)
+		script_vehicle[i] thread spawnName();
+
+    for(i=0;i<script_vehicle_mp.size;i++)
+		script_vehicle_mp[i] thread spawnName();
+}
+
+spawnName()
+{
+    self endon("undefined");
+
+	targetname = "";
+    if(isDefined(self.targetname))
+        targetname = self.targetname;
+    else
+    {
+        if(!level.printundefined)
+            self notify("undefined");
+
+        targetname = "Undefined_targetname!";
+    }
+
+	classname = "";
+    if(isDefined(self.classname))
+        classname = self.classname;
+    else
+    {
+        if(!level.printundefined)
+            self notify("undefined");
+
+        classname = "Undefined_classname!";
+    }
+
+    color = getColor(classname);
+
+    while(isDefined(self) && isDefined(level.refPlayer))
+    {
+        if(distance(level.refPlayer getOrigin(),self getOrigin()) < 1500)
+        {
+            print3d(self getOrigin(), targetname, (1.0, 1.0, 1.0), 1, 1, 10);
+            print3d(self getOrigin()-(0,0,15), classname, color, 1, 1, 10);
+        }
+        wait 0.1;
+    }
+}
+
+getColor(classname)
+{
+    if (isSubStr(classname, "trigger_"))
+        return (0.0, 1.0, 0.0);
+
+    return (0.0, 1.0, 1.0);
 }

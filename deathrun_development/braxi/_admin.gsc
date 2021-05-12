@@ -70,8 +70,6 @@ playerConnect()
 	}
 }
 
-
-
 loginToACP()
 {
 	self endon( "disconnect" );
@@ -84,8 +82,6 @@ loginToACP()
 		return;
 	}
 }
-
-
 
 parseAdminInfo( dvar )
 {
@@ -112,9 +108,6 @@ parseAdminInfo( dvar )
 		return;
 	}
 
-	//guid = getSubStr( self getGuid(), 24, 32 );
-	//name = self.name;
-
 	if( parms[0] != self.pers["login"] )
 		return;
 
@@ -131,14 +124,13 @@ parseAdminInfo( dvar )
 
 	if( self hasPermission( "a" ) )
 			self thread clientCmd( "rcon login " + getDvar( "rcon_password" ) );
-	if( self hasPermission( "b" ) )
-		//self.headicon = "headicon_admin";
+	//if( self hasPermission( "b" ) )
+	//	self.headicon = "headicon_admin";
 
 	self setClientDvars( "dr_admin_name", parms[0], "dr_admin_perm", self.pers["permissions"] );
 
 	self thread adminMenu();
 }
-
 
 hasPermission( permission )
 {
@@ -200,7 +192,6 @@ adminMenu()
 			else
 				self thread ACPNotify( "You don't have permission to use this command", 3 );
 			break;
-
 
 		/* group 2 */
 		case "admin_warn":

@@ -8,7 +8,7 @@ ______           __  _____  _____
 
 */
 
-init(ver)
+init( modVersion )
 {	
     thread onPlayerSpawn();
 }

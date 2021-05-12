@@ -53,7 +53,6 @@ init()
 	}
 }
 
-
 checkTrapUsage()
 {
 	if( !level.trapTriggers.size )

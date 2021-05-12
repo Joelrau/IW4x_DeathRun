@@ -105,7 +105,6 @@ showPlayerCard( attacker, victim )
 		else
 			level.playerCard[i].alpha = 1.0;
 	}
-	
 
 	wait 2.0;
 
@@ -118,7 +117,6 @@ showPlayerCard( attacker, victim )
 	
 	destroyPlayerCard();
 }
-
 
 destroyPlayerCard()
 {

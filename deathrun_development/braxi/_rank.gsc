@@ -99,12 +99,10 @@ isRegisteredEvent( type )
 		return false;
 }
 
-
 registerScoreInfo( type, value )
 {
 	level.scoreInfo[type]["value"] = value;
 }
-
 
 getScoreInfoValue( type )
 {
@@ -115,36 +113,30 @@ getScoreInfoValue( type )
 		return ( level.scoreInfo[type]["value"] );
 }
 
-
 getScoreInfoLabel( type )
 {
 	return ( level.scoreInfo[type]["label"] );
 }
-
 
 getRankInfoMinXP( rankId )
 {
 	return int(level.rankTable[rankId][2]);
 }
 
-
 getRankInfoXPAmt( rankId )
 {
 	return int(level.rankTable[rankId][3]);
 }
-
 
 getRankInfoMaxXp( rankId )
 {
 	return int(level.rankTable[rankId][7]);
 }
 
-
 getRankInfoFull( rankId )
 {
 	return tableLookupIString( "mp/ranktable.csv", 0, rankId, 16 );
 }
-
 
 getRankInfoIcon( rankId, prestigeId )
 {
@@ -155,7 +147,6 @@ getRankInfoLevel( rankId )
 {
 	return int( tableLookup( "mp/ranktable.csv", 0, rankId, 13 ) );
 }
-
 
 onPlayerConnect()
 {
@@ -214,7 +205,6 @@ onPlayerConnect()
 			player setClientDvar( "player_summary_misc", "0" );
 		}
 
-
 		// resetting summary vars
 		
 		player setClientDvar( "ui_opensummary", 0 );
@@ -246,7 +236,6 @@ onPlayerConnect()
 	}
 }
 
-
 onJoinedTeam()
 {
 	self endon("disconnect");
@@ -257,7 +246,6 @@ onJoinedTeam()
 		self thread removeRankHUD();
 	}
 }
-
 
 onJoinedSpectators()
 {
@@ -270,7 +258,6 @@ onJoinedSpectators()
 	}
 }
 
-
 onPlayerSpawned()
 {
 	self endon("disconnect");
@@ -281,7 +268,6 @@ onPlayerSpawned()
 	}
 }
 
-
 roundUp( floatVal )
 {
 	if ( int( floatVal ) != floatVal )
@@ -289,7 +275,6 @@ roundUp( floatVal )
 	else
 		return int( floatVal );
 }
-
 
 giveRankXP( type, value )
 {
@@ -342,7 +327,6 @@ updateRank( oldxp )
 	return true;
 }
 
-
 updateRankAnnounceHUD()
 {
 	self endon("disconnect");
@@ -381,12 +365,10 @@ updateRankAnnounceHUD()
 	}
 }
 
-
 endGameUpdate()
 {
 	player = self;			
 }
-
 
 scorePopup( amount, bonus, hudColor, glowAlpha )
 {
@@ -459,12 +441,10 @@ getRank()
 		return self getRankForXp( rankXp );
 }
 
-
 levelForExperience( experience )
 {
 	return getRankForXP( experience );
 }
-
 
 getRankForXp( xpVal )
 {
@@ -487,7 +467,6 @@ getRankForXp( xpVal )
 	rankId--;
 	return rankId;
 }
-
 
 getSPM()
 {
@@ -535,7 +514,6 @@ getRestXPAward( baseXP )
 	
 	return wantGiveRestXP;
 }
-
 
 isLastRestXPAward( baseXP )
 {
@@ -592,11 +570,13 @@ processXpReward( sMeansOfDeath, attacker, victim )
 		case "MOD_MELEE":
 			attacker.pers["knifes"]++;
 			attacker braxi\_rank::giveRankXP( "melee" );
-			//knife = _getPlayerData( "knifekills" );
-			//attacker _setPlayerData( "knifekills", knife+1 );
+			knife = _getPlayerData( "knifekills" );
+			attacker _setPlayerData( "knifekills", knife+1 );
 			break;
 		default:
 			attacker braxi\_rank::giveRankXP( "kill" );
+			pistol = _getPlayerData( "pistolkills" );
+			attacker _setPlayerData( "pistolkills", pistol+1 );
 			break;
 	}
 }

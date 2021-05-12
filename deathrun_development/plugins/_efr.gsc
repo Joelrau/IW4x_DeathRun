@@ -25,7 +25,7 @@
 #include braxi\_common;
 #include maps\mp\gametypes\_hud_util;
 
-init( modVers )
+init( modVersion )
 {
 	addDvar( "pi_efr", "plugin_efr_enable", 1, 0, 1, "int" );
 	addDvar( "pi_efr_vision", "plugin_efr_vision", 1, 0, 1, "int" );

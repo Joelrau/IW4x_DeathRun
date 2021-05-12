@@ -71,7 +71,6 @@ restrictSpawnAfterTime( time )
 	level.allowSpawn = false;
 }
 
-
 getBestPlayerFromTime()
 {
 	score = 999999999;
@@ -503,8 +502,8 @@ warning( msg )
 {
 	if( !level.dvar[ "dev" ] )
 		return;
-	iPrintlnBold( "^3WARNING: " + msg  );
-	println( "^3WARNING: " + msg );
+	iPrintLnBold( "^3WARNING: " + msg  );
+	printLn( "^3WARNING: " + msg );
 	bxLogPrint( "WARNING:" + msg );
 }
 

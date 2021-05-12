@@ -1,7 +1,7 @@
 #include maps\mp\gametypes\_hud_util;
 #include braxi\_dvar;
 
-init( version )
+init( modVersion )
 {
 	addDvar( "pi_kc", "plugin_killcam_enable", 1, 0, 1, "int" );
 	addDvar( "pi_kc_show", "plugin_killcam_show", 2, 0, 2, "int" );

@@ -32,7 +32,6 @@
 
 main()
 {
-
 	braxi\_dvar::setupDvars(); // all dvars are there
 	precache();
 	init_spawns();
@@ -186,7 +185,6 @@ sayCommand( commandSymbol )
 		}
 	}
 }
-
 
 test()
 {
@@ -683,7 +681,6 @@ playerDisconnect() // Called when player disconnect from server
 
 	logPrint("Q;" + self getGuid() + ";" + self getEntityNumber() + ";" + self.name + "\n");
 }
-
 
 PlayerLastStand( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration )
 {
@@ -1595,8 +1592,6 @@ roundStartTimer()
 	level.matchStartTimer destroyElem();
 }
 
-
-
 doHud()
 {
 	level endon( "intermission" );
@@ -1662,7 +1657,6 @@ doHud()
 		level.hud_jumpers setValue( level.jumpers );
 	}
 }
-
 
 freeRunChoice()
 {
@@ -1790,7 +1784,6 @@ serverMessages()
 	}
 }
 
-
 isWallKnifing( attacker, victim )
 {
 	start = attacker getEye();
@@ -1802,8 +1795,6 @@ isWallKnifing( attacker, victim )
 	}
 	return true;
 }
-
-
 
 NewPickingSystem()
 {
@@ -1867,7 +1858,6 @@ NewPickingSystem()
 	iPrintLnBold( level.activ.name + " ^7was picked to be ^1Activator" );
 }
 
-
 new_ending_hud( align, fade_in_time, x_off, y_off )
 {
 	hud = newHudElem();
@@ -1893,7 +1883,6 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
 	hud.sort = 10;
 	return hud;
 }
-
 
 drawInformation( start_offset, movetime, mult, text )
 {
@@ -1991,7 +1980,6 @@ useLife()
 	self.usedLife = true;
 }
 
-
 addLifeIcon( num, x, y, offset, sort )
 {
 
@@ -2022,7 +2010,6 @@ destroyLifeIcons()
 			self.hud_lifes[i] destroy();
 }
 
-
 fastestTime()
 {
 	trig = getEntArray( "endmap_trig", "targetname" );
@@ -2044,8 +2031,6 @@ fastestTime()
 		user thread endTimer();
 	}
 }
-
-
 
 endTimer()
 {
@@ -2097,11 +2082,6 @@ playerTimer()
 	self.hud_time setTenthsTimerUp( 0 );
 }
 
-
-/*
-level.hud_round
-*/
-
 initScoresStat( num, name, value )
 {
 	level.bestScores[num]["name"] = name;
@@ -2121,7 +2101,6 @@ bestMapScores()
 	initScoresStat( 4, "knifes", 0 );
 	initScoresStat( 5, "time", 99999999 );
 	
-	/*	THIS WORKS WITH MY PERSONAL iw4x.dll */
 	fileLoc = "database/maps/" + level.mapName + "/" + level.mapName;
 	if( !fileExists( fileLoc ) )
 		return;
@@ -2134,7 +2113,7 @@ bestMapScores()
 		stat = strTok( data[i], "," );
 		if( !isDefined( stat[0] ) || !isDefined( stat[1] ) || !isDefined( stat[2] ) || !isDefined( stat[3] ) )
 		{
-			iPrintLn( "Error reading " + level.statDvar + " (" + i + "), stat size is " + stat.size );
+			iPrintLn( "Error reading " + fileLoc + " (" + i + "), stat size is " + stat.size );
 			continue;
 		}
 		for( x = 0; x < level.bestScores.size; x++ )
@@ -2152,8 +2131,6 @@ bestMapScores()
 
 saveMapScores()
 {
-	//iPrintLn("map scores are not saved!");
-	/*	THIS WORKS WITH MY PERSONAL iw4x.dll */
 	fileLoc = "database/maps/" + level.mapName + "/" + level.mapName;
 	fileWrite( fileLoc, "", "write" );
 	for( i = 0; i < level.bestScores.size; i++ )
@@ -2207,7 +2184,6 @@ updateRecord( num, player )
 	if( level.bestScores[num]["guid"] == "" )
 		level.bestScores[num]["guid"] = "123";
 }
-
 
 firstBlood()
 {
@@ -2269,8 +2245,6 @@ lastJumper()
 
 	hud destroy();
 }
-
-
 
 watchItems()
 {

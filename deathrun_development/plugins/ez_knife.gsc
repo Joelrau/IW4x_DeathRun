@@ -8,7 +8,7 @@ ______           __  _____  _____
 
 */
 
-init(ver)
+init( modVersion )
 {
     thread onPlayerSpawn();
 }
@@ -50,7 +50,6 @@ watchForWeapon()
         wait 0.01;
     }
 }
-
 
 watchForButton()
 {

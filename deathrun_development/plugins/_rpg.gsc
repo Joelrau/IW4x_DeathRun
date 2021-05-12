@@ -18,7 +18,7 @@ onRPGFired()
 	{
 		self waittill("weapon_fired");
 		if( self getCurrentWeapon() != "rpg_mp" )
-				continue;
+			continue;
 		
 		anglesForward = anglesToForward(self getPlayerAngles());
 		velocity = self getVelocity();
@@ -29,5 +29,4 @@ onRPGFired()
 		
 		self setVelocity( newVelocity );
 	}
-	
 }

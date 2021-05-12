@@ -407,7 +407,7 @@ private_showDebugTillNotified(notify1, notify2, notify3, notify4)
 
 private_debug_info()
 {
-	if( level.dvar["debugTriggers"] != 1 )
+	if( getDvarInt("r_drawTriggers") != 1 )
         return;
 	
 	if( isDefined( self._classname ) )

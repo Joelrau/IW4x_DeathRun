@@ -73,8 +73,6 @@ main()
 	/* ==== END ==== */
 }
 
-
-
 // ===== DO NOT EDIT ANYTHING UNDER THIS LINE ===== //
 LoadPlugin( pluginScript, name, author )
 {

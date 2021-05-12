@@ -119,9 +119,7 @@ onMenuResponse()
 				if( self.pers["failedLogins"] >= 3 )
 					dropPlayer( self, "kick", "Too many failed login attempts.", "Your actions will be investigated by server administration." );
 			}
-
 		}
-
 
 		if( response == "adminmenu" && self.pers["admin"] )
 		{
@@ -226,7 +224,6 @@ onMenuResponse()
 					self iPrintLn( "^1Activator cannot suicide!" );
 				break;
 			}
-
 		}
 		else if( menu == game["menu_team"] )
 		{
@@ -238,7 +235,6 @@ onMenuResponse()
 				self closepopupMenu();
 				self closeMenu();
 				self closeInGameMenu();
-
 
 				if( self.pers["team"] == "axis" )
 					continue;

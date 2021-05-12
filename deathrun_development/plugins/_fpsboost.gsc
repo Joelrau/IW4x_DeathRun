@@ -12,8 +12,7 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 
-
-init()
+init( modVersion )
 {
 	level thread onPlayerConnect();
 }
@@ -45,7 +44,7 @@ onPlayerSpawned()
 		
 		if( !self.message_shown ) {
 			self.message_shown = 1;
-			self iPrintlnBold( "^7Press ^3[{+actionslot 1}] ^7to toggle ^3low graphics" );
+			self iPrintLnBold( "^7Press ^3[{+actionslot 1}] ^7to toggle ^3low graphics" );
 		}
 		
 		// Workaround for nightvision, this is very importanto!
@@ -66,9 +65,8 @@ watchButton()
 		self setClientDvar( "r_fullbright", self.cur_bright );
 		
 		if( self.cur_bright )
-			self iPrintlnBold( "^7High FPS ^3On" );
+			self iPrintLnBold( "^7High FPS ^3On" );
 		else 
-			self iPrintlnBold( "^7High FPS ^3Off" );
+			self iPrintLnBold( "^7High FPS ^3Off" );
 	}
-	
 }
