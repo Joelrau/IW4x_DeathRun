@@ -136,7 +136,7 @@ _watchTrigger()
 
             if(player isTouchingTrigger(self) && player _canTrigger(self) && self.enabled)
             {
-				if (level.dvar["debugTriggerNames"] == 1)
+				if (getDvarInt("spawnable_triggers_debug_names") == 1)
 				{
 					if (!isDefined(self.targetname) || self.targetname == "")
 						tname = "undefined";
