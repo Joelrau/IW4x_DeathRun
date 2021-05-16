@@ -30,34 +30,26 @@ init( modVersion )
 		iPrintLn("Ghost Run plugin: ^1Error: dvar 'g_playerCollision' or 'g_playerEjection' is not defined^7");
 		disabled = true;
 	}
-		
+	
+	endmap_trig = undefined;
 	if(!isDefined(level.endmap_trig))
 	{
-		endmap_trig = getEntArray( "endmap_trig", "targetname" );
-		if( !endmap_trig.size || endmap_trig.size > 1 )
+		endmap_trig = getEnt( "endmap_trig", "targetname" );
+		if(!isDefined(endmap_trig))
 		{
-			endmap_trig = map_scripts\_spawnable_triggers::getTrigArray( "endmap_trig", "targetname" );
-			if( !endmap_trig.size || endmap_trig.size > 1 )
+			endmap_trig = map_scripts\_spawnable_triggers::getTrig( "endmap_trig", "targetname" );
+			if(!isDefined(endmap_trig))
 			{
 				iPrintLn("Ghost Run plugin: ^1Error: no 'endmap_trig' found in map!^7");
 				disabled = true;
 			}
 		}
-		if( endmap_trig[0]._classname == "trigger_multiple" || endmap_trig[0].classname == "trigger_multiple" || endmap_trig[0].classname == "trigger_radius" )
-		{
-			level.endmap_trig = endmap_trig[0];
-		}
-		else
-		{
-			classname = endmap_trig[0]._classname;
-			if(!isDefined(classname))
-				classname = endmap_trig[0].classname;
-			if(!isDefined(classname))
-				classname = "<unknown>"
-			iPrintLn("Ghost Run plugin: ^1Error: endmap_trig classname is '" + classname + "' when it should be 'trigger_multiple' or 'trigger_radius'!^7");
-			disabled = true;
-		}
 	}
+	if(isDefined(endmap_trig))
+	{
+		level.endmap_trig = endmap_trig;
+	}
+	
 	if(disabled == true)
 	{
 		level waittill("game started");
@@ -71,6 +63,7 @@ init( modVersion )
 	precacheModel(level.ghostRunModel);
 	
 	onPlayerKilled();
+	onPlayerSpawned();
 }
 
 onPlayerKilled()
@@ -79,6 +72,18 @@ onPlayerKilled()
 	{
 		level waittill("player_killed", player);
 		player thread main();
+	}
+}
+
+onPlayerSpawned()
+{
+	for(;;)
+	{
+		level waittill("player_spawned", player);
+		if(!isDefined(player.ghost) || player.ghost == false)
+		{
+			player show();
+		}
 	}
 }
 
@@ -119,13 +124,16 @@ GhostRun()
 	self thread checkWeapons();
 	
 	self thread KillGhostRunOnEndTrigger();
-	self thread GhostWatcher( "spawned_player", "death", "joined_spectators", "disconnect", "endround" );
+	self thread GhostWatcher( "spawned_player", "death", "joined_spectators", "disconnect", "endround", "intermission" );
 }
 
 waittillFragButtonPressed()
 {
+	self endon("disconnect");
 	self endon("spawned_player");
 	self endon("joined_spectators");
+	level endon("endround");
+	level endon("intermission");
 	while(!self fragButtonPressed())
 		wait 0.05;
 }
@@ -194,15 +202,15 @@ GhostHudWatcher()
 	}
 }
 
-GhostWatcher( endon_1, endon_2, endon_3, endon_4, endon_5 )
+GhostWatcher( endon_1, endon_2, endon_3, endon_4, endon_5, endon_6 )
 {
 	self endon("killghostrun");
 	self endon("killghostrunwatcher");
-	self GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5 );
+	self GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5, endon_6 );
 	self KillGhostRun();
 }
 
-GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5 )
+GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5, endon_6 )
 {
 	self endon( endon_1 );
 	self endon( endon_2 );
@@ -210,6 +218,7 @@ GhostRunWaittill( endon_1, endon_2, endon_3, endon_4, endon_5 )
 	self endon( endon_4 );
 	
 	level endon( endon_5 );
+	level endon( endon_6 );
 	
 	while(1)
 		wait 420;
