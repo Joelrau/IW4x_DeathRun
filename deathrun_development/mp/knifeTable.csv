@@ -1,9 +1,9 @@
 #number,arraynumber,levelreq,material,weaponfile,name,desc
-1,0,1,weapon_missing_image,knife,Hands,Punch your enemies.,
-2,1,10,weapon_missing_image,knife_blackhawk,Blackhawk knife,A Handy knife.,
-3,2,20,weapon_missing_image,knife_bayonet,Bayonet knife,Deadly stabber.,
-4,3,25,weapon_missing_image,knife_tomahawk,Tomahawk,A tomahawk in hand.,
-5,4,35,weapon_missing_image,knife_statgear,Statgear,A cool knife to chop people.,
-6,5,50,weapon_missing_image,knife_bo2,Bo2 knife,Knife from Black Ops 2,
-7,6,60,weapon_missing_image,knife_slashnburn,Slash N' Burn,Lumberjack's favorite weapon.,
-8,7,68,weapon_missing_image,knife_magicdagger,Magic Dagger,Wow so magical :o,
+1,0,1,weapon_missing_image,knife,Hands,Punch your enemies.
+2,1,10,weapon_missing_image,knife_blackhawk,Blackhawk knife,A Handy knife.
+3,2,20,weapon_missing_image,knife_bayonet,Bayonet knife,Deadly stabber.
+4,3,25,weapon_missing_image,knife_tomahawk,Tomahawk,A tomahawk in hand.
+5,4,35,weapon_missing_image,knife_statgear,Statgear,A cool knife to chop people.
+6,5,50,weapon_missing_image,knife_bo2,Bo2 knife,Knife from Black Ops 2
+7,6,60,weapon_missing_image,knife_slashnburn,Slash N' Burn,Lumberjack's favorite weapon.
+8,7,68,weapon_missing_image,knife_magicdagger,Magic Dagger,Wow so magical :o
