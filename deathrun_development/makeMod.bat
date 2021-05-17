@@ -4,7 +4,22 @@ if not exist ..\..\zonetool.exe goto ERROR_ZONETOOL_EXE_NOT_FOUND
 
 set moddir=%cd%
 
+if exist ..\..\zone_source goto SKIP_ZONE_SOURCE_FOLDER
+:MAKE_ZONE_SOURCE_FOLDER
+mkdir ..\..\zone_source
+:SKIP_ZONE_SOURCE_FOLDER
+
 copy /Y mod.csv ..\..\zone_source
+
+if exist ..\..\zonetool goto SKIP_ZONETOOL_FOLDER
+:MAKE_ZONETEOOL_FOLDER
+mkdir ..\..\zonetool
+:SKIP_ZONETOOL_FOLDER
+
+if exist ..\..\zonetool\mod goto SKIP_MOD_FOLDER
+:MAKE_MOD_FOLDER
+mkdir ..\..\zonetool\mod
+:SKIP_MOD_FOLDER
 
 xcopy braxi ..\..\zonetool\mod\braxi\ /EY
 xcopy fx ..\..\zonetool\mod\fx\ /EY
