@@ -167,7 +167,7 @@
 			textalign 9
 			textscale 0.375
 			textstyle 3
-			text "@CGAME_FOLLOWING" 
+			ownerdraw 60 
 			visible when ( ( ! ( inkillcam( ) ) ) && ( spectatingclient( ) || spectatingfree( ) ) && ( ! ( ui_active( ) ) ) && ( ! ( dvarint( "scr_gameended" ) ) ) )
 		}
 		itemDef
