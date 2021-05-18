@@ -28,7 +28,7 @@ WatchForKillcam()
 			continue;
 		if( sMeansOfDeath == "MOD_FALLING" )
 			continue;
-		if( getTeamPlayersAlive( "axis" ) > 0 && getTeamPlayersAlive( "allies" ) > 0 )
+		if( isDefined(level.activ) && isAlive(level.activ) && braxi\_common::getPlayingPlayers().size > 1 )
 			continue;
 		if( ( level.dvar["pi_kc_show"] == 0 && ( isDefined( level.activ ) && who == level.activ ) && attacker.pers["team"] == "allies" ) || ( level.dvar["pi_kc_show"] == 1 && who.pers["team"] == "allies" && ( isDefined( level.activ ) && level.activ == attacker ) ) || level.dvar["pi_kc_show"] == 2 )
 		{
