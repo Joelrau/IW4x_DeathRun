@@ -6,8 +6,8 @@
             "aliasName": "endround4",
             "centerPercentage": 0.0,
             "chainAliasName": null,
-            "distMax": 1,
-            "distMin": 1,
+            "distMax": 600,
+            "distMin": 120,
             "envelopMax": 0.0,
             "envelopMin": 0.0,
             "envelopPercentage": 0.0,
@@ -16,10 +16,10 @@
             "mixerGroup": null,
             "pitchMax": 1,
             "pitchMin": 1,
-            "probability": 0.0,
+            "probability": 1,
             "secondaryAliasName": null,
             "sequence": 0,
-            "slavePercentage": 2.55064346476403e-41,
+            "slavePercentage": 7.56701170735401e-42,
             "soundfile": "music/endround4.mp3",
             "speakerMap": {
                 "channelMaps": [
@@ -44,37 +44,37 @@
                         "entryCount": 6,
                         "speakers": [
                             {
-                                "levels0": 0.5,
+                                "levels0": 0.300000011920929,
                                 "levels1": 0.0,
                                 "numLevels": 1,
                                 "speaker": 0
                             },
                             {
-                                "levels0": 0.5,
+                                "levels0": 0.300000011920929,
                                 "levels1": 0.0,
                                 "numLevels": 1,
                                 "speaker": 1
                             },
                             {
-                                "levels0": 0.1,
+                                "levels0": 0.100000001490116,
                                 "levels1": 0.0,
                                 "numLevels": 1,
                                 "speaker": 2
                             },
                             {
-                                "levels0": 0.0,
+                                "levels0": 0.100000001490116,
                                 "levels1": 0.0,
                                 "numLevels": 1,
                                 "speaker": 3
                             },
                             {
-                                "levels0": 0.0,
+                                "levels0": 0.150000005960464,
                                 "levels1": 0.0,
                                 "numLevels": 1,
                                 "speaker": 4
                             },
                             {
-                                "levels0": 0.0,
+                                "levels0": 0.150000005960464,
                                 "levels1": 0.0,
                                 "numLevels": 1,
                                 "speaker": 5
@@ -102,20 +102,20 @@
                         "entryCount": 6,
                         "speakers": [
                             {
-                                "levels0": 0.5,
+                                "levels0": 0.699999988079071,
                                 "levels1": 0.0,
                                 "numLevels": 2,
                                 "speaker": 0
                             },
                             {
                                 "levels0": 0.0,
-                                "levels1": 0.5,
+                                "levels1": 0.699999988079071,
                                 "numLevels": 2,
                                 "speaker": 1
                             },
                             {
-                                "levels0": 0.5,
-                                "levels1": 0.5,
+                                "levels0": 0.0,
+                                "levels1": 0.0,
                                 "numLevels": 2,
                                 "speaker": 2
                             },
@@ -126,14 +126,14 @@
                                 "speaker": 3
                             },
                             {
-                                "levels0": 0.0,
+                                "levels0": 0.300000011920929,
                                 "levels1": 0.0,
                                 "numLevels": 2,
                                 "speaker": 4
                             },
                             {
                                 "levels0": 0.0,
-                                "levels1": 0.0,
+                                "levels1": 0.300000011920929,
                                 "numLevels": 2,
                                 "speaker": 5
                             }
@@ -141,7 +141,7 @@
                     }
                 ],
                 "isDefault": false,
-                "name": ""
+                "name": "music"
             },
             "startDelay": 0,
             "subtitle": null,
