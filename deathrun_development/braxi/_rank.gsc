@@ -570,13 +570,9 @@ processXpReward( sMeansOfDeath, attacker, victim )
 		case "MOD_MELEE":
 			attacker.pers["knifes"]++;
 			attacker braxi\_rank::giveRankXP( "melee" );
-			knife = _getPlayerData( "knifekills" );
-			attacker _setPlayerData( "knifekills", knife+1 );
 			break;
 		default:
 			attacker braxi\_rank::giveRankXP( "kill" );
-			pistol = _getPlayerData( "pistolkills" );
-			attacker _setPlayerData( "pistolkills", pistol+1 );
 			break;
 	}
 }
