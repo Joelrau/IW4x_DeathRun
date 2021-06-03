@@ -34,7 +34,7 @@
             "semantic": 8,
             "typeHash": 887934131
         },
-		{
+        {
             "firstCharacter": 110,
             "image": "scififemale_armor_norm",
             "lastCharacter": 112,
@@ -82,5 +82,5 @@
     ],
     "surfaceTypeBits": 0,
     "techniqueSet->name": "mc_l_sm_r0c0s0",
-    "unknown": 64
+    "unknown": 0
 }

@@ -43,15 +43,15 @@ autoKillBots()
 		
 		if(acti isABot() == false && botsPlaying( "int" ) > 0)
 		{
-			acti pressToKillBots( "+frag", "Grenade" );
+			acti pressToKillBots( "+frag" );
 		}
 	}
 }
 
-pressToKillBots( command, commandname )
+pressToKillBots( command )
 {
 	self endon("death");
-	self thread pressToKillBotsMsg( "Press [^3" + commandname + "^7] to ^1kill^7 bots", 15 );
+	self thread pressToKillBotsMsg( "Press ^3[{" + command + "}]^7 to ^1kill^7 bots", 15 );
 	self notifyOnPlayerCommand( "killbots", command );
 	self waittill("killbots");
 	thread killBots();
