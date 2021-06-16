@@ -324,6 +324,7 @@ precache()
 
 	_precacheStatusIcon( "hud_status_connecting" );
 	_precacheStatusIcon( "hud_status_dead" );
+	_precacheHeadIcon( "headicon_admin" );
 	
 	level.text["round_begins_in"] = &"BRAXI_ROUND_BEGINS_IN";
 	level.text["waiting_for_players"] = &"BRAXI_WAITING_FOR_PLAYERS";

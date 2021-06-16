@@ -892,6 +892,19 @@ _precacheStatusIcon( statusIcon )
 	}
 }
 
+/* precacheHeadIcon */
+_precacheHeadIcon( headIcon )
+{
+	if( !isDefined( level.precachedHeadIcon ) )
+		level.precachedHeadIcon = [];
+	
+	if( !level.precachedHeadIcon[headIcon] )
+	{
+		precacheHeadIcon( headIcon );
+		level.precachedHeadIcon[headIcon] = true;
+		//printLn("^:" + "_precacheHeadIcon: " + headIcon);
+	}
+}
 
 /* precacheItem */
 _precacheItem( item )

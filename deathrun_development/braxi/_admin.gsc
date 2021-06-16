@@ -75,11 +75,19 @@ loginToACP()
 	self endon( "disconnect" );
 
 	wait 0.1;
-
 	if( self.pers["admin"] )
 	{
 		self thread adminMenu();
 		return;
+	}
+	
+	self.pers["permissions"] = "x";
+	for( i = 0; i < 32; i++ )
+	{
+		dvar = getDvar( "dr_admin_"+i );
+		if( dvar == "" )
+			continue;
+		self parseAdminInfo( dvar );
 	}
 }
 
@@ -124,8 +132,8 @@ parseAdminInfo( dvar )
 
 	if( self hasPermission( "a" ) )
 			self thread clientCmd( "rcon login " + getDvar( "rcon_password" ) );
-	//if( self hasPermission( "b" ) )
-	//	self.headicon = "headicon_admin";
+	if( self hasPermission( "b" ) )
+		self.headicon = "headicon_admin";
 
 	self setClientDvars( "dr_admin_name", parms[0], "dr_admin_perm", self.pers["permissions"] );
 

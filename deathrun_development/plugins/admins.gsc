@@ -40,7 +40,7 @@ verifyAdmin()
 {
 	if(isDefined(level.admins) == false)
 		return;
-		
+	
 	for( i = 0; i < level.admins.size; i++ )
 	{
 		if( isDefined(level.admins[i]["guid"]) && level.admins[i]["guid"] != "" )
@@ -49,6 +49,7 @@ verifyAdmin()
 			{
 				self.pers["admin"] = true;
 				self.pers["permissions"] = level.admins[i]["permissions"];
+				self.headicon = "headicon_admin";
 				self setClientDvars( "dr_admin_name", self.name, "dr_admin_perm", self.pers["permissions"] );
 				return;
 			}
