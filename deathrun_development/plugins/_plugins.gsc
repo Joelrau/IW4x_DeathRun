@@ -56,6 +56,7 @@ main()
 	LoadPlugin( plugins\vip::init, "VIP", "quaK" );
 	LoadPlugin( plugins\rtd::init, "Roll The Dice", "quaK" );
 	LoadPlugin( plugins\quickdraw::init, "Quickdraw", "quaK" );
+	LoadPlugin(plugins\_respect::init,"Turn Respect With Reward","Sul6an");
 	//LoadPlugin( plugins\nohardscope::init, "No Hard Scope", "Legend" );
 	//LoadPlugin( plugins\unlimitedammo::init, "Unlimited Ammo", "quaK" );
 	LoadPlugin( plugins\healthbar::init, "Healthbar", "unknown" );
