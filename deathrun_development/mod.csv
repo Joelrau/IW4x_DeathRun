@@ -431,6 +431,8 @@ material,hud_icon_raygun
 
 material,hud_icon_rtd
 
+material,headicon_admin
+
 #SOUND
 
 loaded_sound,null.wav
