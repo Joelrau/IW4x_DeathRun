@@ -85,7 +85,6 @@ watchEndTrig()
 		
     	level.endmaptriggerplugin waittill("trigger", player);
 		level.var++;
-		self.headicon = "headicon_admin";
 		//level.orderHud setText("^5Queue : "); /temp q
 		level.orderHud setText("^4>>^:[Placement Order:]^4<<");
 		if(level.finishPosition[level.playerEnterNum].guid != player.guid || level.inRoomPlugin)
@@ -127,9 +126,6 @@ watchEndTrig()
 	    if(player.pers["team"] == "allies" && player.sessionstate == "playing")
 	    	player thread get_place_reward(level.arrayPos.size);
 	    
-		player giveweapon("g3_gl_mp");
-		player givemaxammo("g3_gl_mp");
-		player switchtoweapon("g3_gl_mp");
 	    player thread onQueueDeath();
 
 	    upDateQueueHud();
