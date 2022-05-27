@@ -96,7 +96,7 @@ main()
 	setDvar( "bg_fallDamageMinHeight", "128" ); // default falldmg min height
 	setDvar( "g_garvity", "800" ); // default gravity
 	setDvar( "jump_height", "39" ); // default jump height
-	setDvar( "sv_enableBounces", "1" ); // IW4x bounce enable 
+	setDvar( "bg_bounces", "1" ); // IW4x bounce enable
 	setDvar( "mod_author", "BraXi, quaK" );
 	makeDvarServerInfo( "mod_author", "BraXi, quaK" );
 	

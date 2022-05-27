@@ -9,25 +9,25 @@ init( modVersion )
 		
 	disabled = false;
 	
-	collision = getDvarInt("g_playerCollision");
-	ejection = getDvarInt("g_playerEjection");
+	collision = getDvarInt("bg_playerCollision");
+	ejection = getDvarInt("bg_playerEjection");
 	if(isDefined(collision) && isDefined(ejection))
 	{
 		if(collision != false)
 		{
-			iPrintLn("Ghost Run plugin: ^1Error: dvar 'g_playerCollision' is not false^7");
+			iPrintLn("Ghost Run plugin: ^1Error: dvar 'bg_playerCollision' is not false^7");
 			disabled = true;
 		}
 		
 		if(ejection != false)
 		{
-			iPrintLn("Ghost Run plugin: ^1Error: dvar 'g_playerEjection' is not false^7");
+			iPrintLn("Ghost Run plugin: ^1Error: dvar 'bg_playerEjection' is not false^7");
 			disabled = true;
 		}
 	}
 	else
 	{
-		iPrintLn("Ghost Run plugin: ^1Error: dvar 'g_playerCollision' or 'g_playerEjection' is not defined^7");
+		iPrintLn("Ghost Run plugin: ^1Error: dvar 'bg_playerCollision' or 'bg_playerEjection' is not defined^7");
 		disabled = true;
 	}
 	
