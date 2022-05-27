@@ -591,7 +591,7 @@ firstLetterToUpper( word )
 	return newWord;
 }
 
-toUpper( string )
+toUpper_old( string )
 {
 	output = "";
 	
